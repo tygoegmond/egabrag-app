@@ -13,11 +13,11 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import Swiper from "react-native-swiper";
-
-
+import axios from "axios";
+import * as Securestore from "expo-secure-store";
 
 //import assets
 
@@ -29,7 +29,10 @@ import { useFonts } from "expo-font";
 
 export default function Login({ navigation }) {
   //import fonts
-
+  axios.defaults.headers.post["Accept"] = "application/jsonr";
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [res, setRes] = useState()
   const [fontsLoaded] = useFonts({
     "Nabla-Regular": require("../assets/fonts/Nabla-Regular.ttf"),
     "great-escape": require("../assets/fonts/great-escape.ttf"),
@@ -49,29 +52,53 @@ export default function Login({ navigation }) {
 
   const logIn = async () => {
     try {
-      const response = await axios.post("http://192.168.190.101:8080/login", {
-        email: email,
-        password: wachtwoord,
-      });
-      console.log(response.data);
-      await Securestore.setItemAsync("token", response.data.token);
-      await Securestore.setItemAsync("name", response.data.name);
-      navigation.navigate("Ingelogdscherm");
-    } catch (err) {
-      console.log(err);
-      console.log({
-        status: err.response.status,
-        message: err.response.data.message,
-      });
+    const data = {
+      email: email,
+      password: password,
+      device_name: "bruh",
+    };
+    const config = {
+      headers: {
+        Accept: "application/json",
+      },
+    };
+    const response = await axios.post(
+      "https://egabrag.tygoegmond.nl/api/sanctum/token",
+      data,
+      config
+    );
+    console.log(response.data, "response");
+    navigation.navigate("Dashboard");
+    setRes(response)
+    await Securestore.setItemAsync("token", res.data);
+    
+    // axios
+    //   .post("127.0.0.1:8000/api/sanctum/token", data, config)
+    //   .then((res) => {
+    //     console.log(res);
+    //     console.log("test")
+    //     console.log(res.data);
+    //     setRes(res)
+    //     Securestore.setItemAsync("token", res.data.token);
+    //     Securestore.setItemAsync("name", res.data.name);
+
+    //   })
+    //   .catch((error) => console.log(error));
+
+    } catch (error) {
+      
     }
   };
 
+  async function updateSecurestore () {
+    console.log(res.data)
+    await Securestore.setItemAsync("token", res.data);
+
+  }
   //create press handlers
-
-  const pressHandler = async () => {
+  const pressHandler = () => {
     navigation.navigate("Dashboard");
-  };
-
+  }
   return (
     <View style={Global.container}>
       <View style={Global.container}>
@@ -95,7 +122,9 @@ export default function Login({ navigation }) {
             autoCapitalize="none"
             keyboardType={"email-address"}
             style={Global.largeField}
+            onChangeText={(e) => setEmail(e)}
             name="Email"
+            defaultValue={"me@tygoegmond.nl"}
           />
           <Text style={Global.placeholder}>Email</Text>
         </View>
@@ -112,7 +141,9 @@ export default function Login({ navigation }) {
             style={Global.largeField}
             autoCapitalize="none"
             secureTextEntry={true}
-            name="Email"
+            onChangeText={(e) => setPassword(e)}
+            name="Password"
+            defaultValue={"12345678"}
           />
           <Text style={Global.placeholder}>Password</Text>
         </View>
@@ -124,7 +155,7 @@ export default function Login({ navigation }) {
               position: "absolute",
             },
           ]}
-          onPress={pressHandler}
+          onPress={() => logIn()}
         >
           <Text style={Global.buttonText}>Login</Text>
         </TouchableOpacity>

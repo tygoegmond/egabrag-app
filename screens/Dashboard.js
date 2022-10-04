@@ -15,12 +15,14 @@ import {
 import { useFonts } from "expo-font";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import Swiper from "react-native-swiper";
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import Dashboardpic from "../assets/images/Dashboardpic2.png";
 import profilePic from "../assets/images/profilePic.png";
+import * as Securestore from "expo-secure-store";
 
 export default function Dashboard({ navigation }) {
   //import fonts
+  const [re, setRe] = useState("")
   const [fontsLoaded] = useFonts({
     "Nabla-Regular": require("../assets/fonts/Nabla-Regular.ttf"),
     "great-escape": require("../assets/fonts/great-escape.ttf"),
@@ -40,6 +42,10 @@ export default function Dashboard({ navigation }) {
   const pressHandler = async () => {
     navigation.navigate("FinancialLiteracy");
   };
+  const getItem = async () => {
+  setRe(await Securestore.getItemAsync("token"))
+    console.log(re)
+  };
 
   return (
     <View style={styles.container}>
@@ -57,15 +63,19 @@ export default function Dashboard({ navigation }) {
         horizontal={true}
       >
         <View style={styles.container}>
-        <Image style={styles.imgback2} source={Dashboardpic} />
-          <Text style={styles.dashboard}>Dashboard</Text> 
-          
-          <TouchableOpacity style={styles.profileView}>
-            <Image style={styles.profilePic} source={profilePic} />
-            <View style={styles.textContainer} >
-            <Text style={styles.profileText}>Profile</Text>
-            </View>
+          <Image style={styles.imgback2} source={Dashboardpic} />
+          <Text style={styles.dashboard}>Dashboard</Text>
 
+          <TouchableOpacity onPress={getItem}style={styles.profileView}>
+            <Image style={styles.profilePic} source={profilePic} />
+            <Text style={styles.name}>Hello, Dominique!</Text>
+            <View style={styles.textContainer}>
+              <Text style={styles.profileText}>Profile</Text>
+            </View>
+            <View style={styles.profileInfoContainer}>
+              <Text style={styles.profileInfo}>Age: 18</Text>
+              <Text style={styles.profileInfo}>Country: Netherlands</Text>
+            </View>
           </TouchableOpacity>
         </View>
       </Swiper>
@@ -118,24 +128,50 @@ const styles = StyleSheet.create({
   profilePic: {
     width: width / 4,
     height: height / 9,
-    top: getStatusBarHeight() - height / 11,
+    top: getStatusBarHeight() - height / 9,
     left: width / 16,
-    
   },
   profileText: {
     color: "#fff",
     backgroundColor: "#61CBB4",
-    padding: 20,
+    padding: 15,
     paddingHorizontal: 30,
-    borderRadius: 25,
-    
-    
+    borderRadius: 24,
+    overflow: "hidden",
+    fontWeight: "bold",
   },
   textContainer: {
     width: width / 1.5,
     textAlign: "center",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 25,
+    borderRadius: 30,
+    overflow: "hidden",
+    left: width / 2.9,
+    position: "absolute",
+    top: getStatusBarHeight() + height / 11,
   },
+  name: {
+    color: "#61CBB4",
+    fontSize: 25,
+    fontWeight: "bold",
+    top: getStatusBarHeight() - height / 33,
+    left: width / 3.1,
+    position: "absolute",
+  },
+  profileInfoContainer: {
+    width: width / 2,
+    left: width / 11,
+    top: getStatusBarHeight() - height * 0.08,
+  
+  },
+  profileInfo: {
+    color: "#000",
+    fontSize: 16,
+    fontWeight: "bold",
+    marginBottom: height / 90,
+    position: "relative",
+   
+  },
+  
 });
