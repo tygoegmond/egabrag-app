@@ -26,12 +26,14 @@ import Global from "../assets/styles/Global";
 
 //import expo assets
 import { useFonts } from "expo-font";
+import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
 
 export default function Login({ navigation }) {
   //import fonts
   axios.defaults.headers.post["Accept"] = "application/jsonr";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState("");
   const [res, setRes] = useState()
   const [fontsLoaded] = useFonts({
     "Nabla-Regular": require("../assets/fonts/Nabla-Regular.ttf"),
@@ -70,7 +72,7 @@ export default function Login({ navigation }) {
     console.log(response.data, "response");
     navigation.navigate("Dashboard");
     setRes(response)
-    await Securestore.setItemAsync("token", res.data);
+    updateSecurestore(response.data)
     
     // axios
     //   .post("127.0.0.1:8000/api/sanctum/token", data, config)
@@ -86,13 +88,23 @@ export default function Login({ navigation }) {
     //   .catch((error) => console.log(error));
 
     } catch (error) {
-      
+      setErrors("")
+      console.log(error.response.data.errors);
+      let errorMap = ""
+      for(var key in error.response.data.errors){
+        console.log(key)
+        console.log(error.response.data.errors[key])
+        if(errors !== error.response.data.errors[key][0]){
+          errorMap = errorMap + error.response.data.errors[key][0] + " "
+        }
+      }
+      setErrors(errorMap)
     }
   };
 
-  async function updateSecurestore () {
-    console.log(res.data)
-    await Securestore.setItemAsync("token", res.data);
+  async function updateSecurestore (resdata) {
+    console.log(resdata, "dasdasdasd")
+    await Securestore.setItemAsync("token", resdata);
 
   }
   //create press handlers
@@ -137,6 +149,7 @@ export default function Login({ navigation }) {
             },
           ]}
         >
+          <Text style={styles.error}>{errors}</Text>
           <TextInput
             style={Global.largeField}
             autoCapitalize="none"
@@ -207,4 +220,16 @@ const styles = StyleSheet.create({
     top: getStatusBarHeight() - 190,
     margin: 0,
   },
+  error: {
+    color: "red",
+    fontSize: 25,
+    fontWeight: "bold",
+    textAlign: "center",
+    position: "absolute",
+    bottom: getStatusBarHeight() - height / 3.5,
+    left: 0,
+    right: 0,
+
+
+},
 });

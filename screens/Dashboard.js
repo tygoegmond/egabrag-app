@@ -15,18 +15,45 @@ import {
 import { useFonts } from "expo-font";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import Swiper from "react-native-swiper";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Dashboardpic from "../assets/images/Dashboardpic2.png";
 import profilePic from "../assets/images/profilePic.png";
 import * as Securestore from "expo-secure-store";
+import axios from "axios";
 
 export default function Dashboard({ navigation }) {
   //import fonts
   const [re, setRe] = useState("")
+  const [user, setUser] = useState("")
   const [fontsLoaded] = useFonts({
     "Nabla-Regular": require("../assets/fonts/Nabla-Regular.ttf"),
     "great-escape": require("../assets/fonts/great-escape.ttf"),
   });
+  async function getUserData() {
+    try {
+      const response = await axios.get("https://egabrag.tygoegmond.nl/api/user", {
+        headers: {
+          Authorization: "Bearer " + (await Securestore.getItemAsync("token")),
+          Accept: "application/json"
+          },
+        });
+      console.log(response.data);
+      setUser(response.data)
+      return response.data
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect( () => {
+    Securestore.getItemAsync("token").then((token) => {
+      setRe(token)
+    })
+    let data = getUserData()
+    
+
+  }, [])
 
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
@@ -68,7 +95,7 @@ export default function Dashboard({ navigation }) {
 
           <TouchableOpacity onPress={getItem}style={styles.profileView}>
             <Image style={styles.profilePic} source={profilePic} />
-            <Text style={styles.name}>Hello, Dominique!</Text>
+            <Text style={styles.name}>Hello, {user.name}!</Text>
             <View style={styles.textContainer}>
               <Text style={styles.profileText}>Profile</Text>
             </View>
@@ -123,6 +150,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     height: height / 5.5,
     bottom: getStatusBarHeight() + height / 5.5,
+    
     justifyContent: "center",
   },
   profilePic: {
@@ -139,6 +167,8 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     overflow: "hidden",
     fontWeight: "bold",
+    flexWrap: 'wrap',
+
   },
   textContainer: {
     width: width / 1.5,
@@ -155,9 +185,11 @@ const styles = StyleSheet.create({
     color: "#61CBB4",
     fontSize: 25,
     fontWeight: "bold",
-    top: getStatusBarHeight() - height / 33,
-    left: width / 3.1,
+    top: getStatusBarHeight() + height * 0.0005,
+    left: width / 11,
     position: "absolute",
+    //wrap text 
+    
   },
   profileInfoContainer: {
     width: width / 2,
@@ -169,9 +201,8 @@ const styles = StyleSheet.create({
     color: "#000",
     fontSize: 16,
     fontWeight: "bold",
-    marginBottom: height / 90,
+    marginBottom: height / 120,
     position: "relative",
-   
   },
   
 });
