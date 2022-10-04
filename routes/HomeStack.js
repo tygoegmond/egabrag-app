@@ -8,13 +8,13 @@ import { createAppContainer } from "react-navigation";
 import Start from "../screens/Start";
 import Dashboard from "../screens/Dashboard";
 import Login from "../screens/Login";
+import FinancialLiteracy from "../screens/FinancialLiteracy";
 
 //define object with screens
 
 const screens = {
-
   //start with name of screen js file
-   Start: {
+  Start: {
     screen: Start,
   },
   Dashboard: {
@@ -23,7 +23,9 @@ const screens = {
   Login: {
     screen: Login,
   },
- 
+  FinancialLiteracy: {
+    screen: FinancialLiteracy,
+  },
 };
 //creating homestack to navigate between screens
 
