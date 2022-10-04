@@ -17,7 +17,7 @@ import { getStatusBarHeight } from "react-native-status-bar-height";
 import Swiper from "react-native-swiper";
 import React, { useCallback } from "react";
 import Dashboardpic from "../assets/images/Dashboardpic2.png";
-import Global from "../assets/styles/Global";
+import profilePic from "../assets/images/profilePic.png";
 
 export default function Dashboard({ navigation }) {
   //import fonts
@@ -57,18 +57,16 @@ export default function Dashboard({ navigation }) {
         horizontal={true}
       >
         <View style={styles.container}>
-          <Image style={styles.imgback2} source={Dashboardpic} />
-          <TouchableOpacity
-            onPress={pressHandler}
-            style={[Global.button, { top: height / 1.6, opacity: 0.5 }]}
-          >
-            <Text style={Global.buttonText}>Financial Literacy</Text>
+        <Image style={styles.imgback2} source={Dashboardpic} />
+          <Text style={styles.dashboard}>Dashboard</Text> 
+          
+          <TouchableOpacity style={styles.profileView}>
+            <Image style={styles.profilePic} source={profilePic} />
+            <View style={styles.textContainer} >
+            <Text style={styles.profileText}>Profile</Text>
+            </View>
+
           </TouchableOpacity>
-          <Text style={styles.dashboard}>Dashboard</Text>
-          <Text stylee={styles.welcome}>
-            {" "}
-            Welcome to My Education lifestlye
-          </Text>
         </View>
       </Swiper>
     </View>
@@ -106,7 +104,38 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     top: getStatusBarHeight() + height / 150,
-    left: width / 10,
+    left: width / 11.5,
     position: "absolute",
+  },
+  profileView: {
+    backgroundColor: "#fff",
+    width: width / 1.18,
+    borderRadius: 25,
+    height: height / 5.5,
+    bottom: getStatusBarHeight() + height / 5.5,
+    justifyContent: "center",
+  },
+  profilePic: {
+    width: width / 4,
+    height: height / 9,
+    top: getStatusBarHeight() - height / 11,
+    left: width / 16,
+    
+  },
+  profileText: {
+    color: "#fff",
+    backgroundColor: "#61CBB4",
+    padding: 20,
+    paddingHorizontal: 30,
+    borderRadius: 25,
+    
+    
+  },
+  textContainer: {
+    width: width / 1.5,
+    textAlign: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 25,
   },
 });

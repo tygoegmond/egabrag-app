@@ -17,6 +17,8 @@ import React, { useCallback } from "react";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import Swiper from "react-native-swiper";
 
+
+
 //import assets
 
 import loginBackground from "../assets/images/loginBackground.jpg";
@@ -43,7 +45,27 @@ export default function Login({ navigation }) {
     return null;
   }
 
-  //
+  // login functions
+
+  const logIn = async () => {
+    try {
+      const response = await axios.post("http://192.168.190.101:8080/login", {
+        email: email,
+        password: wachtwoord,
+      });
+      console.log(response.data);
+      await Securestore.setItemAsync("token", response.data.token);
+      await Securestore.setItemAsync("name", response.data.name);
+      navigation.navigate("Ingelogdscherm");
+    } catch (err) {
+      console.log(err);
+      console.log({
+        status: err.response.status,
+        message: err.response.data.message,
+      });
+    }
+  };
+
   //create press handlers
 
   const pressHandler = async () => {
