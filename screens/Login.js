@@ -13,11 +13,11 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import Swiper from "react-native-swiper";
-
-
+import axios from "axios";
+import * as Securestore from "expo-secure-store";
 
 //import assets
 
@@ -26,10 +26,15 @@ import Global from "../assets/styles/Global";
 
 //import expo assets
 import { useFonts } from "expo-font";
+import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
 
 export default function Login({ navigation }) {
   //import fonts
-
+  axios.defaults.headers.post["Accept"] = "application/jsonr";
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState("");
+  const [res, setRes] = useState()
   const [fontsLoaded] = useFonts({
     "Nabla-Regular": require("../assets/fonts/Nabla-Regular.ttf"),
     "great-escape": require("../assets/fonts/great-escape.ttf"),
@@ -49,29 +54,63 @@ export default function Login({ navigation }) {
 
   const logIn = async () => {
     try {
-      const response = await axios.post("http://192.168.190.101:8080/login", {
-        email: email,
-        password: wachtwoord,
-      });
-      console.log(response.data);
-      await Securestore.setItemAsync("token", response.data.token);
-      await Securestore.setItemAsync("name", response.data.name);
-      navigation.navigate("Ingelogdscherm");
-    } catch (err) {
-      console.log(err);
-      console.log({
-        status: err.response.status,
-        message: err.response.data.message,
-      });
+    const data = {
+      email: email,
+      password: password,
+      device_name: "bruh",
+    };
+    const config = {
+      headers: {
+        Accept: "application/json",
+      },
+    };
+    const response = await axios.post(
+      "https://egabrag.tygoegmond.nl/api/sanctum/token",
+      data,
+      config
+    );
+    console.log(response.data, "response");
+    navigation.navigate("Dashboard");
+    setRes(response)
+    updateSecurestore(response.data)
+    
+    // axios
+    //   .post("127.0.0.1:8000/api/sanctum/token", data, config)
+    //   .then((res) => {
+    //     console.log(res);
+    //     console.log("test")
+    //     console.log(res.data);
+    //     setRes(res)
+    //     Securestore.setItemAsync("token", res.data.token);
+    //     Securestore.setItemAsync("name", res.data.name);
+
+    //   })
+    //   .catch((error) => console.log(error));
+
+    } catch (error) {
+      setErrors("")
+      console.log(error.response.data.errors);
+      let errorMap = ""
+      for(var key in error.response.data.errors){
+        console.log(key)
+        console.log(error.response.data.errors[key])
+        if(errors !== error.response.data.errors[key][0]){
+          errorMap = errorMap + error.response.data.errors[key][0] + " "
+        }
+      }
+      setErrors(errorMap)
     }
   };
 
+  async function updateSecurestore (resdata) {
+    console.log(resdata, "dasdasdasd")
+    await Securestore.setItemAsync("token", resdata);
+
+  }
   //create press handlers
-
-  const pressHandler = async () => {
+  const pressHandler = () => {
     navigation.navigate("Dashboard");
-  };
-
+  }
   return (
     <View style={Global.container}>
       <View style={Global.container}>
@@ -95,7 +134,9 @@ export default function Login({ navigation }) {
             autoCapitalize="none"
             keyboardType={"email-address"}
             style={Global.largeField}
+            onChangeText={(e) => setEmail(e)}
             name="Email"
+            defaultValue={"me@tygoegmond.nl"}
           />
           <Text style={Global.placeholder}>Email</Text>
         </View>
@@ -108,11 +149,14 @@ export default function Login({ navigation }) {
             },
           ]}
         >
+          <Text style={styles.error}>{errors}</Text>
           <TextInput
             style={Global.largeField}
             autoCapitalize="none"
             secureTextEntry={true}
-            name="Email"
+            onChangeText={(e) => setPassword(e)}
+            name="Password"
+            defaultValue={"12345678"}
           />
           <Text style={Global.placeholder}>Password</Text>
         </View>
@@ -124,7 +168,7 @@ export default function Login({ navigation }) {
               position: "absolute",
             },
           ]}
-          onPress={pressHandler}
+          onPress={() => logIn()}
         >
           <Text style={Global.buttonText}>Login</Text>
         </TouchableOpacity>
@@ -176,4 +220,16 @@ const styles = StyleSheet.create({
     top: getStatusBarHeight() - 190,
     margin: 0,
   },
+  error: {
+    color: "red",
+    fontSize: 25,
+    fontWeight: "bold",
+    textAlign: "center",
+    position: "absolute",
+    bottom: getStatusBarHeight() - height / 3.5,
+    left: 0,
+    right: 0,
+
+
+},
 });

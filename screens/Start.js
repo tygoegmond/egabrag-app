@@ -77,7 +77,7 @@ export default function Start({ navigation }) {
       image: landingpage2,
     },
     {
-      title: "Daily mindfull quotes",
+      title: "Daily mindful quotes",
       image: landing3,
     },
     {
