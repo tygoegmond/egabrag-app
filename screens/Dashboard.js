@@ -57,15 +57,18 @@ export default function Dashboard({ navigation }) {
         horizontal={true}
       >
         <View style={styles.container}>
-        <Image style={styles.imgback2} source={Dashboardpic} />
-          <Text style={styles.dashboard}>Dashboard</Text> 
-          
+          <Image style={styles.imgback2} source={Dashboardpic} />
+          <Text style={styles.dashboard}>Dashboard</Text>
+
           <TouchableOpacity style={styles.profileView}>
             <Image style={styles.profilePic} source={profilePic} />
-            <View style={styles.textContainer} >
-            <Text style={styles.profileText}>Profile</Text>
+            <View style={styles.textContainer}>
+              <Text style={styles.profileText}>Profile</Text>
             </View>
+          </TouchableOpacity>
 
+          <TouchableOpacity onPress={pressHandler} style={styles.buttoniguess}>
+            <Text style={styles.buttontextiguess}>Press me</Text>
           </TouchableOpacity>
         </View>
       </Swiper>
@@ -76,6 +79,14 @@ export default function Dashboard({ navigation }) {
 const { height, width } = Dimensions.get("screen");
 
 const styles = StyleSheet.create({
+  buttoniguess: {
+    backgroundColor: "red",
+    width: width / 2,
+    height: height / 10,
+    justifyContent: "center",
+    textAlign: "center",
+  },
+
   container: {
     flex: 1,
     backgroundColor: "#eee",
@@ -120,7 +131,6 @@ const styles = StyleSheet.create({
     height: height / 9,
     top: getStatusBarHeight() - height / 11,
     left: width / 16,
-    
   },
   profileText: {
     color: "#fff",
@@ -128,8 +138,6 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingHorizontal: 30,
     borderRadius: 25,
-    
-    
   },
   textContainer: {
     width: width / 1.5,
