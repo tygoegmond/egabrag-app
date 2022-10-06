@@ -24,6 +24,7 @@ const Global =  StyleSheet.create({
     shadowOpacity: 0.15,   
     shadowRadius: 0.8,
     elevation: 5,
+    marginBottom: 10,
     paddingLeft: width / 20,
     paddingTop: height / 50,
     fontSize: 20,
