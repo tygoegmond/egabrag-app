@@ -23,37 +23,38 @@ import axios from "axios";
 
 export default function Dashboard({ navigation }) {
   //import fonts
-  const [re, setRe] = useState("")
-  const [user, setUser] = useState("")
+  const [re, setRe] = useState("");
+  const [user, setUser] = useState("");
   const [fontsLoaded] = useFonts({
     "Nabla-Regular": require("../assets/fonts/Nabla-Regular.ttf"),
     "great-escape": require("../assets/fonts/great-escape.ttf"),
   });
   async function getUserData() {
     try {
-      const response = await axios.get("https://egabrag.tygoegmond.nl/api/user", {
-        headers: {
-          Authorization: "Bearer " + (await Securestore.getItemAsync("token")),
-          Accept: "application/json"
+      const response = await axios.get(
+        "https://egabrag.tygoegmond.nl/api/user",
+        {
+          headers: {
+            Authorization:
+              "Bearer " + (await Securestore.getItemAsync("token")),
+            Accept: "application/json",
           },
-        });
+        }
+      );
       console.log(response.data);
-      setUser(response.data)
-      return response.data
-    }
-    catch (error) {
+      setUser(response.data);
+      return response.data;
+    } catch (error) {
       console.log(error);
     }
   }
 
-  useEffect( () => {
+  useEffect(() => {
     Securestore.getItemAsync("token").then((token) => {
-      setRe(token)
-    })
-    let data = getUserData()
-    
-
-  }, [])
+      setRe(token);
+    });
+    let data = getUserData();
+  }, []);
 
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
@@ -70,8 +71,8 @@ export default function Dashboard({ navigation }) {
     navigation.navigate("CreateUser");
   };
   const getItem = async () => {
-  setRe(await Securestore.getItemAsync("token"))
-    console.log(re)
+    setRe(await Securestore.getItemAsync("token"));
+    console.log(re);
   };
 
   return (
@@ -113,6 +114,14 @@ export default function Dashboard({ navigation }) {
 const { height, width } = Dimensions.get("screen");
 
 const styles = StyleSheet.create({
+  buttoniguess: {
+    backgroundColor: "red",
+    width: width / 2,
+    height: height / 10,
+    justifyContent: "center",
+    textAlign: "center",
+  },
+
   container: {
     flex: 1,
     backgroundColor: "#eee",
@@ -150,7 +159,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     height: height / 5.5,
     bottom: getStatusBarHeight() + height / 5.5,
-    
+
     justifyContent: "center",
   },
   profilePic: {
@@ -167,8 +176,7 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     overflow: "hidden",
     fontWeight: "bold",
-    flexWrap: 'wrap',
-
+    flexWrap: "wrap",
   },
   textContainer: {
     width: width / 1.5,
@@ -188,14 +196,12 @@ const styles = StyleSheet.create({
     top: getStatusBarHeight() + height * 0.0005,
     left: width / 11,
     position: "absolute",
-    //wrap text 
-    
+    //wrap text
   },
   profileInfoContainer: {
     width: width / 2,
     left: width / 11,
     top: getStatusBarHeight() - height * 0.08,
-  
   },
   profileInfo: {
     color: "#000",
@@ -204,5 +210,4 @@ const styles = StyleSheet.create({
     marginBottom: height / 120,
     position: "relative",
   },
-  
 });
