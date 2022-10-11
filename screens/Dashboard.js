@@ -75,6 +75,11 @@ export default function Dashboard({ navigation }) {
     console.log(re);
   };
 
+  const signOut = () => {
+    Securestore.deleteItemAsync('token').then(
+     navigation.navigate('Login')
+    );}
+
   return (
     <View style={styles.container}>
       <StatusBar

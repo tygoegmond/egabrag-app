@@ -10,11 +10,14 @@ import Dashboard from "../screens/Dashboard";
 import Login from "../screens/Login";
 import FinancialLiteracy from "../screens/FinancialLiteracy";
 import CreateUser from "../screens/CreateUser";
-
+import SplashScreen from "../screens/SplashScreen";
 //define object with screens
 
 const screens = {
   //start with name of screen js file
+  SplashScreen: {
+    screen: SplashScreen,
+  },
   Start: {
     screen: Start,
   },
