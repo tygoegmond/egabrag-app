@@ -68,8 +68,13 @@ export default function Dashboard({ navigation }) {
   //
 
   const pressHandler = async () => {
-    navigation.navigate("CreateUser");
+    navigation.navigate("FinancialLiteracy");
   };
+
+  const pressHandlerMindfullness = async () => {
+    navigation.navigate("Mindfullness");
+  };
+
   const getItem = async () => {
     setRe(await Securestore.getItemAsync("token"));
     console.log(re);
@@ -94,7 +99,7 @@ export default function Dashboard({ navigation }) {
           <Image style={styles.imgback2} source={Dashboardpic} />
           <Text style={styles.dashboard}>Dashboard</Text>
 
-          <TouchableOpacity onPress={pressHandler}style={styles.profileView}>
+          <TouchableOpacity onPress={pressHandler} style={styles.profileView}>
             <Image style={styles.profilePic} source={profilePic} />
             <Text style={styles.name}>Hello, {user.name}!</Text>
             <View style={styles.textContainer}>
@@ -103,6 +108,14 @@ export default function Dashboard({ navigation }) {
             <View style={styles.profileInfoContainer}>
               <Text style={styles.profileInfo}>Age: 18</Text>
               <Text style={styles.profileInfo}>Country: Netherlands</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={pressHandlerMindfullness}
+            style={styles.mindfullnessView}
+          >
+            <View style={styles.mindfullnessContainer}>
+              <Text style={styles.profileInfo}>Mindfullness quote</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -162,6 +175,15 @@ const styles = StyleSheet.create({
 
     justifyContent: "center",
   },
+  mindfullnessView: {
+    backgroundColor: "#fff",
+    width: width / 1.18,
+    borderRadius: 25,
+    height: height / 8,
+    bottom: getStatusBarHeight() + height / 2.3,
+    justifyContent: "center",
+    position: "absolute",
+  },
   profilePic: {
     width: width / 4,
     height: height / 9,
@@ -202,6 +224,11 @@ const styles = StyleSheet.create({
     width: width / 2,
     left: width / 11,
     top: getStatusBarHeight() - height * 0.08,
+  },
+  mindfullnessContainer: {
+    width: width / 2,
+    left: width / 11,
+    top: getStatusBarHeight() - height * 2,
   },
   profileInfo: {
     color: "#000",

@@ -9,6 +9,7 @@ import Start from "../screens/Start";
 import Dashboard from "../screens/Dashboard";
 import Login from "../screens/Login";
 import FinancialLiteracy from "../screens/FinancialLiteracy";
+import Mindfullness from "../screens/Mindfullness";
 import CreateUser from "../screens/CreateUser";
 
 //define object with screens
@@ -26,6 +27,9 @@ const screens = {
   },
   FinancialLiteracy: {
     screen: FinancialLiteracy,
+  },
+  Mindfullness: {
+    screen: Mindfullness,
   },
   CreateUser: {
     screen: CreateUser,
