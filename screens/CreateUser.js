@@ -9,6 +9,8 @@ import {
   Dimensions,
   TouchableOpacity,
   FlatList,
+  Modal,
+  Pressable
 } from "react-native";
 import React, { useCallback, useState } from "react";
 import { getStatusBarHeight } from "react-native-status-bar-height";
@@ -32,7 +34,10 @@ export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState("");
+  const [date, setDate] = useState(new Date())
+  const [open, setOpen] = useState(false)
   const [res, setRes] = useState();
+  const [modalVisible, setModalVisible] = useState(false);
   const [fontsLoaded] = useFonts({
     "Nabla-Regular": require("../assets/fonts/Nabla-Regular.ttf"),
     "great-escape": require("../assets/fonts/great-escape.ttf"),
@@ -139,48 +144,39 @@ export default function Login({ navigation }) {
           />
           <Text style={Global.placeholder}>Email</Text>
         </View>
-        <View
-          style={[
-            Global.input,
-            {
-              marginTop: 0,
-              bottom: getStatusBarHeight() + height / 2.65,
-              position: "absolute",
-            },
-          ]}
-        >
-          <TextInput
-            autoCapitalize="none"
-            keyboardType={"email-address"}
-            style={Global.largeField}
-            onChangeText={(e) => setEmail(e)}
-            name="Email"
-            defaultValue={"me@tygoegmond.nl"}
-          />
-          <Text style={Global.placeholder}>Email</Text>
+        
+        <LargeField type={"email"} position={2.65} title="Date" setFunction={setEmail} keyboardType={"email-address"}/>
+        <LargeField type={"email"} position={3.5} title="Email" setFunction={setEmail} keyboardType={"email-address"}/>
+        <LargeField type={"password"} position={5.1} title="Password" setFunction={setPassword} keyboardType={"password"}/>
+        <Text style={styles.error}>{errors}</Text>
+        <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Hello World!</Text>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </Pressable>
+          </View>
         </View>
-        <View
-          style={[
-            Global.input,
-            {
-              marginTop: 0,
-              bottom: getStatusBarHeight() + height / 1.6,
-              position: "absolute",
-            },
-          ]}
-        >
-          <TextInput
-            autoCapitalize="none"
-            keyboardType={"email-address"}
-            style={Global.largeField}
-            onChangeText={(e) => setEmail(e)}
-            name="Email"
-            defaultValue={"me@tygoegmond.nl"}
-          />
-          <Text style={Global.placeholder}>Email</Text>
-        </View>
-        <LargeField type={"password"} position={2.65} title="Password" setFunction={setPassword} keyboardType={"password"}/>
-        <View
+      </Modal>
+      <Pressable
+        style={[styles.button, styles.buttonOpen]}
+        onPress={() => setModalVisible(true)}
+      >
+        <Text style={styles.textStyle}>Show Modal</Text>
+      </Pressable>
+        {/* <View
           style={[
             Global.input,
             {
@@ -189,17 +185,16 @@ export default function Login({ navigation }) {
             },
           ]}
         >
-          <Text style={styles.error}>{errors}</Text>
-          <TextInput
-            style={Global.largeField}
-            autoCapitalize="none"
-            secureTextEntry={true}
+        <TextInput
+        style={Global.largeField}
+        autoCapitalize="none"
+        secureTextEntry={true}
             onChangeText={(e) => setPassword(e)}
             name="Password"
             defaultValue={"12345678"}
           />
           <Text style={Global.placeholder}>Password</Text>
-        </View>
+        </View> */}
         <TouchableOpacity
           style={[
             Global.button,
@@ -226,6 +221,48 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  },
+
   imgback2: {
     flex: 1,
     resizeMode: "cover",
