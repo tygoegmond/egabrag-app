@@ -9,6 +9,7 @@ import Start from "../screens/Start";
 import Dashboard from "../screens/Dashboard";
 import Login from "../screens/Login";
 import FinancialLiteracy from "../screens/FinancialLiteracy";
+import CreateUser from "../screens/CreateUser";
 
 //define object with screens
 
@@ -25,6 +26,9 @@ const screens = {
   },
   FinancialLiteracy: {
     screen: FinancialLiteracy,
+  },
+  CreateUser: {
+    screen: CreateUser,
   },
 };
 //creating homestack to navigate between screens

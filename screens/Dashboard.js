@@ -68,7 +68,7 @@ export default function Dashboard({ navigation }) {
   //
 
   const pressHandler = async () => {
-    navigation.navigate("FinancialLiteracy");
+    navigation.navigate("CreateUser");
   };
   const getItem = async () => {
     setRe(await Securestore.getItemAsync("token"));
