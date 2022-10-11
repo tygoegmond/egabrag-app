@@ -43,23 +43,23 @@ export default function FinancialLiteracy({ navigation }) {
     },
     {
       source: content2,
-      title: "",
-      description: "",
+      title: "a",
+      description: "a",
     },
     {
       source: content3,
-      title: "",
-      description: "",
+      title: "a",
+      description: "a",
     },
     {
       source: content4,
-      title: "",
-      description: "",
+      title: "a",
+      description: "a",
     },
     {
       source: content5,
-      title: "",
-      description: "",
+      title: "a",
+      description: "a",
     },
   ];
 
@@ -79,6 +79,7 @@ export default function FinancialLiteracy({ navigation }) {
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             data={data}
+            style={styles.flatlist}
             renderItem={({ item }) => (
               <View style={{ backrgoundColor: "red" }}>
                 {/* singular on boarding screen word gerendered */}
@@ -168,5 +169,9 @@ const styles = StyleSheet.create({
     width: width / 5,
     height: height / 7,
     marginRight: width / 40,
+  },
+  flatlist: {
+    marginRight: width / 10,
+    width: width * 0.8,
   },
 });
