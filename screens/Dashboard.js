@@ -94,7 +94,7 @@ export default function Dashboard({ navigation }) {
           <Image style={styles.imgback2} source={Dashboardpic} />
           <Text style={styles.dashboard}>Dashboard</Text>
 
-          <TouchableOpacity onPress={getItem} style={styles.profileView}>
+          <TouchableOpacity onPress={pressHandler} style={styles.profileView}>
             <Image style={styles.profilePic} source={profilePic} />
             <Text style={styles.name}>Hello, {user.name}!</Text>
             <View style={styles.textContainer}>
