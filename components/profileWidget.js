@@ -18,7 +18,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useFonts } from "expo-font";
 
 // create onboarding component
-const ProfileWidget = ({ profilePic, user }) => {
+const ProfileWidget = ({ profilePic, user, navigation }) => {
   //declare states
 
   const [dotColor, setDotColor] = useState("#fff");
@@ -43,26 +43,26 @@ const ProfileWidget = ({ profilePic, user }) => {
     return null;
   }
   const pressHandler = () => {
-    console.log("hi")
-  }
+    navigation.navigate("Profile");
+  };
   const signOut = () => {
-    Securestore.deleteItemAsync('token').then(
-     navigation.navigate('Login')
-    );}
+    Securestore.deleteItemAsync("token").then(navigation.navigate("Login"));
+  };
+
+  let coinAmount = 40;
+  const [prefix, suffix] = ['Studies', 'Windesheim']
   return (
- 
-      <TouchableOpacity onPress={pressHandler} style={styles.profileView}>
-        <Image style={styles.profilePic} source={profilePic} />
-        <Text style={styles.name}>Hello, {user.name}!</Text>
-        <View style={styles.textContainer}>
-          <Text style={styles.profileText}>Profile</Text>
-        </View>
-        <View style={styles.profileInfoContainer}>
-          <Text style={styles.profileInfo}>Age: 18</Text>
-          <Text style={styles.profileInfo}>Country: Netherlands</Text>
-        </View>
-      </TouchableOpacity>
-  
+    <TouchableOpacity onPress={pressHandler} style={styles.profileView}>
+      <Image style={styles.profilePic} source={profilePic} />
+      <Text style={styles.name}>Hello, {user.name}!</Text>
+      <View style={styles.textContainer}>
+        <Text style={styles.profileText}>Profile</Text>
+      </View>
+      <View style={styles.profileInfoContainer}>
+        <Text style={styles.profileInfo}>🪙: {coinAmount}</Text>
+        <Text style={styles.profileInfo}>{prefix} at {suffix}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
@@ -73,7 +73,6 @@ const styles = StyleSheet.create({
     width: width / 10,
   },
   image: {
-    
     resizeMode: "cover",
     justifyContent: "center",
     zIndex: 0,
@@ -241,7 +240,7 @@ const styles = StyleSheet.create({
     width: width / 1.18,
     borderRadius: 25,
     height: height / 5.5,
-    bottom: getStatusBarHeight() + height / 5.5,
+    bottom: getStatusBarHeight() + height / 5.1,
 
     justifyContent: "center",
   },

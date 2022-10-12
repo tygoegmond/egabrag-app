@@ -18,7 +18,7 @@ import {
   import { useFonts } from "expo-font";
   
   // create onboarding component
-  const MindfulNessWidget = ({ quote, author }) => {
+  const MindfulNessWidget = ({ quote, author, navigation }) => {
     //declare states
   
     //import fonts
@@ -36,7 +36,7 @@ import {
       return null;
     }
     const pressHandler = () => {
-      console.log("hi")
+      navigation.navigate("FinancialLiteracy");
     }
     return (
    
@@ -227,7 +227,7 @@ import {
       width: width / 1.18,
       borderRadius: 25,
       height: height / 7.6,
-      bottom: getStatusBarHeight() + height / 2.32,
+      bottom: getStatusBarHeight() + height / 2.25,
       position: "absolute",
       justifyContent: "center",
     },

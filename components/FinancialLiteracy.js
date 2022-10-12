@@ -20,7 +20,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useFonts } from "expo-font";
 
 // create onboarding component
-const FinancialLiteracy = ({ recentTrainings }) => {
+const FinancialLiteracy = ({ recentTrainings, navigation }) => {
   //declare states
   const [progress, setProgress] = useState(0);
 
@@ -39,14 +39,14 @@ const FinancialLiteracy = ({ recentTrainings }) => {
     return null;
   }
   const pressHandler = () => {
-    console.log("hi");
-  };
+    navigation.navigate("FinancialLiteracy");
+  }
   function timeout(delay) {
     return new Promise((res) => setTimeout(res, delay));
   }
   async function updateProgress(time) {
     await timeout(time);
-    setProgress(0.76);
+    setProgress(0.56);
   }
   updateProgress(500);
 
@@ -106,8 +106,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     width: width / 1.18,
     borderRadius: 25,
-    height: height / 5.4,
-    bottom: getStatusBarHeight() + height / 4.4,
+    height: height / 5.8,
+    bottom: getStatusBarHeight() + height / 3.9,
     position: "absolute",
     justifyContent: "center",
   },
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
   },
   profileInfo: {
     color: "black",
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "bold",
     top: height * 0.03,
 

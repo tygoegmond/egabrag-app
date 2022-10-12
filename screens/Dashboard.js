@@ -16,13 +16,18 @@ import { useFonts } from "expo-font";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import Swiper from "react-native-swiper";
 import React, { useCallback, useEffect, useState } from "react";
-import Dashboardpic from "../assets/images/Dashboardpic2.png";
+import Dashboardpic from "../assets/images/background.png";
 import ProfileWidget from "../components/ProfileWidget";
 import MindfulNessWidget from "../components/MindfulNessWidget";
+import BottomDrawer from "../components/BottomDrawer";
 import FinancialLiteracy from "../components/FinancialLiteracy";
 import profilePic from "../assets/images/profilePic.png";
 import * as Securestore from "expo-secure-store";
 import axios from "axios";
+import ProgressWidget from "../components/ProgressWidget";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Login from "./Login";
+import Start from "./Start";
 
 export default function Dashboard({ navigation }) {
   //import fonts
@@ -79,9 +84,18 @@ export default function Dashboard({ navigation }) {
   };
 
   const signOut = () => {
-    Securestore.deleteItemAsync('token').then(
-     navigation.navigate('Login')
-    );}
+    Securestore.deleteItemAsync("token").then(navigation.navigate("Login"));
+  };
+  const Tab = createBottomTabNavigator();
+
+  const MyTabs = () => {
+    return (
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={Login} />
+        <Tab.Screen name="Settings" component={Start} />
+      </Tab.Navigator>
+    );
+  };
 
   return (
     <View style={styles.container}>
@@ -102,13 +116,33 @@ export default function Dashboard({ navigation }) {
           <Image style={styles.imgback2} source={Dashboardpic} />
           <Text style={styles.dashboard}>Dashboard</Text>
 
-          <ProfileWidget user={user}profilePic={profilePic}/>
-          <MindfulNessWidget author={"Sharon Saltzberg"} quote={"Worrying is stupid, It is like walking around with an umbrella, waiting for it to rain"}/>
-          <FinancialLiteracy recentTrainings={['stacken stacken', 'ik moetwat', 'verdienen']}/>
+          <ProfileWidget navigation={navigation} user={user} profilePic={profilePic} />
+          <MindfulNessWidget
+            author={"Sharon Saltzberg"}
+            quote={
+              "Worrying is stupid, It is like walking around with an umbrella, waiting for it to rain"
+            }
+            navigation={navigation}
+          />
+          <FinancialLiteracy
+            navigation={navigation}
+            recentTrainings={[
+              "Assets vs Liabilities",
+              "Savings vs Investments",
+              "The art of budgeting",
+            ]}
+          />
+          <ProgressWidget
+            goalTitle={"Laptop for school"}
+            endAmount={"800.00"}
+            amount={"330.00"}
+          />
+          <BottomDrawer navigation={navigation} />
         </View>
-        <Pressable style={{height: height, width: width, backgroundColor:"black"}}onPress={signOut} >
-          <Text>ASdasdas</Text>
-        </Pressable>
+        <Pressable
+          style={{ height: height, width: width, backgroundColor: "black" }}
+          onPress={signOut}
+        ></Pressable>
       </Swiper>
     </View>
   );
