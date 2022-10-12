@@ -10,9 +10,9 @@ import {
   TouchableOpacity,
   FlatList,
   Modal,
-  Pressable
+  Pressable,
 } from "react-native";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useRef } from "react";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import Swiper from "react-native-swiper";
 import axios from "axios";
@@ -34,8 +34,9 @@ export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState("");
-  const [date, setDate] = useState(new Date())
-  const [open, setOpen] = useState(false)
+  const [date, setDate] = useState(new Date());
+  const [open, setOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
   const [res, setRes] = useState();
   const [modalVisible, setModalVisible] = useState(false);
   const [fontsLoaded] = useFonts({
@@ -43,6 +44,12 @@ export default function Login({ navigation }) {
     "great-escape": require("../assets/fonts/great-escape.ttf"),
   });
 
+  const flatlistRef = useRef();
+  const viewableItemsChanged = useRef(({ viewableItems }) => {
+    console.log(viewableItems[0].index, "test");
+    setCurrentPage(viewableItems[0].index);
+  }).current;
+  const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
       await SplashScreen.hideAsync();
@@ -113,8 +120,14 @@ export default function Login({ navigation }) {
     navigation.navigate("Dashboard");
   };
   const log = () => {
-    console.log(password)
-  }
+    console.log(password);
+  };
+
+  
+  let data = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+    22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
+  ];
   return (
     <View style={Global.container}>
       <View style={Global.container}>
@@ -144,38 +157,77 @@ export default function Login({ navigation }) {
           />
           <Text style={Global.placeholder}>Email</Text>
         </View>
-        
-        <LargeField type={"email"} position={2.65} title="Date" setFunction={setEmail} keyboardType={"email-address"}/>
-        <LargeField type={"email"} position={3.5} title="Email" setFunction={setEmail} keyboardType={"email-address"}/>
-        <LargeField type={"password"} position={5.1} title="Password" setFunction={setPassword} keyboardType={"password"}/>
+
+        <LargeField
+          type={"email"}
+          position={2.65}
+          title="Date"
+          setFunction={setEmail}
+          keyboardType={"email-address"}
+        />
+        <LargeField
+          type={"email"}
+          position={3.5}
+          title="Email"
+          setFunction={setEmail}
+          keyboardType={"email-address"}
+        />
+        <LargeField
+          type={"password"}
+          position={5.1}
+          title="Password"
+          setFunction={setPassword}
+          keyboardType={"password"}
+        />
         <Text style={styles.error}>{errors}</Text>
         <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <View style={styles.listView}>
+                <FlatList
+                  onViewableItemsChanged={viewableItemsChanged}
+                  viewabilityConfig={viewConfig}
+                  pagingEnabled={true}
+                  snapToAlignment={'center'}
+                  ref={flatlistRef}
+                  snapToInterval={1}
+                  showsVerticalScrollIndicator={false}
+                  bounces={false}
+                  style={styles.list}
+                  maxToRenderPerBatch={3}
+                  horizontal={false}
+                  data={data}
+                  renderItem={({ item }) => (
+                    <View style={styles.day}>
+                      {/* singular on boarding screen word gerendered */}
+                      <Text style={[styles.dayItem, {backgroundColor: currentPage == item ? "red" : "transparent"}]}>{item}</Text>
+                    </View>
+                  )}
+                />
+              </View>
+              <Pressable
+                style={[styles.button, styles.buttonOpen]}
+                onPress={() => setModalVisible(false)}
+              >
+                <Text style={styles.textStyle}>Show Modal</Text>
+              </Pressable>
+            </View>
           </View>
-        </View>
-      </Modal>
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}
-      >
-        <Text style={styles.textStyle}>Show Modal</Text>
-      </Pressable>
+        </Modal>
+        <Pressable
+          style={[styles.button, styles.buttonOpen]}
+          onPress={() => setModalVisible(true)}
+        >
+          <Text style={styles.textStyle}>Show Modal</Text>
+        </Pressable>
         {/* <View
           style={[
             Global.input,
@@ -225,7 +277,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22
+    marginTop: 22,
   },
   modalView: {
     margin: 20,
@@ -236,16 +288,17 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5
+    elevation: 5,
+    width: width * 0.8,
   },
   button: {
     borderRadius: 20,
     padding: 10,
-    elevation: 2
+    elevation: 2,
   },
   buttonOpen: {
     backgroundColor: "#F194FF",
@@ -256,11 +309,11 @@ const styles = StyleSheet.create({
   textStyle: {
     color: "white",
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
   },
   modalText: {
     marginBottom: 15,
-    textAlign: "center"
+    textAlign: "center",
   },
 
   imgback2: {
@@ -306,5 +359,14 @@ const styles = StyleSheet.create({
     bottom: getStatusBarHeight() - height / 3.5,
     left: 0,
     right: 0,
+  },
+  list: {
+    height: height * 0.1,
+  },
+  listView: {
+    height: height / 8.5,
+  },
+  dayItem: {
+    fontSize: 30,
   },
 });

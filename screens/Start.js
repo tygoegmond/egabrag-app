@@ -29,6 +29,7 @@ import Paginator from "../components/Paginator";
 import Proceed from "../components/Proceed";
 
 export default function Start({ navigation }) {
+  
   //decalre states
   useEffect(() => {
     Securestore.getItemAsync("token").then((token) => {
@@ -138,32 +139,32 @@ export default function Start({ navigation }) {
         showHideTransition={"fade"}
       />
       {/* swipeable onboarding screen */}
-      <FlatList
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-          { useNativeDriver: false }
-        )}
-        onViewableItemsChanged={viewableItemsChanged}
-        viewabilityConfig={viewConfig}
-        pagingEnabled={true}
-        ref={flatlistRef}
-        bounces={false}
-        style={styles.list}
-        horizontal={true}
-        data={data}
-        renderItem={({ item }) => (
-          <View style={styles.slide1}>
-            {/* singular on boarding screen word gerendered */}
-            <Onboarding
-              title={item.title}
-              subtext={item.subtext}
-              image={item.image}
-              first={item.first?.state}
-              handleNext={handleNext}
-            />
-          </View>
-        )}
-      />
+        <FlatList
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+            { useNativeDriver: false }
+          )}
+          onViewableItemsChanged={viewableItemsChanged}
+          viewabilityConfig={viewConfig}
+          pagingEnabled={true}
+          ref={flatlistRef}
+          bounces={false}
+          style={styles.list}
+          horizontal={true}
+          data={data}
+          renderItem={({ item }) => (
+            <View style={styles.slide1}>
+              {/* singular on boarding screen word gerendered */}
+              <Onboarding
+                title={item.title}
+                subtext={item.subtext}
+                image={item.image}
+                first={item.first?.state}
+                handleNext={handleNext}
+              />
+            </View>
+          )}
+        />
       <Paginator data={data} scrollX={scrollX} />
       <Proceed handleNext={handleNext} />
     </View>

@@ -17,6 +17,9 @@ import { getStatusBarHeight } from "react-native-status-bar-height";
 import Swiper from "react-native-swiper";
 import React, { useCallback, useEffect, useState } from "react";
 import Dashboardpic from "../assets/images/Dashboardpic2.png";
+import ProfileWidget from "../components/ProfileWidget";
+import MindfulNessWidget from "../components/MindfulNessWidget";
+import FinancialLiteracy from "../components/FinancialLiteracy";
 import profilePic from "../assets/images/profilePic.png";
 import * as Securestore from "expo-secure-store";
 import axios from "axios";
@@ -68,7 +71,7 @@ export default function Dashboard({ navigation }) {
   //
 
   const pressHandler = async () => {
-    navigation.navigate("FinancialLiteracy");
+    navigation.navigate("CreateUser");
   };
   const getItem = async () => {
     setRe(await Securestore.getItemAsync("token"));
@@ -99,18 +102,13 @@ export default function Dashboard({ navigation }) {
           <Image style={styles.imgback2} source={Dashboardpic} />
           <Text style={styles.dashboard}>Dashboard</Text>
 
-          <TouchableOpacity onPress={pressHandler} style={styles.profileView}>
-            <Image style={styles.profilePic} source={profilePic} />
-            <Text style={styles.name}>Hello, {user.name}!</Text>
-            <View style={styles.textContainer}>
-              <Text style={styles.profileText}>Profile</Text>
-            </View>
-            <View style={styles.profileInfoContainer}>
-              <Text style={styles.profileInfo}>Age: 18</Text>
-              <Text style={styles.profileInfo}>Country: Netherlands</Text>
-            </View>
-          </TouchableOpacity>
+          <ProfileWidget user={user}profilePic={profilePic}/>
+          <MindfulNessWidget author={"Sharon Saltzberg"} quote={"Worrying is stupid, It is like walking around with an umbrella, waiting for it to rain"}/>
+          <FinancialLiteracy recentTrainings={['stacken stacken', 'ik moetwat', 'verdienen']}/>
         </View>
+        <Pressable style={{height: height, width: width, backgroundColor:"black"}}onPress={signOut} >
+          <Text>ASdasdas</Text>
+        </Pressable>
       </Swiper>
     </View>
   );
