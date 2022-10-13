@@ -16,9 +16,9 @@ import SplashScreen from "../screens/SplashScreen";
 
 const screens = {
   //start with name of screen js file
-  SplashScreen: {
-    screen: SplashScreen,
-  },
+  // SplashScreen: {
+  //   screen: SplashScreen,
+  // },
   Start: {
     screen: Start,
   },
