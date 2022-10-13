@@ -12,6 +12,7 @@ import FinancialLiteracy from "../screens/FinancialLiteracy";
 import Mindfullness from "../screens/Mindfullness";
 import CreateUser from "../screens/CreateUser";
 import SplashScreen from "../screens/SplashScreen";
+import Profile from "../screens/Profile";
 //define object with screens
 
 const screens = {
@@ -36,6 +37,9 @@ const screens = {
   },
   CreateUser: {
     screen: CreateUser,
+  },
+  Profile: {
+    screen: Profile,
   },
 };
 //creating homestack to navigate between screens

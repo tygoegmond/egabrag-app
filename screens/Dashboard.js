@@ -16,10 +16,18 @@ import { useFonts } from "expo-font";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import Swiper from "react-native-swiper";
 import React, { useCallback, useEffect, useState } from "react";
-import Dashboardpic from "../assets/images/Dashboardpic2.png";
+import Dashboardpic from "../assets/images/background.png";
+import ProfileWidget from "../components/ProfileWidget";
+import MindfulNessWidget from "../components/MindfulNessWidget";
+import BottomDrawer from "../components/BottomDrawer";
+import FinancialLiteracy from "../components/FinancialLiteracy";
 import profilePic from "../assets/images/profilePic.png";
 import * as Securestore from "expo-secure-store";
 import axios from "axios";
+import ProgressWidget from "../components/ProgressWidget";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Login from "./Login";
+import Start from "./Start";
 
 export default function Dashboard({ navigation }) {
   //import fonts
@@ -68,7 +76,7 @@ export default function Dashboard({ navigation }) {
   //
 
   const pressHandler = async () => {
-    navigation.navigate("FinancialLiteracy");
+    navigation.navigate("CreateUser");
   };
 
   const pressHandlerMindfullness = async () => {
@@ -81,15 +89,24 @@ export default function Dashboard({ navigation }) {
   };
 
   const signOut = () => {
-    Securestore.deleteItemAsync('token').then(
-     navigation.navigate('Login')
-    );}
+    Securestore.deleteItemAsync("token").then(navigation.navigate("Start"));
+  };
+  const Tab = createBottomTabNavigator();
+
+  const MyTabs = () => {
+    return (
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={Login} />
+        <Tab.Screen name="Settings" component={Start} />
+      </Tab.Navigator>
+    );
+  };
 
   return (
     <View style={styles.container}>
       <StatusBar
         animated={true}
-        backgroundColor="transparent"
+        backgroundColor="#D4FFF6"
         barStyle={"dark-content"}
         showHideTransition={"fade"}
       />
@@ -104,32 +121,44 @@ export default function Dashboard({ navigation }) {
           <Image style={styles.imgback2} source={Dashboardpic} />
           <Text style={styles.dashboard}>Dashboard</Text>
 
-          <TouchableOpacity onPress={pressHandler} style={styles.profileView}>
-            <Image style={styles.profilePic} source={profilePic} />
-            <Text style={styles.name}>Hello, {user.name}!</Text>
-            <View style={styles.textContainer}>
-              <Text style={styles.profileText}>Profile</Text>
-            </View>
-            <View style={styles.profileInfoContainer}>
-              <Text style={styles.profileInfo}>Age: 18</Text>
-              <Text style={styles.profileInfo}>Country: Netherlands</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={pressHandlerMindfullness}
-            style={styles.mindfullnessView}
-          >
-            <View style={styles.mindfullnessContainer}>
-              <Text style={styles.profileInfo}>Mindfullness quote</Text>
-            </View>
-          </TouchableOpacity>
+          <ProfileWidget
+            navigation={navigation}
+            user={user}
+            profilePic={profilePic}
+          />
+          <MindfulNessWidget
+            author={"Sharon Saltzberg"}
+            quote={
+              "Worrying is stupid, It is like walking around with an umbrella, waiting for it to rain"
+            }
+            navigation={navigation}
+          />
+          <FinancialLiteracy
+            navigation={navigation}
+            recentTrainings={[
+              "Assets vs Liabilities",
+              "Savings vs Investments",
+              "The art of budgeting",
+            ]}
+          />
+          <ProgressWidget
+            goalTitle={"Laptop for school"}
+            endAmount={"800.00"}
+            amount={"330.00"}
+          />
+          <BottomDrawer navigation={navigation} />
         </View>
+        <Pressable
+          style={{ height: height, width: width, backgroundColor: "black" }}
+          onPress={signOut}
+        ></Pressable>
       </Swiper>
     </View>
   );
 }
 
 const { height, width } = Dimensions.get("screen");
+console.log(height, width);
 
 const styles = StyleSheet.create({
   buttoniguess: {
