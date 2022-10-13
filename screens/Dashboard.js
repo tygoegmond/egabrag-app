@@ -84,7 +84,7 @@ export default function Dashboard({ navigation }) {
   };
 
   const signOut = () => {
-    Securestore.deleteItemAsync("token").then(navigation.navigate("Login"));
+    Securestore.deleteItemAsync("token").then(navigation.navigate("Start"));
   };
   const Tab = createBottomTabNavigator();
 
@@ -101,7 +101,7 @@ export default function Dashboard({ navigation }) {
     <View style={styles.container}>
       <StatusBar
         animated={true}
-        backgroundColor="transparent"
+        backgroundColor="#D4FFF6"
         barStyle={"dark-content"}
         showHideTransition={"fade"}
       />
@@ -149,6 +149,7 @@ export default function Dashboard({ navigation }) {
 }
 
 const { height, width } = Dimensions.get("screen");
+console.log(height, width)
 
 const styles = StyleSheet.create({
   buttoniguess: {

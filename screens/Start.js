@@ -29,7 +29,7 @@ import Paginator from "../components/Paginator";
 import Proceed from "../components/Proceed";
 
 export default function Start({ navigation }) {
-  
+
   //decalre states
   useEffect(() => {
     Securestore.getItemAsync("token").then((token) => {
@@ -148,6 +148,7 @@ export default function Start({ navigation }) {
           viewabilityConfig={viewConfig}
           pagingEnabled={true}
           ref={flatlistRef}
+          showsHorizontalScrollIndicator={false}
           bounces={false}
           style={styles.list}
           horizontal={true}

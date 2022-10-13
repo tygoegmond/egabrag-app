@@ -134,7 +134,7 @@ export default function Login({ navigation }) {
             style={Global.largeField}
             onChangeText={(e) => setEmail(e)}
             name="Email"
-            defaultValue={"me@tygoegmond.n"}
+            defaultValue={""}
           />
           <Text style={Global.placeholder}>Email</Text>
         </View>
@@ -154,7 +154,7 @@ export default function Login({ navigation }) {
             secureTextEntry={true}
             onChangeText={(e) => setPassword(e)}
             name="Password"
-            defaultValue={"12345678"}
+            defaultValue={""}
           />
           <Text style={Global.placeholder}>Password</Text>
         </View>
