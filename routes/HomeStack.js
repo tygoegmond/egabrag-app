@@ -10,6 +10,8 @@ import Dashboard from "../screens/Dashboard";
 import Login from "../screens/Login";
 import FinancialLiteracy from "../screens/FinancialLiteracy";
 import CreateUser from "../screens/CreateUser";
+import Ebooks from "../screens/Ebooks";
+import Articles from "../screens/Articles"
 
 //define object with screens
 
@@ -30,6 +32,12 @@ const screens = {
   CreateUser: {
     screen: CreateUser,
   },
+  Ebooks: {
+    screen: Ebooks,
+  },
+  Articles: {
+    screen: Articles,
+  }
 };
 //creating homestack to navigate between screens
 

@@ -25,6 +25,7 @@ import content3 from "../assets/images/content3.jpg";
 import content4 from "../assets/images/content4.png";
 import content5 from "../assets/images/content5.jpg";
 import content6 from "../assets/images/content6.webp";
+import { wrap } from "idb";
 
 export default function FinancialLiteracy({ navigation }) {
   //import fonts
@@ -33,13 +34,18 @@ export default function FinancialLiteracy({ navigation }) {
     "Nabla-Regular": require("../assets/fonts/Nabla-Regular.ttf"),
     "great-escape": require("../assets/fonts/great-escape.ttf"),
   });
-
+  const ebooks = () => {
+    navigation.navigate("Ebooks");
+  };
+  const articles = () => {
+    navigation.navigate("Articles");
+  };
   const goalAmount = "100";
-  const data = [
+  const recentEbooks = [
     {
       source: content1,
-      title: "Kipsate",
-      description: "Ebook over kipsa",
+      title: "a",
+      description: "a",
     },
     {
       source: content2,
@@ -63,6 +69,34 @@ export default function FinancialLiteracy({ navigation }) {
     },
   ];
 
+  const recentArticles = [
+    {
+      source: content5,
+      title: "b",
+      description: "a",
+    },
+    {
+      source: content6,
+      title: "a",
+      description: "a",
+    },
+    {
+      source: content4,
+      title: "a",
+      description: "a",
+    },
+    {
+      source: content2,
+      title: "a",
+      description: "a",
+    },
+    {
+      source: content3,
+      title: "a",
+      description: "a",
+    },
+  ];
+
   return (
     <View style={styles.FinancialLiteracy}>
       <Text style={styles.title}>Financial Literacy</Text>
@@ -78,19 +112,56 @@ export default function FinancialLiteracy({ navigation }) {
           <FlatList
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-            data={data}
+            data={recentEbooks}
             style={styles.flatlist}
             renderItem={({ item }) => (
-              <View style={{ backrgoundColor: "red" }}>
+              <View>
                 {/* singular on boarding screen word gerendered */}
                 <Image source={item.source} style={styles.images} />
+                <Text>{item.title}</Text>
               </View>
             )}
           />
+          <Pressable onPress={ebooks}>
+            <Text
+              style={{
+                textAlign: "right",
+                marginRight: 22,
+                marginTop: 8,
+                color: "#52A4D2",
+              }}
+            >
+              View all
+            </Text>
+          </Pressable>
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Articles</Text>
-          <Image style={styles.images} source={content6} />
+          <FlatList
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            data={recentArticles}
+            style={styles.flatlist}
+            renderItem={({ item }) => (
+              <View>
+                {/* singular on boarding screen word gerendered */}
+                <Image source={item.source} style={styles.images} />
+                <Text>{item.title}</Text>
+              </View>
+            )}
+          />
+          <Pressable onPress={articles}>
+            <Text
+              style={{
+                textAlign: "right",
+                marginRight: 22,
+                marginTop: 8,
+                color: "#52A4D2",
+              }}
+            >
+              View all
+            </Text>
+          </Pressable>
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Your Savings</Text>
@@ -144,7 +215,7 @@ const styles = StyleSheet.create({
   widgetView: {
     backgroundColor: "#fff",
     width: width / 1.1,
-    height: height / 1.35,
+    height: height / 1.33,
     borderRadius: 25,
     bottom: getStatusBarHeight() - 70,
     boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
@@ -162,12 +233,12 @@ const styles = StyleSheet.create({
     marginRight: 16,
   },
   widgetViewContentContainer: {
-    marginBottom: 32,
+    marginBottom: 18,
     marginLeft: 22,
   },
   images: {
-    width: width / 5,
-    height: height / 7,
+    width: width / 4.5,
+    height: height / 6.3,
     marginRight: width / 40,
   },
   flatlist: {
