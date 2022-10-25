@@ -13,7 +13,7 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useRef } from "react";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import Swiper from "react-native-swiper";
 import axios from "axios";
@@ -34,7 +34,8 @@ export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState("");
-  const [res, setRes] = useState()
+  const [res, setRes] = useState();
+
   const [fontsLoaded] = useFonts({
     "Nabla-Regular": require("../assets/fonts/Nabla-Regular.ttf"),
     "great-escape": require("../assets/fonts/great-escape.ttf"),
@@ -54,62 +55,60 @@ export default function Login({ navigation }) {
 
   const logIn = async () => {
     try {
-    const data = {
-      email: email,
-      password: password,
-      device_name: "bruh",
-    };
-    const config = {
-      headers: {
-        Accept: "application/json",
-      },
-    };
-    const response = await axios.post(
-      "https://egabrag.tygoegmond.nl/api/sanctum/token",
-      data,
-      config
-    );
-    console.log(response.data, "response");
-    navigation.navigate("Dashboard");
-    setRes(response)
-    updateSecurestore(response.data)
-    
-    // axios
-    //   .post("127.0.0.1:8000/api/sanctum/token", data, config)
-    //   .then((res) => {
-    //     console.log(res);
-    //     console.log("test")
-    //     console.log(res.data);
-    //     setRes(res)
-    //     Securestore.setItemAsync("token", res.data.token);
-    //     Securestore.setItemAsync("name", res.data.name);
-    //   })
-    //   .catch((error) => console.log(error));
+      const data = {
+        email: email,
+        password: password,
+        device_name: "bruh",
+      };
+      const config = {
+        headers: {
+          Accept: "application/json",
+        },
+      };
+      const response = await axios.post(
+        "https://egabrag.tygoegmond.nl/api/sanctum/token",
+        data,
+        config
+      );
+      console.log(response.data, "response");
+      setRes(response);
+      updateSecurestore(response.data);
+      navigation.navigate("Dashboard");
 
+      // axios
+      //   .post("127.0.0.1:8000/api/sanctum/token", data, config)
+      //   .then((res) => {
+      //     console.log(res);
+      //     console.log("test")
+      //     console.log(res.data);
+      //     setRes(res)
+      //     Securestore.setItemAsync("token", res.data.token);
+      //     Securestore.setItemAsync("name", res.data.name);
+      //   })
+      //   .catch((error) => console.log(error));
     } catch (error) {
-      setErrors("")
+      setErrors("");
       console.log(error.response.data.errors);
-      let errorMap = ""
-      for(var key in error.response.data.errors){
-        console.log(key)
-        console.log(error.response.data.errors[key])
-        if(errors !== error.response.data.errors[key][0]){
-          errorMap = errorMap + error.response.data.errors[key][0] + " "
+      let errorMap = "";
+      for (var key in error.response.data.errors) {
+        console.log(key);
+        console.log(error.response.data.errors[key]);
+        if (errors !== error.response.data.errors[key][0]) {
+          errorMap = errorMap + error.response.data.errors[key][0] + " ";
         }
       }
-      setErrors(errorMap)
+      setErrors(errorMap);
     }
   };
 
-  async function updateSecurestore (resdata) {
-    console.log(resdata, "dasdasdasd")
+  async function updateSecurestore(resdata) {
+    console.log(resdata, "dasdasdasd");
     await Securestore.setItemAsync("token", resdata);
-
   }
   //create press handlers
   const pressHandler = () => {
     navigation.navigate("Dashboard");
-  }
+  };
   return (
     <View style={Global.container}>
       <View style={Global.container}>
@@ -228,7 +227,5 @@ const styles = StyleSheet.create({
     bottom: getStatusBarHeight() - height / 3.5,
     left: 0,
     right: 0,
-
-
-},
+  },
 });

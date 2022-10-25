@@ -1,5 +1,5 @@
 //import react / reactnative assets
-import { useCallback, useState, useRef } from "react";
+import { useCallback, useState, useRef, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -16,6 +16,8 @@ import { getStatusBarHeight } from "react-native-status-bar-height";
 // import expo packages
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
+import * as Securestore from "expo-secure-store";
+import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
 //import components
 import Onboarding from "../components/Onboarding";
@@ -27,14 +29,34 @@ import Paginator from "../components/Paginator";
 import Proceed from "../components/Proceed";
 
 export default function Start({ navigation }) {
+  
   //decalre states
-
+  useEffect(() => {
+    Securestore.getItemAsync("token").then((token) => {
+      
+      getUserData(token);
+    });
+  }, []);
+  const [user, setUser] = useState("");
+  const [re, setRe] = useState("");
   const [lightMode, setLightMode] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [buttonPage, setButtonPage] = useState(1);
 
-  // declare refs
+  async function getUserData() {
+    let token = await Securestore.getItemAsync("token")
+    console.log(token)
+    if(!token){
+      console.log("No token")
+    }
+    if(token){
+      navigation.navigate("Dashboard")
+    }
+  }
 
+  
+ 
+  // declare refs
   const scrollX = useRef(new Animated.Value(0)).current;
   const flatlistRef = useRef();
   const viewableItemsChanged = useRef(({ viewableItems }) => {
@@ -42,9 +64,9 @@ export default function Start({ navigation }) {
     setCurrentPage(viewableItems[0].index);
   }).current;
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
-
+  
   // import fonts
-
+  
   const [fontsLoaded] = useFonts({
     "Nabla-Regular": require("../assets/fonts/Nabla-Regular.ttf"),
   });
@@ -54,13 +76,17 @@ export default function Start({ navigation }) {
       await SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
-
+  
   if (!fontsLoaded) {
     return null;
   }
-
+  
+  
+  if(user.name ){
+    navigation.navigate("Dashboard")
+  }
   // create presshandlers
-
+  
   // define data for onboarding swipe screens
   const data = [
     {
@@ -87,7 +113,7 @@ export default function Start({ navigation }) {
   ];
   //make scroll function for proceed button
 
-  scrollToIndex = (index) => {
+ const scrollToIndex = (index) => {
     flatlistRef.current.scrollToIndex({ animated: true, index: index });
   };
 
@@ -113,32 +139,32 @@ export default function Start({ navigation }) {
         showHideTransition={"fade"}
       />
       {/* swipeable onboarding screen */}
-      <FlatList
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-          { useNativeDriver: false }
-        )}
-        onViewableItemsChanged={viewableItemsChanged}
-        viewabilityConfig={viewConfig}
-        pagingEnabled={true}
-        ref={flatlistRef}
-        bounces={false}
-        style={styles.list}
-        horizontal={true}
-        data={data}
-        renderItem={({ item }) => (
-          <View style={styles.slide1}>
-            {/* singular on boarding screen word gerendered */}
-            <Onboarding
-              title={item.title}
-              subtext={item.subtext}
-              image={item.image}
-              first={item.first?.state}
-              handleNext={handleNext}
-            />
-          </View>
-        )}
-      />
+        <FlatList
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+            { useNativeDriver: false }
+          )}
+          onViewableItemsChanged={viewableItemsChanged}
+          viewabilityConfig={viewConfig}
+          pagingEnabled={true}
+          ref={flatlistRef}
+          bounces={false}
+          style={styles.list}
+          horizontal={true}
+          data={data}
+          renderItem={({ item }) => (
+            <View style={styles.slide1}>
+              {/* singular on boarding screen word gerendered */}
+              <Onboarding
+                title={item.title}
+                subtext={item.subtext}
+                image={item.image}
+                first={item.first?.state}
+                handleNext={handleNext}
+              />
+            </View>
+          )}
+        />
       <Paginator data={data} scrollX={scrollX} />
       <Proceed handleNext={handleNext} />
     </View>

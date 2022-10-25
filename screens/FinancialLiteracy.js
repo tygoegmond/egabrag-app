@@ -25,7 +25,7 @@ import content3 from "../assets/images/content3.jpg";
 import content4 from "../assets/images/content4.png";
 import content5 from "../assets/images/content5.jpg";
 import content6 from "../assets/images/content6.webp";
-import { wrap } from "idb";
+import BottomDrawer from "../components/BottomDrawer";
 
 export default function FinancialLiteracy({ navigation }) {
   //import fonts
@@ -191,6 +191,7 @@ export default function FinancialLiteracy({ navigation }) {
           </View>
         </View>
       </View>
+      <BottomDrawer navigation={navigation} />
     </View>
   );
 }

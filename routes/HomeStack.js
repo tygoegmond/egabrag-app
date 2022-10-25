@@ -11,12 +11,16 @@ import Login from "../screens/Login";
 import FinancialLiteracy from "../screens/FinancialLiteracy";
 import CreateUser from "../screens/CreateUser";
 import Ebooks from "../screens/Ebooks";
-import Articles from "../screens/Articles"
-
+import Articles from "../screens/Articles";
+import SplashScreen from "../screens/SplashScreen";
+import Profile from "../screens/Profile";
 //define object with screens
 
 const screens = {
   //start with name of screen js file
+  SplashScreen: {
+    screen: SplashScreen,
+  },
   Start: {
     screen: Start,
   },
@@ -37,7 +41,10 @@ const screens = {
   },
   Articles: {
     screen: Articles,
-  }
+  },
+  Profile: {
+    screen: Profile,
+  },
 };
 //creating homestack to navigate between screens
 
