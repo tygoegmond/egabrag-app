@@ -45,7 +45,7 @@ export default BottomDrawer = ({ navigation }) => {
         flexDirection: "row",
         height: 15,
         width: width,
-        height: height / 11,
+        height: height / 13,
         justifyContent: "center",
         position: "absolute",
         backgroundColor: "white",
@@ -80,15 +80,16 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
   },
   bottomTabIcon: {
-    width: 40,
-    height: 40,
+    width: width * 0.08,
+    height: width * 0.08,
+
 
     resizeMode: "contain",
-    padding: 20,
+    // padding: 20,
     marginTop: 10,
   },
   bottomTab: {
-    height: 1000,
+    height: height / 11,
 
     marginHorizontal: 30,
   },

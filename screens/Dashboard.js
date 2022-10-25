@@ -78,13 +78,18 @@ export default function Dashboard({ navigation }) {
   const pressHandler = async () => {
     navigation.navigate("CreateUser");
   };
+
+  const pressHandlerMindfullness = async () => {
+    navigation.navigate("Mindfullness");
+  };
+
   const getItem = async () => {
     setRe(await Securestore.getItemAsync("token"));
     console.log(re);
   };
 
   const signOut = () => {
-    Securestore.deleteItemAsync("token").then(navigation.navigate("Login"));
+    Securestore.deleteItemAsync("token").then(navigation.navigate("Start"));
   };
   const Tab = createBottomTabNavigator();
 
@@ -101,7 +106,7 @@ export default function Dashboard({ navigation }) {
     <View style={styles.container}>
       <StatusBar
         animated={true}
-        backgroundColor={"#D4FFF6"}
+        backgroundColor="#D4FFF6"
         barStyle={"dark-content"}
         showHideTransition={"fade"}
       />
@@ -154,9 +159,8 @@ export default function Dashboard({ navigation }) {
   );
 }
 
-let { height, width } = Dimensions.get("screen");
+const { height, width } = Dimensions.get("screen");
 console.log(height, width);
-height = 844;
 
 height = height + 20;
 const styles = StyleSheet.create({
@@ -208,6 +212,15 @@ const styles = StyleSheet.create({
     bottom: getStatusBarHeight() + height / 5.5,
     justifyContent: "center",
   },
+  mindfullnessView: {
+    backgroundColor: "#fff",
+    width: width / 1.18,
+    borderRadius: 25,
+    height: height / 8,
+    bottom: getStatusBarHeight() + height / 2.3,
+    justifyContent: "center",
+    position: "absolute",
+  },
   profilePic: {
     width: width / 4,
     height: height / 9,
@@ -248,6 +261,11 @@ const styles = StyleSheet.create({
     width: width / 2,
     left: width / 11,
     top: getStatusBarHeight() - height * 0.08,
+  },
+  mindfullnessContainer: {
+    width: width / 2,
+    left: width / 11,
+    top: getStatusBarHeight() - height * 2,
   },
   profileInfo: {
     color: "#000",

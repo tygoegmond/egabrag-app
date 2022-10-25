@@ -9,6 +9,7 @@ import Start from "../screens/Start";
 import Dashboard from "../screens/Dashboard";
 import Login from "../screens/Login";
 import FinancialLiteracy from "../screens/FinancialLiteracy";
+import Mindfullness from "../screens/Mindfullness";
 import CreateUser from "../screens/CreateUser";
 import Ebooks from "../screens/Ebooks";
 import Articles from "../screens/Articles";
@@ -18,9 +19,9 @@ import Profile from "../screens/Profile";
 
 const screens = {
   //start with name of screen js file
-  SplashScreen: {
-    screen: SplashScreen,
-  },
+  // SplashScreen: {
+  //   screen: SplashScreen,
+  // },
   Start: {
     screen: Start,
   },
@@ -32,6 +33,9 @@ const screens = {
   },
   FinancialLiteracy: {
     screen: FinancialLiteracy,
+  },
+  Mindfullness: {
+    screen: Mindfullness,
   },
   CreateUser: {
     screen: CreateUser,

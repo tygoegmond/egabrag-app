@@ -143,6 +143,7 @@ export default function Start({ navigation }) {
         viewabilityConfig={viewConfig}
         pagingEnabled={true}
         ref={flatlistRef}
+        showsHorizontalScrollIndicator={false}
         bounces={false}
         style={styles.list}
         horizontal={true}
