@@ -101,7 +101,7 @@ export default function Dashboard({ navigation }) {
     <View style={styles.container}>
       <StatusBar
         animated={true}
-        backgroundColor="transparent"
+        backgroundColor={"#D4FFF6"}
         barStyle={"dark-content"}
         showHideTransition={"fade"}
       />
@@ -116,7 +116,11 @@ export default function Dashboard({ navigation }) {
           <Image style={styles.imgback2} source={Dashboardpic} />
           <Text style={styles.dashboard}>Dashboard</Text>
 
-          <ProfileWidget navigation={navigation} user={user} profilePic={profilePic} />
+          <ProfileWidget
+            navigation={navigation}
+            user={user}
+            profilePic={profilePic}
+          />
           <MindfulNessWidget
             author={"Sharon Saltzberg"}
             quote={
@@ -132,11 +136,13 @@ export default function Dashboard({ navigation }) {
               "The art of budgeting",
             ]}
           />
-          <ProgressWidget
-            goalTitle={"Laptop for school"}
-            endAmount={"800.00"}
-            amount={"330.00"}
-          />
+          <TouchableOpacity style={styles.profileView}>
+            <ProgressWidget
+              goalTitle={"Laptop for school"}
+              endAmount={"800.00"}
+              amount={"330.00"}
+            />
+          </TouchableOpacity>
           <BottomDrawer navigation={navigation} />
         </View>
         <Pressable
@@ -148,8 +154,11 @@ export default function Dashboard({ navigation }) {
   );
 }
 
-const { height, width } = Dimensions.get("screen");
+let { height, width } = Dimensions.get("screen");
+console.log(height, width);
+height = 844;
 
+height = height + 20;
 const styles = StyleSheet.create({
   buttoniguess: {
     backgroundColor: "red",
@@ -171,6 +180,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     position: "absolute",
     zIndex: 0,
+    top: -height / 18,
     width: width,
     height: height,
   },
@@ -196,7 +206,6 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     height: height / 5.5,
     bottom: getStatusBarHeight() + height / 5.5,
-
     justifyContent: "center",
   },
   profilePic: {
@@ -246,5 +255,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: height / 120,
     position: "relative",
+  },
+  profileView: {
+    backgroundColor: "#107070",
+    width: width / 1.18,
+    borderRadius: 25,
+    height: height / 5.6,
+    bottom: getStatusBarHeight() + height / 16,
+    position: "absolute",
+    justifyContent: "center",
   },
 });

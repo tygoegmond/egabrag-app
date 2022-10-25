@@ -26,6 +26,7 @@ import content4 from "../assets/images/content4.png";
 import content5 from "../assets/images/content5.jpg";
 import content6 from "../assets/images/content6.webp";
 import BottomDrawer from "../components/BottomDrawer";
+import ProgressWidget from "../components/ProgressWidget";
 
 export default function FinancialLiteracy({ navigation }) {
   //import fonts
@@ -162,36 +163,27 @@ export default function FinancialLiteracy({ navigation }) {
               View all
             </Text>
           </Pressable>
-        </View>
-        <View style={styles.widgetViewContentContainer}>
-          <Text style={styles.widgetViewContentTitle}>Your Savings</Text>
           <View
-            style={[
-              {
-                flexDirection: "row",
-                zIndex: 10,
-                height: 100,
-              },
-              styles.widgetViewContent,
-            ]}
+            style={{
+              backgroundColor: "rgba(255, 0, 0, 1)",
+              width: width / 1.18,
+              borderRadius: 25,
+              height: height / 5.6,
+              bottom: getStatusBarHeight() - height / 8,
+              position: "absolute",
+              justifyContent: "center",
+            }}
           >
-            <View style={{ flex: 1 }}>
-              <Text
-                style={{
-                  justifyContent: "flex-start",
-                  right: 0,
-                  position: "absolute",
-                  fontWeight: "bold",
-                }}
-              >
-                €{currentAmount}
-              </Text>
-              <Text style={{ justifyContent: "flex-end" }}>€{goalAmount}</Text>
-            </View>
+            <ProgressWidget
+              goalTitle={"laptop"}
+              amount={"25"}
+              endAmount={"200"}
+              backgroundColor={"#FFF"}
+            />
           </View>
         </View>
       </View>
-      <BottomDrawer navigation={navigation} />
+      {/* <BottomDrawer navigation={navigation} /> */}
     </View>
   );
 }
@@ -245,5 +237,14 @@ const styles = StyleSheet.create({
   flatlist: {
     marginRight: width / 10,
     width: width * 0.8,
+  },
+  profileView: {
+    backgroundColor: "#107070",
+    width: width / 1.18,
+    borderRadius: 25,
+    height: height / 5.6,
+    bottom: getStatusBarHeight() + height / 16,
+    position: "absolute",
+    justifyContent: "center",
   },
 });

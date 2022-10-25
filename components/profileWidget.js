@@ -50,7 +50,7 @@ const ProfileWidget = ({ profilePic, user, navigation }) => {
   };
 
   let coinAmount = 40;
-  const [prefix, suffix] = ['Studies', 'Windesheim']
+  const [prefix, suffix] = ["Studies", "Windesheim"];
   return (
     <TouchableOpacity onPress={pressHandler} style={styles.profileView}>
       <Image style={styles.profilePic} source={profilePic} />
@@ -60,7 +60,9 @@ const ProfileWidget = ({ profilePic, user, navigation }) => {
       </View>
       <View style={styles.profileInfoContainer}>
         <Text style={styles.profileInfo}>🪙: {coinAmount}</Text>
-        <Text style={styles.profileInfo}>{prefix} at {suffix}</Text>
+        <Text style={styles.profileInfo}>
+          {prefix} at {suffix}
+        </Text>
       </View>
     </TouchableOpacity>
   );
