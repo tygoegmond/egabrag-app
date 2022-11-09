@@ -148,10 +148,7 @@ export default function Dashboard({ navigation }) {
           />
           <BottomDrawer navigation={navigation} />
         </View>
-        <Pressable
-          style={{ height: height, width: width, backgroundColor: "black" }}
-          onPress={signOut}
-        ></Pressable>
+      
       </Swiper>
     </View>
   );

@@ -36,7 +36,7 @@ import {
       return null;
     }
     const pressHandler = () => {
-      navigation.navigate("FinancialLiteracy");
+      navigation.navigate("Mindfullness");
     }
     return (
    

@@ -13,13 +13,11 @@ import Mindfullness from "../screens/Mindfullness";
 import CreateUser from "../screens/CreateUser";
 import SplashScreen from "../screens/SplashScreen";
 import Profile from "../screens/Profile";
+import Calendar from "../screens/Calendar";
 //define object with screens
 
 const screens = {
-  //start with name of screen js file
-  // SplashScreen: {
-  //   screen: SplashScreen,
-  // },
+  //start with nam
   Start: {
     screen: Start,
   },
@@ -28,6 +26,9 @@ const screens = {
   },
   Login: {
     screen: Login,
+  },
+  Calendar: {
+    screen: Calendar,
   },
   FinancialLiteracy: {
     screen: FinancialLiteracy,

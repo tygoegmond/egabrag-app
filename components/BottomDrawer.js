@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, Dimensions, Image, Progress } from "react-nativ
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import houseIcon from "../assets/images/houseIcon2.png";
 import searchIcon from "../assets/images/searchIcon.png";
+import calendarIcon from "../assets/images/calendar.png";
 import ebookIcon from "../assets/images/ebookIcon.png";
 import profileIcon from "../assets/images/profile.png";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
@@ -16,8 +17,8 @@ export default BottomDrawer = ({ navigation }) => {
       label: "Dashboard",
     },
     {
-      icon: searchIcon,
-      label: "Search",
+      icon: calendarIcon,
+      label: "Calendar",
     },
     {
       icon: ebookIcon,
