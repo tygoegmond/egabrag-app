@@ -7,12 +7,13 @@ import {
   Image,
   FlatList,
 } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CalendarItem from "../components/CalendarItem";
 import Dashboardpic from "../assets/images/background.png";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 
 const Calendar = () => {
+  const [data, setData] = useState([]);
   useEffect(() => {
     let months = [];
     let correctMonth = [];
@@ -30,37 +31,85 @@ const Calendar = () => {
 
       let current = new Date();
       current.setMonth(current.getMonth() + i);
+      let currentYear = current.getFullYear();
       const month = current.getMonth();
       const options = { month: "long" };
       const monthName = new Intl.DateTimeFormat("en-US", options).format(
         current
-      );
-      months.push({ month: month, monthName: monthName, current: current });
+        );
+        // console.log(currentYear);
+      months.push({ month: month, monthName: monthName, current: current, year: currentYear });
       // for(const month in months){
 
       //   console.log(months[month].current.getDate(), "123123123123")
       // }
       let days = [];
+      let monthAmounts31 = [11, 0, 2, 4, 6, 7, 9];
+      let monthAmounts30 = [10, 3, 5, 8];
+      let monthAmounts28 = [1];
 
-      for (let i = 1; i <= 31; i++) {
-        let date2 = new Date();
-        const currentMonth = date2.getMonth();
-        date2.setDate(date2.getDate() + i);
-        
-        if(date2.getMonth() === currentMonth){
-        days.push(date2.getDate());
-        
+      if (monthAmounts31.includes(month)) {
+        for (let j = 1; j <= 31; j++) {
+          let date2 = new Date();
+          const currentMonth = date2.getMonth();
+          date2.setDate(date2.getDate() - 9);
+          date2.setDate(date2.getDate() + j);
+          const options = { weekday: 'long'};
+          // console.log(months[i-1].year)
+          days.push({date: j, month: months[i-1].month, appointments: [], dayOfTheWeek: date2.getDay(), monthName: months[i-1].monthName, year:  months[i-1].year});
+          // console.log(
+          //   `date: ${j}  month: ${months[i - 1].month} monthName: ${
+          //     months[i - 1].monthName
+          //   } Itteration:${j} monthItteration: ${i}`
+          // );
+        }
       }
+      if (monthAmounts30.includes(month)) {
+        for (let j = 1; j <= 30; j++) {
+          let date2 = new Date();
+          const currentMonth = date2.getMonth();
+          date2.setDate(date2.getDate() - 9);
+          date2.setDate(date2.getDate() + j);
+
+          days.push({date: j, month: months[i-1].month, appointments: [], dayOfTheWeek: date2.getDay(),  monthName: months[i-1].monthName, year:  months[i-1].year});
+          // console.log(
+          //   `date: ${j}  month: ${months[i - 1].month} monthName: ${
+          //     months[i - 1].monthName
+          //   } Itteration:${j} monthItteration: ${i}`
+          // );
+        }
+      }
+      if (monthAmounts28.includes(month)) {
+        for (let j = 1; j <= 28; j++) {
+          let date2 = new Date();
+          const currentMonth = date2.getMonth();
+          date2.setDate(date2.getDate() - 10);
+          date2.setDate(date2.getDate() + j);
+          // console.log(date2.getDay(), "date2");
+          if(j !== 3){
+          days.push({date: date2.getDate(), dayOfTheWeek: date2.getDay(), appointments: [], month: months[i-1].month, monthName: months[i-1].monthName, year:  months[i-1].year});
+          } else {
+            days.push({date: date2.getDate(), dayOfTheWeek: date2.getDay(), appointments: [1], month: months[i-1].month, monthName: months[i-1].monthName, year:  months[i-1].year});
+          }
+
+          // console.log(
+          //   `date: ${j}  month: ${months[i - 1].month} monthName: ${
+          //     months[i - 1].monthName
+          //   } Itteration:${j} monthItteration: ${i}`
+          // );
+        }
+      }
+
+      correctMonth.push({
+        year: months[i - 1].year,
+        month: month,
+        monthName: monthName,
+        current: current,
+        days: days,
+      });
     }
-    console.log(month, "month") 
-    correctMonth.push({
-      month: month,
-      monthName: monthName,
-      current: current,
-      days: days,
-    });
-    }
-    console.log(correctMonth[2], months.length);
+    // console.log(correctMonth, months.length);
+    setData(correctMonth);
   }, []);
 
   return (
@@ -78,9 +127,9 @@ const Calendar = () => {
         numColumns={1}
         pagingEnabled={true}
         showsHorizontalScrollIndicator={false}
-        data={[1, 1, 1, 1]}
+        data={data}
         style={styles.flatlist}
-        renderItem={({ item }) => <CalendarItem />}
+        renderItem={({ item }) => <CalendarItem dayarray={item.days} item={item}/>}
       />
     </View>
   );
