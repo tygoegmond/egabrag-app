@@ -11,9 +11,28 @@ import React, { useEffect, useState } from "react";
 import CalendarItem from "../components/CalendarItem";
 import Dashboardpic from "../assets/images/background.png";
 import { getStatusBarHeight } from "react-native-status-bar-height";
+import BottomSheetCalendar from "../components/BottomSheetCalendar";
 
 const Calendar = () => {
   const [data, setData] = useState([]);
+  const [bottomHeight, setBottomHeight] = React.useState(1);
+  const [onFocusShift, setFocusShift] = useState(false);
+
+  function moveBottomSheet(amount) {
+    if (amount === -1) {
+      setBottomHeight(1);
+    } else {
+      setBottomHeight(amount);
+    }
+    if (bottomHeight === 7) {
+      setBottomHeight(1.5);
+    }
+  }
+  useEffect(() => {
+    moveBottomSheet(-1);
+    console.log(onFocusShift)
+  }, []);
+
   useEffect(() => {
     let months = [];
     let correctMonth = [];
@@ -40,9 +59,9 @@ const Calendar = () => {
         // console.log(currentYear);
       months.push({ month: month, monthName: monthName, current: current, year: currentYear });
       // for(const month in months){
-
       //   console.log(months[month].current.getDate(), "123123123123")
       // }
+
       let days = [];
       let monthAmounts31 = [11, 0, 2, 4, 6, 7, 9];
       let monthAmounts30 = [10, 3, 5, 8];
@@ -111,9 +130,12 @@ const Calendar = () => {
     // console.log(correctMonth, months.length);
     setData(correctMonth);
   }, []);
-
+  let shiftHeight = 0;
+  if(bottomHeight === 1.5){
+  shiftHeight = onFocusShift ? -height * 0.4 : 0;
+  }
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {top: shiftHeight}]}>
       <StatusBar
         animated={true}
         backgroundColor="#D4FFF6"
@@ -129,8 +151,10 @@ const Calendar = () => {
         showsHorizontalScrollIndicator={false}
         data={data}
         style={styles.flatlist}
-        renderItem={({ item }) => <CalendarItem dayarray={item.days} item={item}/>}
+        renderItem={({ item }) => <CalendarItem bottomHeight={bottomHeight} setBottomHeight={setBottomHeight} moveBottomSheet={moveBottomSheet} dayarray={item.days} item={item}/>}
       />
+      
+      <BottomSheetCalendar onFocusShift={onFocusShift} setFocusShift={setFocusShift} bottomHeight={bottomHeight} setBottomHeight={setBottomHeight} moveBottomSheet={moveBottomSheet}/>
     </View>
   );
 };

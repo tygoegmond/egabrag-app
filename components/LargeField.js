@@ -5,7 +5,7 @@ import { getStatusBarHeight } from "react-native-status-bar-height";
 import Global from "../assets/styles/Global";
 //creating navigation dots for on boarding component
 
-export default LargeField = ({ type, title, position, setFunction, keyboardType }) => {
+export default LargeField = ({ type, title, position, setFunction, keyboardType, onFocusShift, setFocusShift }) => {
   const inputType = type == "password" ? "true" : "false";
   return (
     <View
@@ -19,6 +19,8 @@ export default LargeField = ({ type, title, position, setFunction, keyboardType 
       ]}
     >
       <TextInput
+        onFocus={() => {setFocusShift(true)}}
+        onBlur={() => {setFocusShift(false)}}
         autoCapitalize="none"
         keyboardType={keyboardType}
         style={Global.largeField}
