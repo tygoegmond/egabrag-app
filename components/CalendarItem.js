@@ -19,7 +19,7 @@ const CalendarItem = ({ dayarray, item, bottomHeight, moveBottomSheet, setBottom
 
   // console.log(item)
   function  addAppointment(){
-    setBottomHeight(1.6)
+    setBottomHeight(10)
   }
   const [date, setDate] = useState();
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];

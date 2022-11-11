@@ -3,6 +3,7 @@ import React from "react";
 import { View, Text, StyleSheet, Dimensions, TextInput } from "react-native";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import Global from "../assets/styles/Global";
+
 //creating navigation dots for on boarding component
 
 export default LargeField = ({ type, title, position, setFunction, keyboardType, onFocusShift, setFocusShift }) => {
@@ -18,6 +19,7 @@ export default LargeField = ({ type, title, position, setFunction, keyboardType,
         },
       ]}
     >
+      
       <TextInput
         onFocus={() => {setFocusShift(true)}}
         onBlur={() => {setFocusShift(false)}}
@@ -37,6 +39,8 @@ export default LargeField = ({ type, title, position, setFunction, keyboardType,
 //local stylesheet
 const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
+
+  
   dot: {
     position: "relative",
     height: 10,
