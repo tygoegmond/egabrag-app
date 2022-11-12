@@ -41,7 +41,7 @@ const CalendarItem = ({ dayarray, item, bottomHeight, moveBottomSheet, setBottom
 
     const a = test.map((item, index) => {
       return (
-        <View key={index + "d"} style={styles.dayItemNone}>
+        <View key={index} style={styles.dayItemNone}>
           <Text style={styles.dayText}></Text>
           <Text style={styles.d}></Text>
         </View>
