@@ -14,12 +14,12 @@ import LargeField from "./LargeField";
 import BottomSheetCalendar from "./BottomSheetCalendar";
 
 
-const CalendarItem = ({ dayarray, item, bottomHeight, moveBottomSheet, setBottomHeight }) => {
+const CalendarItem = ({ dayarray, item, setAddAppointmentMode, setBottomHeight }) => {
   const [appointment, setAppointment] = useState("");
 
   // console.log(item)
   function  addAppointment(){
-    setBottomHeight(10)
+    setAddAppointmentMode(true)
   }
   const [date, setDate] = useState();
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];

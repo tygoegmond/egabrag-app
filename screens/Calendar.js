@@ -17,7 +17,7 @@ const Calendar = () => {
   const [data, setData] = useState([]);
   const [bottomHeight, setBottomHeight] = React.useState(1);
   const [onFocusShift, setFocusShift] = useState(false);
-
+  const [addAppointmentMode, setAddAppointmentMode] = useState(false);
   function moveBottomSheet(amount) {
     if (amount === -1) {
       setBottomHeight(1);
@@ -151,10 +151,10 @@ const Calendar = () => {
         showsHorizontalScrollIndicator={false}
         data={data}
         style={styles.flatlist}
-        renderItem={({ item }) => <CalendarItem bottomHeight={bottomHeight} setBottomHeight={setBottomHeight} moveBottomSheet={moveBottomSheet} dayarray={item.days} item={item}/>}
+        renderItem={({ item }) => <CalendarItem setAddAppointmentMode={setAddAppointmentMode} bottomHeight={bottomHeight} setBottomHeight={setBottomHeight} moveBottomSheet={moveBottomSheet} dayarray={item.days} item={item}/>}
       />
       
-      <BottomSheetCalendar onFocusShift={onFocusShift} setFocusShift={setFocusShift} bottomHeight={bottomHeight} setBottomHeight={setBottomHeight} moveBottomSheet={moveBottomSheet}/>
+      {addAppointmentMode ? (<BottomSheetCalendar setAddAppointmentMode={setAddAppointmentMode}onFocusShift={onFocusShift} setFocusShift={setFocusShift} bottomHeight={bottomHeight} setBottomHeight={setBottomHeight} moveBottomSheet={moveBottomSheet}/>) : null}
     </View>
   );
 };
