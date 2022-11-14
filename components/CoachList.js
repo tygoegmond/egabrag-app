@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Dimensions, FlatList, Pressable, } from "react-
 import React, { useState} from "react";
 import CoachCard from "./CoachCard";
 
-const CoachList = ({setCoachListState, setCoach}) => {
+const CoachList = ({setCoachListState, setLastCoach, setCoach}) => {
   
   return (
     <View style={styles.container}>
@@ -18,16 +18,16 @@ const CoachList = ({setCoachListState, setCoach}) => {
         <FlatList
           style={styles.list}
           data={[
-              { name: "Devin James", email: "DevinJames@outlook.com", website: "www.DevinJamesCoaching.com", type: "Mindfulness" },
-              { name: "Jackson Larry", email: "JacksonLarry@outlook.com", website: "www.JacksonLarryCoaching.com", type: "Mindfulness" },
-            { name: "James Fowler", email: "JamesFowler@outlook.com", website: "www.JamesFowlerCoaching.com", type: "Mindfulness" },
-            { name: "Joel Mckenzie", email: "JoelMckenzie@outlook.com", website: "www.JoelMckenzieCoaching.com", type: "Mindfulness" },
-            { name: "John Lillard", email: "JohnLillard@outlook.com", website: "www.JohnLillardCoaching.com", type: "Mindfulness" },
-            { name: "Jillian Rose", email: "JillianRose@outlook.com", website: "www.JillianRoseCoaching.com", type: "Mindfulness" },
-            { name: "Jimmy Fallon", email: "JimmyFallon@outlook.com", website: "www.JimmyFallonCoaching.com", type: "Mindfulness" },
-            { name: "Julie Crowder", email: "JulieCrowder@outlook.com", website: "www.JulieCrowderCoaching.com", type: "Mindfulness" },
+              { name: "Devin James", email: "DevinJames@outlook.com", website: "www.DevinJamesCoaching.com", type: "Mindfulness", availability: [1,2,4] },
+              { name: "Jackson Larry", email: "JacksonLarry@outlook.com", website: "www.JacksonLarryCoaching.com", type: "Mindfulness", availability: [1,2,4] },
+            { name: "James Fowler", email: "JamesFowler@outlook.com", website: "www.JamesFowlerCoaching.com", type: "Mindfulness", availability: [1,2,4] },
+            { name: "Joel Mckenzie", email: "JoelMckenzie@outlook.com", website: "www.JoelMckenzieCoaching.com", type: "Mindfulness", availability: [1,2,4] },
+            { name: "John Lillard", email: "JohnLillard@outlook.com", website: "www.JohnLillardCoaching.com", type: "Mindfulness", availability: [1,2,4] },
+            { name: "Jillian Rose", email: "JillianRose@outlook.com", website: "www.JillianRoseCoaching.com", type: "Mindfulness", availability: [1,2,4] },
+            { name: "Jimmy Fallon", email: "JimmyFallon@outlook.com", website: "www.JimmyFallonCoaching.com", type: "Mindfulness", availability: [1,2,4] },
+            { name: "Julie Crowder", email: "JulieCrowder@outlook.com", website: "www.JulieCrowderCoaching.com", type: "Mindfulness", availability: [1,2,4] },
           ]}
-          renderItem={({ item }) => <CoachCard setCoachListState={setCoachListState}setCoach={setCoach} item={item}/>}
+          renderItem={({ item }) => <CoachCard setLastCoach={setLastCoach} setCoachListState={setCoachListState}setCoach={setCoach} item={item}/>}
         />
       </View>
     </View>

@@ -3,10 +3,11 @@ import React from "react";
 import placeholderProfile from "../assets/images/placeholderProfile.png";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const CoachCard = ({ setCoachListState, setCoach, item }) => {
+const CoachCard = ({ setCoachListState, setCoach, item, setLastCoach}) => {
   const presshandler = () => {
     setCoachListState(false);
     console.log(item);
+    setLastCoach({details: item})
     setCoach({ details: item });
   };
   return (

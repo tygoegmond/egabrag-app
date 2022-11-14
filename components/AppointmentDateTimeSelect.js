@@ -7,14 +7,15 @@ import {
   Switch,
   ScrollView,
   TextInput,
-  Platform
+  Platform,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import RNPickerSelect from "react-native-picker-select";
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 import { LocaleConfig } from "react-native-calendars";
-const AppointmentDateTimeSelect = () => {
+
+const AppointmentDateTimeSelect = ({ coach }) => {
   const { height, width } = Dimensions.get("screen");
   const [isEnabled, setIsEnabled] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
@@ -25,58 +26,69 @@ const AppointmentDateTimeSelect = () => {
   const [inlineOpenEnd, setInlineOpenEnd] = useState(false);
   const [inlineTimeOpenEnd, setInlineTimeOpenEnd] = useState(false);
   const [containerHeight, setContainerHeight] = useState(0.25);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-  console.log(Platform.OS);
-  LocaleConfig.locales.fr = LocaleConfig.locales[''];
-LocaleConfig.locales.en = {
-  monthNames: [
-    'Janvier',
-    'Février',
-    'Mars',
-    'Avril',
-    'Mai',
-    'Juin',
-    'Juillet',
-    'Août',
-    'Septembre',
-    'Octobre',
-    'Novembre',
-    'Décembre',
-  ],
-  monthNamesShort: [
-    'Janv.',
-    'Févr.',
-    'Mars',
-    'Avril',
-    'Mai',
-    'Juin',
-    'Juil.',
-    'Août',
-    'Sept.',
-    'Oct.',
-    'Nov.',
-    'Déc.',
-  ],
-  dayNames: [
-    'Dimanche',
-    'Lundi',
-    'Mardi',
-    'Mercredi',
-    'Jeudi',
-    'Vendredi',
-    'Samedi',
-  ],
-  dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-};
+  const [selectedDay, setSelectedDay] = useState(new Date());
+  const [markedDates, setMarkedDates] = useState({});
+  const [currentCoach, setCurrentCoach] = useState(coach);
 
-LocaleConfig.defaultLocale = 'en';
+ 
+  useEffect(() => {
+    console.log(coach, "coach");
+  }, [coach]);
+ 
+  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+
+  LocaleConfig.locales.fr = LocaleConfig.locales[""];
+  LocaleConfig.locales.en = {
+    monthNames:
+      "January_February_March_April_May_June_July_August_September_October_November_December".split(
+        "_"
+      ),
+    monthNamesShort: "Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec".split(
+      "_"
+    ),
+    dayNames: "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split(
+      "_"
+    ),
+    dayNamesShort: "Sun_Mon_Tue_Wed_Thu_Fri_Sat".split("_"),
+    today: "Today",
+  };
+
+  LocaleConfig.defaultLocale = "en";
   function timeout(delay) {
     return new Promise((res) => setTimeout(res, delay));
   }
 
-  function changeDate(e, from) {
-    console.log(e.nativeEvent.timestamp, "e", from, "from");
+  function selectDay(day) {
+    setSelectedDay(day);
+    // changeMarkedDates(day);
+    let startDateValue = new Date(day.dateString);
+    const currentTime = new Date();
+    startDateValue.setHours(currentTime.getHours());
+    startDateValue.setMinutes(currentTime.getMinutes());
+    setStartDate(startDateValue);
+  }
 
+  async function changeMarkedDates(day) {
+    let markedDatesTemp = markedDates;
+    console.log(markedDatesTemp, "markedDatesTemp", "\n", day, "day");
+
+    if (day.dateString in markedDates) {
+      delete markedDatesTemp[day.dateString];
+      // console.log(markedDatesTemp, "after delete");
+      setMarkedDates(markedDatesTemp);
+    } else {
+      markedDatesTemp[day.dateString] = {
+        selected: true,
+        selectedColor: "blue",
+      };
+      setMarkedDates(markedDatesTemp);
+      setInlineOpen(false);
+      timeout(10);
+      setInlineOpen(true);
+    }
+  }
+
+  function changeDate(e, from) {
     if (from === "start") {
       const newDate = new Date(e.nativeEvent.timestamp);
       setStartDate(newDate);
@@ -97,8 +109,6 @@ LocaleConfig.defaultLocale = 'en';
       if (inlineOpen === true) {
         setInlineOpen(false);
         if (isEnabled) {
-          console.log("inlineOpenSwap errthing closed");
-
           setContainerHeight(0.2);
         } else {
           setContainerHeight(0.25);
@@ -117,8 +127,6 @@ LocaleConfig.defaultLocale = 'en';
       if (inlineTimeOpen === true) {
         setInlineTimeOpen(false);
         if (isEnabled) {
-          console.log("inlineOpenSwap errthing closed");
-
           setContainerHeight(0.2);
         } else {
           setContainerHeight(0.25);
@@ -159,72 +167,85 @@ LocaleConfig.defaultLocale = 'en';
       // if (containerHeight !== 0.7 && containerHeight === 0.25 || containerHeight === 0.2) {
       //   setContainerHeight(0.7);
       // }
-
+      
+     
       return (
         <View style={styles.inlineStart}>
-          {/* <DateTimePicker
-            display="inline"
-            style={styles.inlinedate}
-            themeVariant="light"
-            value={startDate}
-            mode="date"
-            onChange={(e) => {
-              changeDate(e, "start");
-            }}
-          /> */}
-          <Calendar
-            customHeaderTitle={
-              <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-                {new Intl.DateTimeFormat("en-US", options).format(
-                  month.timestamp
-                )}{" "}
-                {month.year}
-              </Text>
-            }
-            theme={{
-              backgroundColor: "black",
-              calendarBackground: "#f2f2f2f2",
-              textSectionTitleColor: "#b6c1cd",
-              textSectionTitleDisabledColor: "#d9e1e8",
-              selectedDayBackgroundColor: "#61CBB4",
-              selectedDayTextColor: "#ffffff",
-              todayTextColor: "#00adf5",
-              dayTextColor: "#2d4150",
-              textDisabledColor: "lightgrey",
-              dotColor: "#00adf5",
-              selectedDotColor: "#ffffff",
-              arrowColor: "#61CBB4",
-              disabledArrowColor: "#d9e1e8",
-              monthTextColor: "blue",
-              indicatorColor: "blue",
-           
+          {coach.details?.name ? (
+            <Calendar
+              customHeaderTitle={
+                <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+                  {new Intl.DateTimeFormat("en-US", options).format(
+                    month.timestamp
+                  )}{" "}
+                  {month.year}
+                </Text>
+              }
+              onDayLongPress={(day) => {
+                changeMarkedDates(day);
+              }}
+              theme={{
+                backgroundColor: "black",
+                calendarBackground: "#f2f2f2f2",
+                textSectionTitleColor: "#b6c1cd",
+                textSectionTitleDisabledColor: "#d9e1e8",
+                selectedDayBackgroundColor: "rgba(16, 112, 112, 1)",
+                // selectedDayTextColor: "#ffffff",
+                todayTextColor: "#00adf5",
+                dayTextColor: "#2d4150",
+                textDisabledColor: "lightgrey",
+                dotColor: "#00adf5",
+                selectedDotColor: "#ffffff",
+                arrowColor: "#61CBB4",
+                disabledArrowColor: "#d9e1e8",
+                monthTextColor: "blue",
+                indicatorColor: "blue",
 
+                textDayFontWeight: "bold",
+                textMonthFontWeight: "bold",
+                textDayHeaderFontWeight: "300",
+                textDayFontSize: 16,
+                textMonthFontSize: 16,
+                textDayHeaderFontSize: 16,
+              }}
+              enableSwipeMonths={true}
+              showWeekNumbers={true}
+              style={styles.calendar}
+              initialDate={fullDate}
+              minDate={fullDate}
+              //change language
+              monthFormat={"MMMM yyyy"}
+              //change language
 
-              
-              textDayFontWeight: "bold",
-              textMonthFontWeight: "bold",
-              textDayHeaderFontWeight: "300",
-              textDayFontSize: 16,
-              textMonthFontSize: 16,
-              textDayHeaderFontSize: 16,
-            }}
-            enableSwipeMonths={true}
-            showWeekNumbers={true}
-            style={styles.calendar}
-            initialDate={fullDate}
-            minDate={fullDate}
-            //change language
-            monthFormat={"MMMM yyyy"}
-            //change language
+              // Handler which gets executed on day press. Default = undefined
+              onDayPress={(day) => {
+                selectDay(day);
+              }}
+              onMonthChange={(month) => {
+                setMonth(month);
+              }}
+              markedDates={{
+                ...markedDates,
 
-            // Handler which gets executed on day press. Default = undefined
-            onDayPress={(day) => {
-              console.log("selected day", day);
-            }}
-            onMonthChange={(month) => {
-              setMonth(month);
-            }}
-          />
+                [selectedDay.dateString]: {
+                  selected: true,
+                  selectedColor: "#61CBB4",
+                  text: "red",
+                },
+              }}
+            />
+          ) : (
+            <DateTimePicker
+              display="inline"
+              style={styles.inlinedate}
+              themeVariant="light"
+              value={startDate}
+              mode="date"
+              onChange={(e) => {
+                changeDate(e, "start");
+              }}
+            />
+          )}
         </View>
       );
     } else {
@@ -342,17 +363,14 @@ LocaleConfig.defaultLocale = 'en';
       inlineTimeOpen === false &&
       inlineTimeOpenEnd === false
     ) {
-      console.log("useEffect");
       if (isEnabled && inlineOpen === true) {
         setContainerHeight(0.7);
-        console.log("containerHeight", containerHeight);
       }
 
       setContainerHeight(0.2);
     } else {
       if (isEnabled && inlineOpen === false && inlineTimeOpen == false) {
         setContainerHeight(0.25);
-        console.log("containerHeight", containerHeight);
       }
       setContainerHeight(0.25);
     }
@@ -385,10 +403,9 @@ LocaleConfig.defaultLocale = 'en';
 
   let timenow = startDate.toTimeString().split(":");
   let timenowEnd = endDate.toTimeString().split(":");
-  console.log(timenowEnd, "timenowEnd", `${timenow[0]}:${timenow[1]}`);
+
   timenow = `${timenow[0]}:${timenow[1]}`;
   timenowEnd = `${timenowEnd[0]}:${timenowEnd[1]}`;
-  console.log(timenowEnd, " teset");
 
   return (
     <View style={[styles.dateContainer, { height: height * containerHeight }]}>
@@ -497,6 +514,7 @@ LocaleConfig.defaultLocale = 'en';
           ]}
         />
       </View>
+     
     </View>
   );
 };

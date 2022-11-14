@@ -2,18 +2,28 @@ import { View, Text, StyleSheet, Dimensions, Switch, Pressable } from "react-nat
 import Reac, { useState, useEffect } from "react";
 import RNPickerSelect from "react-native-picker-select";
 
-const CoachSelect = ({setCoachListState, coach}) => {
+const CoachSelect = ({setCoachListState, coach, setCoach, lastCoach}) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const [containerHeight, setContainerHeight] = useState(0.1);
   const [coachType, setCoachType] = useState();
   const [coachText, setCoachText] = useState("Select Coach");
-
+  
   useEffect(() => {
     coach.details?.name ? setCoachText(coach.details.name) : "Select Coach";   
   }, [coach])
+
   function toggleSwitch() {
+    
     setIsEnabled((previousState) => !previousState);
     isEnabled ? setContainerHeight(0.1) : setContainerHeight(0.2);
+    
+    if(isEnabled) {
+      console.log("disabled");
+      setCoach({});
+    } else {
+      console.log("enabled");
+      setCoach(lastCoach)
+    }
   }
   
   

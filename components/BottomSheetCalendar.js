@@ -35,6 +35,7 @@ const BottomSheetCalendar = ({ setAddAppointmentMode }) => {
   const { height, width } = Dimensions.get("screen");
   const [coachListState, setCoachListState] = useState(false);
   const [coach, setCoach] = useState({});
+  const [lastCoach, setLastCoach] = useState({});
   const [month, setMonth] = useState(new Date().getMonth());
   const date = new Date();
   let fullDate = `${date.getFullYear()}-${
@@ -43,7 +44,7 @@ const BottomSheetCalendar = ({ setAddAppointmentMode }) => {
   return (
     <View style={styles.page}>
       {coachListState ? (
-        <CoachList setCoach={setCoach} setCoachListState={setCoachListState} />
+        <CoachList setCoach={setCoach} setLastCoach={setLastCoach} setCoachListState={setCoachListState} />
       ) : null}
       <View style={[styles.bottomSheetContainer, { top: height / 10 }]}>
         <View style={styles.topPart}>
@@ -62,8 +63,8 @@ const BottomSheetCalendar = ({ setAddAppointmentMode }) => {
               <TextInput placeholder="Title" style={styles.singularInput1} />
               <TextInput placeholder="Location" style={styles.singularInput2} />
             </View>
-            <CoachSelect coach={coach} setCoachListState={setCoachListState} />
-            <AppointmentDateTimeSelect />
+            <CoachSelect coach={coach} lastCoach={lastCoach} setLastCoach={setLastCoach} setCoach={setCoach} setCoachListState={setCoachListState} />
+            <AppointmentDateTimeSelect coach={coach}/>
             
           </View>
         </ScrollView>
