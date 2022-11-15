@@ -18,7 +18,7 @@ export default BottomDrawer = ({ navigation }) => {
     },
     {
       icon: calendarIcon,
-      label: "Calendar",
+      label: "CalendarScreen",
     },
     {
       icon: ebookIcon,
