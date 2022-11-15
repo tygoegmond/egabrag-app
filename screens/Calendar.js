@@ -12,7 +12,7 @@ import CalendarItem from "../components/CalendarItem";
 import Dashboardpic from "../assets/images/background.png";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import BottomSheetCalendar from "../components/BottomSheetCalendar";
-
+import Agenda from "react-native-calendars/src/agenda";
 const Calendar = () => {
   const [data, setData] = useState([]);
   const [bottomHeight, setBottomHeight] = React.useState(1);
@@ -30,7 +30,7 @@ const Calendar = () => {
   }
   useEffect(() => {
     moveBottomSheet(-1);
-    console.log(onFocusShift)
+    console.log(onFocusShift);
   }, []);
 
   useEffect(() => {
@@ -55,9 +55,14 @@ const Calendar = () => {
       const options = { month: "long" };
       const monthName = new Intl.DateTimeFormat("en-US", options).format(
         current
-        );
-        // console.log(currentYear);
-      months.push({ month: month, monthName: monthName, current: current, year: currentYear });
+      );
+      // console.log(currentYear);
+      months.push({
+        month: month,
+        monthName: monthName,
+        current: current,
+        year: currentYear,
+      });
       // for(const month in months){
       //   console.log(months[month].current.getDate(), "123123123123")
       // }
@@ -73,9 +78,16 @@ const Calendar = () => {
           const currentMonth = date2.getMonth();
           date2.setDate(date2.getDate() - 9);
           date2.setDate(date2.getDate() + j);
-          const options = { weekday: 'long'};
+          const options = { weekday: "long" };
           // console.log(months[i-1].year)
-          days.push({date: j, month: months[i-1].month, appointments: [], dayOfTheWeek: date2.getDay(), monthName: months[i-1].monthName, year:  months[i-1].year});
+          days.push({
+            date: j,
+            month: months[i - 1].month,
+            appointments: [],
+            dayOfTheWeek: date2.getDay(),
+            monthName: months[i - 1].monthName,
+            year: months[i - 1].year,
+          });
           // console.log(
           //   `date: ${j}  month: ${months[i - 1].month} monthName: ${
           //     months[i - 1].monthName
@@ -90,7 +102,14 @@ const Calendar = () => {
           date2.setDate(date2.getDate() - 9);
           date2.setDate(date2.getDate() + j);
 
-          days.push({date: j, month: months[i-1].month, appointments: [], dayOfTheWeek: date2.getDay(),  monthName: months[i-1].monthName, year:  months[i-1].year});
+          days.push({
+            date: j,
+            month: months[i - 1].month,
+            appointments: [],
+            dayOfTheWeek: date2.getDay(),
+            monthName: months[i - 1].monthName,
+            year: months[i - 1].year,
+          });
           // console.log(
           //   `date: ${j}  month: ${months[i - 1].month} monthName: ${
           //     months[i - 1].monthName
@@ -105,10 +124,24 @@ const Calendar = () => {
           date2.setDate(date2.getDate() - 10);
           date2.setDate(date2.getDate() + j);
           // console.log(date2.getDay(), "date2");
-          if(j !== 3){
-          days.push({date: date2.getDate(), dayOfTheWeek: date2.getDay(), appointments: [], month: months[i-1].month, monthName: months[i-1].monthName, year:  months[i-1].year});
+          if (j !== 3) {
+            days.push({
+              date: date2.getDate(),
+              dayOfTheWeek: date2.getDay(),
+              appointments: [],
+              month: months[i - 1].month,
+              monthName: months[i - 1].monthName,
+              year: months[i - 1].year,
+            });
           } else {
-            days.push({date: date2.getDate(), dayOfTheWeek: date2.getDay(), appointments: [1], month: months[i-1].month, monthName: months[i-1].monthName, year:  months[i-1].year});
+            days.push({
+              date: date2.getDate(),
+              dayOfTheWeek: date2.getDay(),
+              appointments: [1],
+              month: months[i - 1].month,
+              monthName: months[i - 1].monthName,
+              year: months[i - 1].year,
+            });
           }
 
           // console.log(
@@ -131,11 +164,11 @@ const Calendar = () => {
     setData(correctMonth);
   }, []);
   let shiftHeight = 0;
-  if(bottomHeight === 1.5){
-  shiftHeight = onFocusShift ? -height * 0.4 : 0;
+  if (bottomHeight === 1.5) {
+    shiftHeight = onFocusShift ? -height * 0.4 : 0;
   }
   return (
-    <View style={[styles.container, {top: shiftHeight}]}>
+    <View style={[styles.container, { top: shiftHeight }]}>
       <StatusBar
         animated={true}
         backgroundColor="#D4FFF6"
@@ -144,17 +177,116 @@ const Calendar = () => {
       />
       <Image style={styles.imgback2} source={Dashboardpic} />
       <Text style={styles.heading}>Calendar</Text>
-      <FlatList
+      {/* <FlatList
         horizontal={true}
         numColumns={1}
         pagingEnabled={true}
         showsHorizontalScrollIndicator={false}
         data={data}
         style={styles.flatlist}
-        renderItem={({ item }) => <CalendarItem setAddAppointmentMode={setAddAppointmentMode} bottomHeight={bottomHeight} setBottomHeight={setBottomHeight} moveBottomSheet={moveBottomSheet} dayarray={item.days} item={item}/>}
+        renderItem={({ item }) => (
+          <CalendarItem
+            setAddAppointmentMode={setAddAppointmentMode}
+            bottomHeight={bottomHeight}
+            setBottomHeight={setBottomHeight}
+            moveBottomSheet={moveBottomSheet}
+            dayarray={item.days}
+            item={item}
+          />
+        )}
+      /> */}
+      <Agenda
+        renderItem={(item, firstItemInDay) => {
+          return (
+            <View
+              style={{
+                width: "90%",
+                height: height * 0.06,
+                backgroundColor: "purple",
+                alignContent: "center",
+                alignItems: "center",
+                alignSelf: "center",
+                marginTop: "auto",
+                borderRadius: 10,
+              }}
+            >
+              <Text style={{ color: "white" }}>{JSON.stringify(item)}</Text>
+            </View>
+          );
+        }}
+        // renderEmptyDate={() => {
+        //   return <View ><Text>asdasd</Text></View>;
+        // }}
+
+        renderEmptyData={() => {
+          return (
+            <View>
+              <Text>asdasdas</Text>
+            </View>
+          );
+        }}
+        items={{
+          "2022-11-22": [{ name: "item 1 - any js object" }],
+          "2022-11-23": [{ name: "item 2 - any js object", height: 80 }],
+          "2022-11-24": [{ name: "item 2 - any js object", height: 80 }],
+          "2022-11-25": [
+            { name: "item 3 - any js object" },
+            { name: "any js object" },
+          ],
+          "2022-11-26": [{ name: "item 1 - any js object" }],
+          "2022-11-27": [{ name: "item 2 - any js object", height: 80 }],
+          "2022-11-28": [
+            { name: "item 2 - any js object", height: 80 },
+            { name: "item 2 - any js object", height: 80 },
+            { name: "item 2 - any js object", height: 80 },
+            { name: "item 2 - any js object", height: 80 },
+            { name: "item 2 - any js object", height: 80 },
+            { name: "item 2 - any js object", height: 80 },
+            { name: "item 2 - any js object", height: 80 },
+            { name: "item 2 - any js object", height: 80 },
+            { name: "item 2 - any js object", height: 80 },
+            { name: "item 2 - any js object", height: 80 },
+            { name: "item 2 - any js object", height: 80 },
+          ],
+          "2022-11-29": [
+            { name: "item 3 - any js object" },
+            { name: "any js object" },
+          ],
+          "2022-11-30": [{ name: "item 1 - any js object" }],
+          "2022-12-01": [{ name: "item 2 - any js object", height: 80 }],
+          "2022-12-02": [{ name: "item 2 - any js object", height: 80 }],
+          "2022-12-03": [
+            { name: "item 3 - any js object" },
+            { name: "any js object" },
+          ],
+          "2022-12-04": [{ name: "item 1 - any js object" }],
+          "2022-12-05": [{ name: "item 2 - any js object", height: 80 }],
+          "2022-12-06": [{ name: "item 2 - any js object", height: 80 }],
+          "2022-12-07": [
+            { name: "item 3 - any js object" },
+            { name: "any js object" },
+          ],
+          "2022-12-08": [{ name: "item 1 - any js object" }],
+          "2022-12-09": [{ name: "item 2 - any js object", height: 80 }],
+          "2022-12-10": [{ name: "item 2 - any js object", height: 80 }],
+          "2022-12-11": [
+            { name: "item 3 - any js object" },
+            { name: "any js object" },
+          ],
+        }}
+        style={{ width: "100%" }}
       />
-      
-      {addAppointmentMode ? (<BottomSheetCalendar setAddAppointmentMode={setAddAppointmentMode}onFocusShift={onFocusShift} setFocusShift={setFocusShift} bottomHeight={bottomHeight} setBottomHeight={setBottomHeight} moveBottomSheet={moveBottomSheet}/>) : null}
+
+      {addAppointmentMode ? (
+        <BottomSheetCalendar
+          setAddAppointmentMode={setAddAppointmentMode}
+          onFocusShift={onFocusShift}
+          setFocusShift={setFocusShift}
+          bottomHeight={bottomHeight}
+          setBottomHeight={setBottomHeight}
+          moveBottomSheet={moveBottomSheet}
+        />
+      ) : null}
     </View>
   );
 };

@@ -30,11 +30,10 @@ const AppointmentDateTimeSelect = ({ coach }) => {
   const [markedDates, setMarkedDates] = useState({});
   const [currentCoach, setCurrentCoach] = useState(coach);
 
- 
   useEffect(() => {
     console.log(coach, "coach");
   }, [coach]);
- 
+
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
   LocaleConfig.locales.fr = LocaleConfig.locales[""];
@@ -167,8 +166,7 @@ const AppointmentDateTimeSelect = ({ coach }) => {
       // if (containerHeight !== 0.7 && containerHeight === 0.25 || containerHeight === 0.2) {
       //   setContainerHeight(0.7);
       // }
-      
-     
+
       return (
         <View style={styles.inlineStart}>
           {coach.details?.name ? (
@@ -514,7 +512,6 @@ const AppointmentDateTimeSelect = ({ coach }) => {
           ]}
         />
       </View>
-     
     </View>
   );
 };
