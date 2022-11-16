@@ -33,8 +33,9 @@ import yoga4 from "../assets/images/yoga4.jpg";
 import yoga5 from "../assets/images/yoga5.jpg";
 import opdracht1 from "../assets/images/mindfullnessopdracht1.png";
 import opdracht2 from "../assets/images/mindfullnessopdracht2.png";
+import BottomDrawer from "../components/BottomDrawer";
 
-export default function Mindfullness() {
+export default function Mindfullness({navigation}) {
   //import fonts
   const [currentAmount, setCurrentAmount] = useState();
   const [fontsLoaded] = useFonts({
@@ -170,6 +171,7 @@ export default function Mindfullness() {
           </View>
         </ScrollView>
       </View>
+      <BottomDrawer navigation={navigation} />
     </View>
   );
 }

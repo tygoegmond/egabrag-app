@@ -4,7 +4,7 @@ import {
   StyleSheet,
   Dimensions,
   Text,
-  Pressable,
+  TouchableOpacity,
 } from "react-native";
 import medLogo from "../assets/images/medLogo.png";
 import Global from "../assets/styles/Global.js";
@@ -19,13 +19,9 @@ export default function Profile({ navigation }) {
   return (
     <View style={Global.container}>
       <Text>Profile</Text>
-      <Pressable
-        style={[Global.button, { top: height / 1.8 }]}
-        onPress={signOut}
-      >
-        <Text style={Global.buttonText}>Sign Out</Text>
-      </Pressable>
-
+      <TouchableOpacity style={[Global.button, { top: 500 }]} onPress={signOut}>
+        <Text style={Global.buttonText}>Sign out</Text>
+      </TouchableOpacity>
       <BottomDrawer navigation={navigation} />
     </View>
   );
