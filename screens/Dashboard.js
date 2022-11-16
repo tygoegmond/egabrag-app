@@ -22,6 +22,7 @@ import MindfulNessWidget from "../components/MindfulNessWidget";
 import BottomDrawer from "../components/BottomDrawer";
 import FinancialLiteracy from "../components/FinancialLiteracy";
 import profilePic from "../assets/images/profilePic.png";
+import backgroundImg from "../assets/images/backgroundImg.png";
 import * as Securestore from "expo-secure-store";
 import axios from "axios";
 import ProgressWidget from "../components/ProgressWidget";
@@ -118,8 +119,7 @@ export default function Dashboard({ navigation }) {
         horizontal={true}
       >
         <View style={styles.container}>
-          <Image style={styles.imgback2} source={Dashboardpic} />
-          <Text style={styles.dashboard}>Dashboard</Text>
+          <Image style={styles.imgback2} source={backgroundImg} />
 
           <ProfileWidget
             navigation={navigation}
@@ -144,14 +144,10 @@ export default function Dashboard({ navigation }) {
           <ProgressWidget
             goalTitle={"Laptop for school"}
             endAmount={"800.00"}
-            amount={"330.00"}
+            amount={"200.00"}
           />
           <BottomDrawer navigation={navigation} />
         </View>
-        <Pressable
-          style={{ height: height, width: width, backgroundColor: "black" }}
-          onPress={signOut}
-        ></Pressable>
       </Swiper>
     </View>
   );
@@ -170,8 +166,8 @@ const styles = StyleSheet.create({
   },
 
   container: {
+    backgroundImg: backgroundImg,
     flex: 1,
-    backgroundColor: "#eee",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -193,6 +189,7 @@ const styles = StyleSheet.create({
     fontFamily: "great-escape",
   },
   dashboard: {
+    backgroundColor: "#D4FFF6",
     color: "#107070",
     fontSize: 30,
     fontWeight: "bold",

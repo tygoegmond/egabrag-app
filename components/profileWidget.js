@@ -12,6 +12,7 @@ import {
 import React, { useCallback, useState, useRef } from "react";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import Dashboardpic from "../assets/images/Dashboardpic2.png";
+import pointsIcon from "../assets/images/pointsIcon.png";
 //import expo assets
 
 import { LinearGradient } from "expo-linear-gradient";
@@ -50,7 +51,7 @@ const ProfileWidget = ({ profilePic, user, navigation }) => {
   };
 
   let coinAmount = 40;
-  const [prefix, suffix] = ['Studies', 'Windesheim']
+  const [prefix, suffix] = ["Studies", "Windesheim"];
   return (
     <TouchableOpacity onPress={pressHandler} style={styles.profileView}>
       <Image style={styles.profilePic} source={profilePic} />
@@ -59,8 +60,11 @@ const ProfileWidget = ({ profilePic, user, navigation }) => {
         <Text style={styles.profileText}>Profile</Text>
       </View>
       <View style={styles.profileInfoContainer}>
-        <Text style={styles.profileInfo}>🪙: {coinAmount}</Text>
-        <Text style={styles.profileInfo}>{prefix} at {suffix}</Text>
+        <Image style={styles.pointsIcon} source={pointsIcon} />
+        <Text style={styles.profileInfo}>{coinAmount}</Text>
+        <Text style={styles.profileInfo}>
+          {prefix} at {suffix}
+        </Text>
       </View>
     </TouchableOpacity>
   );
@@ -240,8 +244,8 @@ const styles = StyleSheet.create({
     width: width / 1.18,
     borderRadius: 25,
     height: height / 5.5,
-    bottom: getStatusBarHeight() + height / 5.1,
-
+    bottom: getStatusBarHeight() + height / 4.5,
+    opacity: 0.8,
     justifyContent: "center",
   },
   profilePic: {
@@ -259,6 +263,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     fontWeight: "bold",
     flexWrap: "wrap",
+    height: 40,
   },
   textContainer: {
     width: width / 1.5,
@@ -275,7 +280,7 @@ const styles = StyleSheet.create({
     color: "#61CBB4",
     fontSize: 25,
     fontWeight: "bold",
-    top: getStatusBarHeight() + height * 0.0005,
+    top: getStatusBarHeight() + height * 0.001,
     left: width / 14,
     position: "absolute",
     //wrap text
@@ -289,8 +294,15 @@ const styles = StyleSheet.create({
     color: "#000",
     fontSize: 16,
     fontWeight: "bold",
-    marginBottom: height / 120,
+    marginBottom: height / 180,
     position: "relative",
+  },
+  pointsIcon: {
+    width: width / 20,
+    height: height / 40,
+    top: getStatusBarHeight() - height * 0.03,
+    left: width / 16,
+    position: "absolute",
   },
 });
 

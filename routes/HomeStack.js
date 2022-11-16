@@ -13,6 +13,7 @@ import Mindfullness from "../screens/Mindfullness";
 import CreateUser from "../screens/CreateUser";
 import SplashScreen from "../screens/SplashScreen";
 import Profile from "../screens/Profile";
+import ArticlePage from "../screens/ArticlePage";
 //define object with screens
 
 const screens = {
@@ -40,6 +41,9 @@ const screens = {
   },
   Profile: {
     screen: Profile,
+  },
+  ArticlePage: {
+    screen: ArticlePage,
   },
 };
 //creating homestack to navigate between screens

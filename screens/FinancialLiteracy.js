@@ -34,7 +34,9 @@ export default function FinancialLiteracy({ navigation }) {
     "Nabla-Regular": require("../assets/fonts/Nabla-Regular.ttf"),
     "great-escape": require("../assets/fonts/great-escape.ttf"),
   });
-
+  const pressHandler = () => {
+    navigation.navigate("ArticlePage");
+  };
   const goalAmount = "100";
   const data = [
     {
@@ -91,7 +93,9 @@ export default function FinancialLiteracy({ navigation }) {
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Articles</Text>
-          <Image style={styles.images} source={content6} />
+          <TouchableOpacity onPress={pressHandler}>
+            <Image style={styles.images} source={content6} />
+          </TouchableOpacity>
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Your Savings</Text>

@@ -40,7 +40,7 @@ const FinancialLiteracy = ({ recentTrainings, navigation }) => {
   }
   const pressHandler = () => {
     navigation.navigate("FinancialLiteracy");
-  }
+  };
   function timeout(delay) {
     return new Promise((res) => setTimeout(res, delay));
   }
@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
     bottom: getStatusBarHeight() + height / 3.9,
     position: "absolute",
     justifyContent: "center",
+    opacity: 0.8,
   },
 
   profileText: {

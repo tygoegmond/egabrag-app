@@ -139,6 +139,7 @@ export default function Mindfullness() {
           </View>
           <View style={styles.widgetViewContentContainer}>
             <Text style={styles.widgetViewContentTitle}>Yoga moves</Text>
+            {/*https://dailyburn.com/life/fitness/beginner-yoga-poses-positions*/}
             <FlatList
               horizontal={true}
               showsHorizontalScrollIndicator={false}
