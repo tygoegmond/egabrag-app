@@ -14,15 +14,18 @@ import CreateUser from "../screens/CreateUser";
 import SplashScreen from "../screens/SplashScreen";
 import Profile from "../screens/Profile";
 import CalendarScreen from "../screens/CalendarScreen";
+import BottomDrawer from "../components/BottomDrawer";
 //define object with screens
 
 const screens = {
   //start with nam
   Start: {
     screen: Start,
+    
   },
   Dashboard: {
     screen: Dashboard,
+  
   },
   Login: {
     screen: Login,
@@ -47,7 +50,7 @@ const screens = {
 
 const HomeStack = createStackNavigator(screens, {
   defaultNavigationOptions: {
-    headerShown: false,
+    header:navigation => <BottomDrawer navigation={navigation}/>
   },
 });
 

@@ -14,7 +14,8 @@ import { getStatusBarHeight } from "react-native-status-bar-height";
 import BottomSheetCalendar from "../components/BottomSheetCalendar";
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 import { LocaleConfig } from "react-native-calendars";
-const CalendarScreen = () => {
+import DayAgenda from "../components/DayAgenda";
+const CalendarScreen = ({navigation}) => {
   const [data, setData] = useState([]);
   const [bottomHeight, setBottomHeight] = React.useState(1);
   const [onFocusShift, setFocusShift] = useState(false);
@@ -225,6 +226,10 @@ const CalendarScreen = () => {
     setStartDate(startDateValue);
   }
   const [startDate, setStartDate] = useState(new Date());
+  const colors = {
+    background: "transparent",
+    primary: "transparent",
+  };
   return (
     <View style={[styles.container, { top: shiftHeight }]}>
       <StatusBar
@@ -234,26 +239,33 @@ const CalendarScreen = () => {
         showHideTransition={"fade"}
       />
       <Image style={styles.imgback2} source={Dashboardpic} />
-      <Text style={styles.heading}>Calendar</Text>
+  
       <View style={styles.calendar}>
         <Calendar
           customHeaderTitle={
-            <Text style={{ fontSize: 25, marginRight: width* 0.22, color: "#107070", fontWeight: "bold" }}>
+            <Text
+              style={{
+                fontSize: 25,
+                marginRight: width * 0.22,
+                color: "#107070",
+                fontWeight: "bold",
+              }}
+            >
               {new Intl.DateTimeFormat("en-US", options).format(
                 month.timestamp
               )}{" "}
               {month.year}
             </Text>
           }
-       
           onDayLongPress={(day) => {
             changeMarkedDates(day);
           }}
           theme={{
             backgroundColor: "black",
             calendarBackground: "transparent",
-            textSectionTitleColor: "#b6c1cd",
-            textSectionTitleDisabledColor: "#d9e1e8",
+            textSectionTitleColor: "rgba(16, 112, 112, 1)",
+
+            textSectionTitleDisabledColor: "blue",
             selectedDayBackgroundColor: "rgba(16, 112, 112, 1)",
             // selectedDayTextColor: "#ffffff",
             todayTextColor: "#00adf5",
@@ -269,9 +281,9 @@ const CalendarScreen = () => {
             textDayFontWeight: "bold",
             textMonthFontWeight: "bold",
             textDayHeaderFontWeight: "300",
-            textDayFontSize: 16,
+            textDayFontSize: 13,
             textMonthFontSize: 16,
-            textDayHeaderFontSize: 16,
+            textDayHeaderFontSize: 13,
           }}
           enableSwipeMonths={true}
           showWeekNumbers={true}
@@ -298,7 +310,9 @@ const CalendarScreen = () => {
             },
           }}
         />
-
+      </View>
+      <View style={styles.agendaPart}>
+        <DayAgenda date={selectedDay}/>
         {/* <FlatList
         horizontal={true}
         numColumns={1}
@@ -319,88 +333,6 @@ const CalendarScreen = () => {
       /> */}
       </View>
 
-      <Agenda
-        renderItem={(item, firstItemInDay) => {
-          return (
-            <View
-              style={{
-                width: "90%",
-                height: height * 0.03,
-                backgroundColor: "purple",
-                alignContent: "center",
-                alignItems: "center",
-                alignSelf: "center",
-                marginTop: "auto",
-                borderRadius: 10,
-              }}
-            >
-              <Text style={{ color: "white" }}>{JSON.stringify(item)}</Text>
-            </View>
-          );
-        }}
-        // renderEmptyDate={() => {
-        //   return <View ><Text>asdasd</Text></View>;
-        // }}
-
-        renderEmptyData={() => {
-          return (
-            <View>
-              <Text>asdasdas</Text>
-            </View>
-          );
-        }}
-        items={{
-          "2022-11-22": [{ name: "item 1 - any js object" }],
-          "2022-11-23": [{ name: "item 2 - any js object", height: 80 }],
-          "2022-11-24": [{ name: "item 2 - any js object", height: 80 }],
-          "2022-11-25": [
-            { name: "item 3 - any js object" },
-            { name: "any js object" },
-          ],
-          "2022-11-26": [{ name: "item 1 - any js object" }],
-          "2022-11-27": [{ name: "item 2 - any js object", height: 80 }],
-          "2022-11-28": [
-            { name: "item 2 - any js object", height: 80 },
-            { name: "item 2 - any js object", height: 80 },
-            { name: "item 2 - any js object", height: 80 },
-            { name: "item 2 - any js object", height: 80 },
-            { name: "item 2 - any js object", height: 80 },
-            { name: "item 2 - any js object", height: 80 },
-            { name: "item 2 - any js object", height: 80 },
-            { name: "item 2 - any js object", height: 80 },
-            { name: "item 2 - any js object", height: 80 },
-            { name: "item 2 - any js object", height: 80 },
-            { name: "item 2 - any js object", height: 80 },
-          ],
-          "2022-11-29": [
-            { name: "item 3 - any js object" },
-            { name: "any js object" },
-          ],
-          "2022-11-30": [{ name: "item 1 - any js object" }],
-          "2022-12-01": [{ name: "item 2 - any js object", height: 80 }],
-          "2022-12-02": [{ name: "item 2 - any js object", height: 80 }],
-          "2022-12-03": [
-            { name: "item 3 - any js object" },
-            { name: "any js object" },
-          ],
-          "2022-12-04": [{ name: "item 1 - any js object" }],
-          "2022-12-05": [{ name: "item 2 - any js object", height: 80 }],
-          "2022-12-06": [{ name: "item 2 - any js object", height: 80 }],
-          "2022-12-07": [
-            { name: "item 3 - any js object" },
-            { name: "any js object" },
-          ],
-          "2022-12-08": [{ name: "item 1 - any js object" }],
-          "2022-12-09": [{ name: "item 2 - any js object", height: 80 }],
-          "2022-12-10": [{ name: "item 2 - any js object", height: 80 }],
-          "2022-12-11": [
-            { name: "item 3 - any js object" },
-            { name: "any js object" },
-          ],
-        }}
-        style={{ width: "100%", height: height * 1 }}
-      />
-
       {addAppointmentMode ? (
         <BottomSheetCalendar
           setAddAppointmentMode={setAddAppointmentMode}
@@ -411,18 +343,13 @@ const CalendarScreen = () => {
           moveBottomSheet={moveBottomSheet}
         />
       ) : null}
+      <BottomDrawer navigation={navigation} />
     </View>
   );
 };
 const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
-  heading: {
-    position: "absolute",
-    top: height * 0.1,
-    left: width * 0.1,
-    fontSize: 32,
-    fontWeight: "bold",
-  },
+ 
   flatlist: {
     top: getStatusBarHeight() + height / 10,
     width: width,
@@ -433,36 +360,47 @@ const styles = StyleSheet.create({
   },
   calendar: {
     top: 0,
-    height: height * 0.42,
+    height: height * 0.48,
     backgroundColor: "rgba(255,255,255,0.8)",
     width: width,
   },
   calendarStyle: {
     width: width,
-    top: getStatusBarHeight() + height * 0.05,
+    height: height * 0.22,
+    top: getStatusBarHeight() + height * 0.01,
   },
   calendarContainer: {
     backgroundColor: "white",
     width: width,
-    height: height * 0.6,
+    height: "fit-content",
     borderRadius: width / 20,
     //create shadow for the container
     shadowColor: "#000",
     shadowOffset: {
       width: 2,
-      height: 2,
+      height: -2,
     },
     padding: width / 10,
-    shadowOpacity: 0.105,
-    shadowRadius: 1.84,
+    shadowOpacity: 0.5,
+    zIndex: 12,
+    shadowRadius: 11.84,
     elevation: 5,
   },
 
   container: {
     flex: 1,
+    display: "flex",
+    flexDirection: "column",
+
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
+  },
+  agendaPart: {
+    top: 0,
+
+    width: width,
+    flex: 1,
   },
   imgback2: {
     flex: 1,

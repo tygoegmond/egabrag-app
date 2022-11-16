@@ -11,6 +11,7 @@ import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 //creating navigation dots for on boarding component
 
 export default BottomDrawer = ({ navigation }) => {
+  
   const data = [
     {
       icon: houseIcon,
