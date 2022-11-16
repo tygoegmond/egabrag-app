@@ -15,7 +15,7 @@ import BottomSheetCalendar from "../components/BottomSheetCalendar";
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 import { LocaleConfig } from "react-native-calendars";
 import DayAgenda from "../components/DayAgenda";
-const CalendarScreen = ({navigation}) => {
+const CalendarScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
   const [bottomHeight, setBottomHeight] = React.useState(1);
   const [onFocusShift, setFocusShift] = useState(false);
@@ -239,7 +239,7 @@ const CalendarScreen = ({navigation}) => {
         showHideTransition={"fade"}
       />
       <Image style={styles.imgback2} source={Dashboardpic} />
-  
+
       <View style={styles.calendar}>
         <Calendar
           customHeaderTitle={
@@ -312,7 +312,7 @@ const CalendarScreen = ({navigation}) => {
         />
       </View>
       <View style={styles.agendaPart}>
-        <DayAgenda date={selectedDay}/>
+        <DayAgenda date={selectedDay} />
         {/* <FlatList
         horizontal={true}
         numColumns={1}
@@ -349,7 +349,6 @@ const CalendarScreen = ({navigation}) => {
 };
 const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
- 
   flatlist: {
     top: getStatusBarHeight() + height / 10,
     width: width,
