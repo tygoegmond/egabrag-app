@@ -45,27 +45,27 @@ export default function FinancialLiteracy({ navigation }) {
   const recentEbooks = [
     {
       source: content1,
-      title: "a",
+      title: "De intelligente belegger",
       description: "a",
     },
     {
       source: content2,
-      title: "a",
+      title: "I will teach you to be rich",
       description: "a",
     },
     {
       source: content3,
-      title: "a",
+      title: "Financial Freedom",
       description: "a",
     },
     {
       source: content4,
-      title: "a",
+      title: "Mantra of Financial Freedom",
       description: "a",
     },
     {
       source: content5,
-      title: "a",
+      title: "How to speak money",
       description: "a",
     },
   ];
@@ -73,7 +73,7 @@ export default function FinancialLiteracy({ navigation }) {
   const recentArticles = [
     {
       source: content5,
-      title: "b",
+      title: "a",
       description: "a",
     },
     {
@@ -127,7 +127,7 @@ export default function FinancialLiteracy({ navigation }) {
             <Text
               style={{
                 textAlign: "right",
-                marginRight: 22,
+                marginRight: width / 20,
                 marginTop: 8,
                 color: "#52A4D2",
               }}
@@ -155,7 +155,7 @@ export default function FinancialLiteracy({ navigation }) {
             <Text
               style={{
                 textAlign: "right",
-                marginRight: 22,
+                marginRight: width / 29,
                 marginTop: 8,
                 color: "#52A4D2",
               }}
@@ -163,24 +163,6 @@ export default function FinancialLiteracy({ navigation }) {
               View all
             </Text>
           </Pressable>
-          <View
-            style={{
-              backgroundColor: "rgba(255, 0, 0, 1)",
-              width: width / 1.18,
-              borderRadius: 25,
-              height: height / 5.6,
-              bottom: getStatusBarHeight() - height / 8,
-              position: "absolute",
-              justifyContent: "center",
-            }}
-          >
-            <ProgressWidget
-              goalTitle={"laptop"}
-              amount={"25"}
-              endAmount={"200"}
-              backgroundColor={"#FFF"}
-            />
-          </View>
         </View>
       </View>
       {/* <BottomDrawer navigation={navigation} /> */}
@@ -201,15 +183,15 @@ const styles = StyleSheet.create({
     color: "#107070",
     fontSize: 32,
     fontWeight: "bold",
-    top: getStatusBarHeight() + height / 18,
+    top: getStatusBarHeight() + height / 32,
     left: width / 11.5,
     position: "absolute",
   },
   widgetView: {
     backgroundColor: "#fff",
-    width: width / 1.1,
-    height: height / 1.33,
-    borderRadius: 25,
+    width: width / 1,
+    height: height / 1.25,
+    borderRadius: 35,
     bottom: getStatusBarHeight() - 70,
     boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
     paddingTop: 16,
@@ -227,7 +209,7 @@ const styles = StyleSheet.create({
   },
   widgetViewContentContainer: {
     marginBottom: 18,
-    marginLeft: 22,
+    marginLeft: width / 20,
   },
   images: {
     width: width / 4.5,
@@ -235,8 +217,7 @@ const styles = StyleSheet.create({
     marginRight: width / 40,
   },
   flatlist: {
-    marginRight: width / 10,
-    width: width * 0.8,
+    width: width * 0.9,
   },
   profileView: {
     backgroundColor: "#107070",
@@ -247,4 +228,5 @@ const styles = StyleSheet.create({
     position: "absolute",
     justifyContent: "center",
   },
+  Text: {},
 });

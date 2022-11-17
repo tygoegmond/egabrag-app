@@ -31,10 +31,10 @@ import yoga2 from "../assets/images/yoga2.jpg";
 import yoga3 from "../assets/images/yoga3.jpg";
 import yoga4 from "../assets/images/yoga4.jpg";
 import yoga5 from "../assets/images/yoga5.jpg";
-import opdracht1 from "../assets/images/mindfullnessopdracht1.png";
-import opdracht2 from "../assets/images/mindfullnessopdracht2.png";
+import opdracht1 from "../assets/images/mindfulnessopdracht1.png";
+import opdracht2 from "../assets/images/mindfulnessopdracht2.png";
 
-export default function Mindfullness() {
+export default function Mindfulness() {
   //import fonts
   const [currentAmount, setCurrentAmount] = useState();
   const [fontsLoaded] = useFonts({
@@ -42,7 +42,7 @@ export default function Mindfullness() {
     "great-escape": require("../assets/fonts/great-escape.ttf"),
   });
 
-  const quote = "Mindfullness is the key to a happy life";
+  const quote = "Mindfulness is the key to a happy life";
   const dataEbooks = [
     {
       source: content7,
@@ -97,7 +97,7 @@ export default function Mindfullness() {
       description: "a",
     },
   ];
-  const dataMindfullnessOpdrachten = [
+  const dataMindfulnessOpdrachten = [
     {
       source: opdracht1,
       title: "a",
@@ -110,8 +110,8 @@ export default function Mindfullness() {
     },
   ];
   return (
-    <View style={styles.Mindfullness}>
-      <Text style={styles.title}>Mindfullness</Text>
+    <View style={styles.Mindfulness}>
+      <Text style={styles.title}>Mindfulness</Text>
 
       <View style={styles.widgetView}>
         <ScrollView
@@ -157,7 +157,7 @@ export default function Mindfullness() {
             <FlatList
               horizontal={true}
               showsHorizontalScrollIndicator={false}
-              data={dataMindfullnessOpdrachten}
+              data={dataMindfulnessOpdrachten}
               style={styles.flatlist}
               renderItem={({ item }) => (
                 <View style={{ backrgoundColor: "red" }}>
@@ -175,7 +175,7 @@ export default function Mindfullness() {
 
 const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
-  Mindfullness: {
+  Mindfulness: {
     color: "#107070",
     flex: 1,
     justifyContent: "center",

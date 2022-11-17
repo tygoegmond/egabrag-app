@@ -18,7 +18,7 @@ import Swiper from "react-native-swiper";
 import React, { useCallback, useEffect, useState } from "react";
 import Dashboardpic from "../assets/images/background.png";
 import ProfileWidget from "../components/ProfileWidget";
-import MindfulNessWidget from "../components/MindfulNessWidget";
+import MindfulNessWidget from "../components/MindfulnessWidget";
 import BottomDrawer from "../components/BottomDrawer";
 import FinancialLiteracy from "../components/FinancialLiteracy";
 import profilePic from "../assets/images/profilePic.png";
@@ -79,8 +79,8 @@ export default function Dashboard({ navigation }) {
     navigation.navigate("CreateUser");
   };
 
-  const pressHandlerMindfullness = async () => {
-    navigation.navigate("Mindfullness");
+  const pressHandlerMindfulness = async () => {
+    navigation.navigate("Mindfulness");
   };
 
   const getItem = async () => {
@@ -159,7 +159,7 @@ export default function Dashboard({ navigation }) {
   );
 }
 
-const { height, width } = Dimensions.get("screen");
+let { height, width } = Dimensions.get("screen");
 console.log(height, width);
 
 height = height + 20;
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
     bottom: getStatusBarHeight() + height / 5.5,
     justifyContent: "center",
   },
-  mindfullnessView: {
+  mindfulnessView: {
     backgroundColor: "#fff",
     width: width / 1.18,
     borderRadius: 25,
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
     left: width / 11,
     top: getStatusBarHeight() - height * 0.08,
   },
-  mindfullnessContainer: {
+  mindfulnessContainer: {
     width: width / 2,
     left: width / 11,
     top: getStatusBarHeight() - height * 2,

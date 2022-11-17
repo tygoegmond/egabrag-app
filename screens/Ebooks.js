@@ -25,6 +25,7 @@ import content3 from "../assets/images/content3.jpg";
 import content4 from "../assets/images/content4.png";
 import content5 from "../assets/images/content5.jpg";
 import content6 from "../assets/images/content6.webp";
+import ContentGrid from "../components/ContentGrid";
 
 export default function Ebooks({ navigation }) {
   //import fonts
@@ -46,29 +47,30 @@ export default function Ebooks({ navigation }) {
       source: content3,
       title: "c",
     },
+    {
+      source: content4,
+      title: "d",
+    },
+    {
+      source: content5,
+      title: "e",
+    },
+    {
+      source: content6,
+      title: "f",
+    },
   ];
 
   return (
     <View style={styles.Ebooks}>
       <Text style={styles.title}>E-Books</Text>
       <View style={styles.widgetView}>
-        <View style={{ marginLeft: 22 }}>
+        <View style={{ marginLeft: width / 20, marginRight: width / 20 }}>
           <View>
             <Text>categories bla bla bla bla bla</Text>
           </View>
           <View>
-            <FlatList
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-              data={ebooks}
-              style={styles.flatlist}
-              renderItem={({ item }) => (
-                <View>
-                  {/* singular on boarding screen word gerendered */}
-                  <Image source={item.source} style={styles.images} />
-                </View>
-              )}
-            />
+            <ContentGrid data={ebooks} navigation={navigation} />
           </View>
         </View>
       </View>
@@ -89,15 +91,15 @@ const styles = StyleSheet.create({
     color: "#107070",
     fontSize: 32,
     fontWeight: "bold",
-    top: getStatusBarHeight() + height / 18,
+    top: getStatusBarHeight() + height / 32,
     left: width / 11.5,
     position: "absolute",
   },
   widgetView: {
     backgroundColor: "#fff",
-    width: width / 1.1,
-    height: height / 1.35,
-    borderRadius: 25,
+    width: width / 1,
+    height: height / 1.25,
+    borderRadius: 35,
     bottom: getStatusBarHeight() - 70,
     boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
     paddingTop: 16,
@@ -105,7 +107,5 @@ const styles = StyleSheet.create({
   images: {
     width: width / 5,
     height: height / 7,
-    marginRight: width / 40,
-    maeginleft: 100,
   },
 });
