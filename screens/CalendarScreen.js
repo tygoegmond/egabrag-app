@@ -8,18 +8,76 @@ import {
   FlatList,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import CalendarItem from "../components/CalendarItem";
 import Dashboardpic from "../assets/images/background2.png";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import BottomSheetCalendar from "../components/BottomSheetCalendar";
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 import { LocaleConfig } from "react-native-calendars";
 import DayAgenda from "../components/DayAgenda";
-const CalendarScreen = ({ navigation }) => {
+
+const CalendarScreen = ({navigation}) => {
+
+  //declare states
+
   const [data, setData] = useState([]);
   const [bottomHeight, setBottomHeight] = React.useState(1);
   const [onFocusShift, setFocusShift] = useState(false);
+  const [startDate, setStartDate] = useState(new Date());
   const [addAppointmentMode, setAddAppointmentMode] = useState(false);
+  const [coach, setCoach] = useState({});
+  const [lastCoach, setLastCoach] = useState({});
+  const [selectedDay, setSelectedDay] = useState(new Date());
+  const [markedDates, setMarkedDates] = useState({});
+  const [month, setMonth] = useState(new Date().getMonth());
+  const [appointments, setAppointments] = useState(
+    {
+    "2022-11-29": [{
+      startTime: null,
+      location: "Almere",
+      title: "Jake's 18th Birthday",
+      coach: null, 
+      travelTime: null,
+      duration: null,
+      allDay: true,
+      alert: null,
+    },{
+      startTime: "11:00",
+      location: "Almere",
+      title: "Coaching session",
+      coach:  { name: "A. Baino", organization: "Classy Notes", website: "https://www.cn-lawfinancegroup.com/", type: "Financial Literacy", availability: [1,2,4] }, 
+      travelTime: "30 min",
+      duration: 120,
+      allDay: false,
+    },{
+      startTime: "12:00",
+      location: "Almere",
+      title: "Dentist Appointment",
+      coach: null, 
+      travelTime: "30 min",
+      duration: 120,
+      allDay: false,
+    }],
+    "2022-11-17": [{
+      startTime: "11:00",
+      location: "Almere",
+      title: "Coaching session",
+      coach:  { name: "J. Schmidt", organization: "1 met jezelf", website: "https://www.1metjezelf-coaching.com/Coaching/", type: "Mindfulness", availability: [1,2,4] },
+      travelTime: "30 min",
+      duration: 120,
+      allDay: false,
+    },{
+      startTime: "12:00",
+      location: "Almere",
+      title: "Biking trip",
+      coach: null, 
+      travelTime: "30 min",
+      duration: 120,
+      allDay: false,
+    }]
+  })
+  
+  //function to make bottomsheet appear
+  
   function moveBottomSheet(amount) {
     if (amount === -1) {
       setBottomHeight(1);
@@ -35,142 +93,13 @@ const CalendarScreen = ({ navigation }) => {
     console.log(onFocusShift);
   }, []);
 
-  useEffect(() => {
-    let months = [];
-    let correctMonth = [];
-
-    for (let i = 1; i <= 36; i++) {
-      // const date = new Date();
-      // const options = { weekday: "long" };
-      // date.setDate(date.getDate() + i);
-      // let date2 = new Intl.DateTimeFormat("en-US", options).format(date);
-      // let day = date.getDate();
-      // let month = date.toLocaleString("default", { month: "long" });
-      // dates.push({ date: day, weekDay: date.getDay(), month: month });
-      // // ✅ 1 Day added
-      // console.log(day, date2);
-
-      let current = new Date();
-      current.setMonth(current.getMonth() + i);
-      let currentYear = current.getFullYear();
-      const month = current.getMonth();
-      const options = { month: "long" };
-      const monthName = new Intl.DateTimeFormat("en-US", options).format(
-        current
-      );
-      // console.log(currentYear);
-      months.push({
-        month: month,
-        monthName: monthName,
-        current: current,
-        year: currentYear,
-      });
-      // for(const month in months){
-      //   console.log(months[month].current.getDate(), "123123123123")
-      // }
-
-      let days = [];
-      let monthAmounts31 = [11, 0, 2, 4, 6, 7, 9];
-      let monthAmounts30 = [10, 3, 5, 8];
-      let monthAmounts28 = [1];
-
-      if (monthAmounts31.includes(month)) {
-        for (let j = 1; j <= 31; j++) {
-          let date2 = new Date();
-          const currentMonth = date2.getMonth();
-          date2.setDate(date2.getDate() - 9);
-          date2.setDate(date2.getDate() + j);
-          const options = { weekday: "long" };
-          // console.log(months[i-1].year)
-          days.push({
-            date: j,
-            month: months[i - 1].month,
-            appointments: [],
-            dayOfTheWeek: date2.getDay(),
-            monthName: months[i - 1].monthName,
-            year: months[i - 1].year,
-          });
-          // console.log(
-          //   `date: ${j}  month: ${months[i - 1].month} monthName: ${
-          //     months[i - 1].monthName
-          //   } Itteration:${j} monthItteration: ${i}`
-          // );
-        }
-      }
-      if (monthAmounts30.includes(month)) {
-        for (let j = 1; j <= 30; j++) {
-          let date2 = new Date();
-          const currentMonth = date2.getMonth();
-          date2.setDate(date2.getDate() - 9);
-          date2.setDate(date2.getDate() + j);
-
-          days.push({
-            date: j,
-            month: months[i - 1].month,
-            appointments: [],
-            dayOfTheWeek: date2.getDay(),
-            monthName: months[i - 1].monthName,
-            year: months[i - 1].year,
-          });
-          // console.log(
-          //   `date: ${j}  month: ${months[i - 1].month} monthName: ${
-          //     months[i - 1].monthName
-          //   } Itteration:${j} monthItteration: ${i}`
-          // );
-        }
-      }
-      if (monthAmounts28.includes(month)) {
-        for (let j = 1; j <= 28; j++) {
-          let date2 = new Date();
-          const currentMonth = date2.getMonth();
-          date2.setDate(date2.getDate() - 10);
-          date2.setDate(date2.getDate() + j);
-          // console.log(date2.getDay(), "date2");
-          if (j !== 3) {
-            days.push({
-              date: date2.getDate(),
-              dayOfTheWeek: date2.getDay(),
-              appointments: [],
-              month: months[i - 1].month,
-              monthName: months[i - 1].monthName,
-              year: months[i - 1].year,
-            });
-          } else {
-            days.push({
-              date: date2.getDate(),
-              dayOfTheWeek: date2.getDay(),
-              appointments: [1],
-              month: months[i - 1].month,
-              monthName: months[i - 1].monthName,
-              year: months[i - 1].year,
-            });
-          }
-
-          // console.log(
-          //   `date: ${j}  month: ${months[i - 1].month} monthName: ${
-          //     months[i - 1].monthName
-          //   } Itteration:${j} monthItteration: ${i}`
-          // );
-        }
-      }
-
-      correctMonth.push({
-        year: months[i - 1].year,
-        month: month,
-        monthName: monthName,
-        current: current,
-        days: days,
-      });
-    }
-    // console.log(correctMonth, months.length);
-    setData(correctMonth);
-  }, []);
+  //
   let shiftHeight = 0;
   if (bottomHeight === 1.5) {
     shiftHeight = onFocusShift ? -height * 0.4 : 0;
   }
   const options = { month: "long" };
-  const [month, setMonth] = useState(new Date().getMonth());
+ 
   const date = new Date();
   let fullDate = `${date.getFullYear()}-${
     date.getMonth() + 1
@@ -194,6 +123,7 @@ const CalendarScreen = ({ navigation }) => {
       setInlineOpen(true);
     }
   }
+  //config for formatting calendar dates and days
 
   LocaleConfig.locales.fr = LocaleConfig.locales[""];
   LocaleConfig.locales.en = {
@@ -210,8 +140,9 @@ const CalendarScreen = ({ navigation }) => {
     dayNamesShort: "Sun_Mon_Tue_Wed_Thu_Fri_Sat".split("_"),
     today: "Today",
   };
-  const [selectedDay, setSelectedDay] = useState(new Date());
-  const [markedDates, setMarkedDates] = useState({});
+
+
+
   LocaleConfig.defaultLocale = "en";
   function timeout(delay) {
     return new Promise((res) => setTimeout(res, delay));
@@ -225,7 +156,7 @@ const CalendarScreen = ({ navigation }) => {
     startDateValue.setMinutes(currentTime.getMinutes());
     setStartDate(startDateValue);
   }
-  const [startDate, setStartDate] = useState(new Date());
+
   const colors = {
     background: "transparent",
     primary: "transparent",
@@ -239,7 +170,6 @@ const CalendarScreen = ({ navigation }) => {
         showHideTransition={"fade"}
       />
       <Image style={styles.imgback2} source={Dashboardpic} />
-
       <View style={styles.calendar}>
         <Calendar
           customHeaderTitle={
@@ -258,7 +188,7 @@ const CalendarScreen = ({ navigation }) => {
             </Text>
           }
           onDayLongPress={(day) => {
-            changeMarkedDates(day);
+            setAddAppointmentMode(true);
           }}
           theme={{
             backgroundColor: "black",
@@ -293,7 +223,6 @@ const CalendarScreen = ({ navigation }) => {
           //change language
           monthFormat={"MMMM yyyy"}
           //change language
-
           // Handler which gets executed on day press. Default = undefined
           onDayPress={(day) => {
             selectDay(day);
@@ -312,7 +241,7 @@ const CalendarScreen = ({ navigation }) => {
         />
       </View>
       <View style={styles.agendaPart}>
-        <DayAgenda date={selectedDay} />
+        <DayAgenda  fullDate={fullDate} appointments={appointments} coach={coach} setAddAppointmentMode={setAddAppointmentMode}date={selectedDay}/>
         {/* <FlatList
         horizontal={true}
         numColumns={1}
@@ -341,6 +270,10 @@ const CalendarScreen = ({ navigation }) => {
           bottomHeight={bottomHeight}
           setBottomHeight={setBottomHeight}
           moveBottomSheet={moveBottomSheet}
+          lastCoach={lastCoach}
+          setLastCoach={setLastCoach}
+          coach={coach}
+          setCoach={setCoach}
         />
       ) : null}
       <BottomDrawer navigation={navigation} />
@@ -349,6 +282,7 @@ const CalendarScreen = ({ navigation }) => {
 };
 const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
+ 
   flatlist: {
     top: getStatusBarHeight() + height / 10,
     width: width,
@@ -412,4 +346,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CalendarScreen;
+export default CalendarScreen;
