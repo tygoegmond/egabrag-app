@@ -55,7 +55,7 @@ export default BottomDrawer = ({ navigation }) => {
         flexDirection: "row",
         height: 15,
         width: width,
-        height: height / 13,
+        height: height / 11,
         justifyContent: "center",
         position: "absolute",
         backgroundColor: "white",

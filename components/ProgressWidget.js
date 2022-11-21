@@ -51,7 +51,7 @@ const ProgressWidget = ({ goalTitle, startAmount, endAmount, amount }) => {
   updateProgress(500);
 
   return (
-    <TouchableOpacity onPress={pressHandler} style={styles.profileView}>
+    <TouchableOpacity onPress={pressHandler} style={styles.progressView}>
       <Text style={styles.title}>Progress towards:</Text>
       <View style={styles.textContainer}>
         <Text style={styles.profileText}>Goals</Text>
@@ -99,12 +99,12 @@ const styles = StyleSheet.create({
   container: {
     width: width / 10,
   },
-  profileView: {
+  progressView: {
     backgroundColor: "#107070",
     width: width / 1.18,
     borderRadius: 25,
     height: height / 5.6,
-    bottom: getStatusBarHeight() + height / 19,
+    bottom:height * 0.14,
     position: "absolute",
     justifyContent: "center",
   },
