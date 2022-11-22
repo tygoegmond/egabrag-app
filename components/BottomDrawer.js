@@ -53,7 +53,7 @@ export default BottomDrawer = ({ navigation }) => {
     <View
       style={{
         flexDirection: "row",
-        height: 15,
+
         width: width,
         height: height / 11,
         justifyContent: "center",
@@ -84,23 +84,71 @@ export default BottomDrawer = ({ navigation }) => {
 //local stylesheet
 const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
-  dot: {
-    position: "relative",
-    height: 10,
-    borderRadius: 8,
-    backgroundColor: "#493d8a",
-    marginHorizontal: 8,
-  },
-  bottomTabIcon: {
-    width: width * 0.08,
-    height: width * 0.08,
-    resizeMode: "contain",
-    // padding: 20,
-    marginTop: 15,
-  },
-  bottomTab: {
-    height: height / 11,
+  ...Platform.select({
+    ios: {
+      dot: {
+        position: "relative",
+        height: 10,
+        borderRadius: 8,
+        backgroundColor: "#493d8a",
+        marginHorizontal: 8,
+      },
+      bottomTabIcon: {
+        width: width * 0.08,
+        height: width * 0.08,
+        resizeMode: "contain",
+        // padding: 20,
+        marginTop: 15,
+      },
+      bottomTab: {
+        height: height / 11,
 
-    marginHorizontal: 30,
-  },
+        marginHorizontal: 30,
+      },
+    },
+    //---------------------------------------------------------android---------------------------------------------------------
+    android: {
+      dot: {
+        position: "relative",
+        height: 10,
+        borderRadius: 8,
+        backgroundColor: "#493d8a",
+        marginHorizontal: 8,
+      },
+      bottomTabIcon: {
+        width: width * 0.08,
+        height: width * 0.08,
+        resizeMode: "contain",
+        // padding: 20,
+        marginTop: 20,
+      },
+      bottomTab: {
+        height: height / 11,
+
+        marginHorizontal: 30,
+      },
+    },
+    //----------------------------------------------------------default--------------------------------------------------------------
+    default: {
+      dot: {
+        position: "relative",
+        height: 10,
+        borderRadius: 8,
+        backgroundColor: "#493d8a",
+        marginHorizontal: 8,
+      },
+      bottomTabIcon: {
+        width: width * 0.08,
+        height: width * 0.08,
+        resizeMode: "contain",
+        // padding: 20,
+        marginTop: 15,
+      },
+      bottomTab: {
+        height: height / 11,
+
+        marginHorizontal: 30,
+      },
+    },
+  }),
 });
