@@ -18,7 +18,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useFonts } from "expo-font";
 
 // create onboarding component
-const MindfulNessWidget = ({ quote, author, navigation }) => {
+const MindfulnessWidget = ({ quote, author, navigation }) => {
   //declare states
 
   //import fonts
@@ -36,13 +36,12 @@ const MindfulNessWidget = ({ quote, author, navigation }) => {
     return null;
   }
   const pressHandler = () => {
-    navigation.navigate("FinancialLiteracy");
+    navigation.navigate("Mindfulness");
   };
   return (
     <TouchableOpacity onPress={pressHandler} style={styles.mindfulView}>
       <View style={styles.profileInfoContainer}>
         <Text style={styles.profileInfo}>Mindfulness</Text>
-
         <Text style={styles.profileInfo}>{quote}</Text>
         <Text style={styles.author}>-{author}</Text>
       </View>
@@ -288,4 +287,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MindfulNessWidget;
+export default MindfulnessWidget;

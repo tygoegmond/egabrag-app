@@ -151,7 +151,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "bold",
     top: height * 0.03,
-
     position: "relative",
   },
   recent: {

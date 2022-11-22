@@ -9,8 +9,10 @@ import Start from "../screens/Start";
 import Dashboard from "../screens/Dashboard";
 import Login from "../screens/Login";
 import FinancialLiteracy from "../screens/FinancialLiteracy";
-import Mindfullness from "../screens/Mindfullness";
+import Mindfulness from "../screens/Mindfulness";
 import CreateUser from "../screens/CreateUser";
+import Ebooks from "../screens/Ebooks";
+import Articles from "../screens/Articles";
 import SplashScreen from "../screens/SplashScreen";
 import Profile from "../screens/Profile";
 import ArticlePage from "../screens/ArticlePage";
@@ -35,11 +37,17 @@ const screens = {
   FinancialLiteracy: {
     screen: FinancialLiteracy,
   },
-  Mindfullness: {
-    screen: Mindfullness,
+  Mindfulness: {
+    screen: Mindfulness,
   },
   CreateUser: {
     screen: CreateUser,
+  },
+  Ebooks: {
+    screen: Ebooks,
+  },
+  Articles: {
+    screen: Articles,
   },
   Profile: {
     screen: Profile,

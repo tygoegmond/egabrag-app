@@ -26,6 +26,8 @@ import content4 from "../assets/images/content4.png";
 import content5 from "../assets/images/content5.jpg";
 import content6 from "../assets/images/content6.webp";
 import BottomDrawer from "../components/BottomDrawer";
+import ProgressWidget from "../components/ProgressWidget";
+import Ebooks from "../screens/Ebooks.js";
 
 export default function FinancialLiteracy({ navigation }) {
   //import fonts
@@ -38,11 +40,49 @@ export default function FinancialLiteracy({ navigation }) {
     navigation.navigate("ArticlePage");
   };
   const goalAmount = "100";
-  const data = [
+  const recentEbooks = [
     {
       source: content1,
-      title: "Kipsate",
-      description: "Ebook over kipsa",
+      title: "De intelligente belegger",
+      description: "a",
+    },
+    {
+      source: content2,
+      title: "I will teach you to be rich",
+      description: "a",
+    },
+    {
+      source: content3,
+      title: "Financial Freedom",
+      description: "a",
+    },
+    {
+      source: content4,
+      title: "Mantra of Financial Freedom",
+      description: "a",
+    },
+    {
+      source: content5,
+      title: "How to speak money",
+      description: "a",
+    },
+  ];
+
+  const recentArticles = [
+    {
+      source: content5,
+      title: "a",
+      description: "a",
+    },
+    {
+      source: content6,
+      title: "a",
+      description: "a",
+    },
+    {
+      source: content4,
+      title: "a",
+      description: "a",
     },
     {
       source: content2,
@@ -54,17 +94,10 @@ export default function FinancialLiteracy({ navigation }) {
       title: "a",
       description: "a",
     },
-    {
-      source: content4,
-      title: "a",
-      description: "a",
-    },
-    {
-      source: content5,
-      title: "a",
-      description: "a",
-    },
   ];
+  const EbookHandler = () => {
+    navigation.navigate("Ebooks");
+  };
 
   return (
     <View style={styles.FinancialLiteracy}>
@@ -81,15 +114,28 @@ export default function FinancialLiteracy({ navigation }) {
           <FlatList
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-            data={data}
+            data={recentEbooks}
             style={styles.flatlist}
             renderItem={({ item }) => (
-              <View style={{ backrgoundColor: "red" }}>
+              <View>
                 {/* singular on boarding screen word gerendered */}
                 <Image source={item.source} style={styles.images} />
+                <Text>{item.title}</Text>
               </View>
             )}
           />
+          <Pressable onPress={EbookHandler}>
+            <Text
+              style={{
+                textAlign: "right",
+                marginRight: width / 20,
+                marginTop: 8,
+                color: "#52A4D2",
+              }}
+            >
+              View all
+            </Text>
+          </Pressable>
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Articles</Text>
@@ -143,15 +189,15 @@ const styles = StyleSheet.create({
     color: "#107070",
     fontSize: 32,
     fontWeight: "bold",
-    top: getStatusBarHeight() + height / 18,
+    top: getStatusBarHeight() + height / 32,
     left: width / 11.5,
     position: "absolute",
   },
   widgetView: {
     backgroundColor: "#fff",
-    width: width / 1.1,
-    height: height / 1.35,
-    borderRadius: 25,
+    width: width / 1,
+    height: height / 1.25,
+    borderRadius: 35,
     bottom: getStatusBarHeight() - 70,
     boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
     paddingTop: 16,
@@ -168,16 +214,25 @@ const styles = StyleSheet.create({
     marginRight: 16,
   },
   widgetViewContentContainer: {
-    marginBottom: 32,
-    marginLeft: 22,
+    marginBottom: 18,
+    marginLeft: width / 20,
   },
   images: {
-    width: width / 5,
-    height: height / 7,
+    width: width / 4.5,
+    height: height / 6.3,
     marginRight: width / 40,
   },
   flatlist: {
-    marginRight: width / 10,
-    width: width * 0.8,
+    width: width * 0.9,
   },
+  profileView: {
+    backgroundColor: "#107070",
+    width: width / 1.18,
+    borderRadius: 25,
+    height: height / 5.6,
+    bottom: getStatusBarHeight() + height / 16,
+    position: "absolute",
+    justifyContent: "center",
+  },
+  Text: {},
 });
