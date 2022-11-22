@@ -164,7 +164,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     textAlign: "center",
   },
-
   container: {
     backgroundImg: backgroundImg,
     flex: 1,

@@ -5,21 +5,18 @@ import {
   Dimensions,
   StatusBar,
   Image,
-  FlatList,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import Dashboardpic from "../assets/images/background2.png";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import BottomSheetCalendar from "../components/BottomSheetCalendar";
-import { Calendar, CalendarList, Agenda } from "react-native-calendars";
+import { Calendar } from "react-native-calendars";
 import { LocaleConfig } from "react-native-calendars";
 import DayAgenda from "../components/DayAgenda";
 
-const CalendarScreen = ({navigation}) => {
-
+const CalendarScreen = ({ navigation }) => {
   //declare states
 
-  const [data, setData] = useState([]);
   const [bottomHeight, setBottomHeight] = React.useState(1);
   const [onFocusShift, setFocusShift] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
@@ -29,55 +26,73 @@ const CalendarScreen = ({navigation}) => {
   const [selectedDay, setSelectedDay] = useState(new Date());
   const [markedDates, setMarkedDates] = useState({});
   const [month, setMonth] = useState(new Date().getMonth());
-  const [appointments, setAppointments] = useState(
-    {
-    "2022-11-29": [{
-      startTime: null,
-      location: "Almere",
-      title: "Jake's 18th Birthday",
-      coach: null, 
-      travelTime: null,
-      duration: null,
-      allDay: true,
-      alert: null,
-    },{
-      startTime: "11:00",
-      location: "Almere",
-      title: "Coaching session",
-      coach:  { name: "A. Baino", organization: "Classy Notes", website: "https://www.cn-lawfinancegroup.com/", type: "Financial Literacy", availability: [1,2,4] }, 
-      travelTime: "30 min",
-      duration: 120,
-      allDay: false,
-    },{
-      startTime: "12:00",
-      location: "Almere",
-      title: "Dentist Appointment",
-      coach: null, 
-      travelTime: "30 min",
-      duration: 120,
-      allDay: false,
-    }],
-    "2022-11-17": [{
-      startTime: "11:00",
-      location: "Almere",
-      title: "Coaching session",
-      coach:  { name: "J. Schmidt", organization: "1 met jezelf", website: "https://www.1metjezelf-coaching.com/Coaching/", type: "Mindfulness", availability: [1,2,4] },
-      travelTime: "30 min",
-      duration: 120,
-      allDay: false,
-    },{
-      startTime: "12:00",
-      location: "Almere",
-      title: "Biking trip",
-      coach: null, 
-      travelTime: "30 min",
-      duration: 120,
-      allDay: false,
-    }]
-  })
-  
+  const [appointments, setAppointments] = useState({
+    "2022-11-29": [
+      {
+        startTime: null,
+        location: "Almere",
+        title: "Jake's 18th Birthday",
+        coach: null,
+        travelTime: null,
+        duration: null,
+        allDay: true,
+        alert: null,
+      },
+      {
+        startTime: "11:00",
+        location: "Almere",
+        title: "Coaching session",
+        coach: {
+          name: "A. Baino",
+          organization: "Classy Notes",
+          website: "https://www.cn-lawfinancegroup.com/",
+          type: "Financial Literacy",
+          availability: [1, 2, 4],
+        },
+        travelTime: "30 min",
+        duration: 120,
+        allDay: false,
+      },
+      {
+        startTime: "12:00",
+        location: "Almere",
+        title: "Dentist Appointment",
+        coach: null,
+        travelTime: "30 min",
+        duration: 120,
+        allDay: false,
+      },
+    ],
+    "2022-11-17": [
+      {
+        startTime: "11:00",
+        location: "Almere",
+        title: "Coaching session",
+        coach: {
+          name: "J. Schmidt",
+          organization: "1 met jezelf",
+          website: "https://www.1metjezelf-coaching.com/Coaching/",
+          type: "Mindfulness",
+          availability: [1, 2, 4],
+        },
+        travelTime: "30 min",
+        duration: 120,
+        allDay: false,
+      },
+      {
+        startTime: "12:00",
+        location: "Almere",
+        title: "Biking trip",
+        coach: null,
+        travelTime: "30 min",
+        duration: 120,
+        allDay: false,
+      },
+    ],
+  });
+
   //function to make bottomsheet appear
-  
+
   function moveBottomSheet(amount) {
     if (amount === -1) {
       setBottomHeight(1);
@@ -93,38 +108,15 @@ const CalendarScreen = ({navigation}) => {
     console.log(onFocusShift);
   }, []);
 
-  //
-  let shiftHeight = 0;
-  if (bottomHeight === 1.5) {
-    shiftHeight = onFocusShift ? -height * 0.4 : 0;
-  }
+  // shifting the bottom hieght
   const options = { month: "long" };
- 
   const date = new Date();
   let fullDate = `${date.getFullYear()}-${
     date.getMonth() + 1
   }-${date.getDate()}`;
-  async function changeMarkedDates(day) {
-    let markedDatesTemp = markedDates;
-    console.log(markedDatesTemp, "markedDatesTemp", "\n", day, "day");
 
-    if (day.dateString in markedDates) {
-      delete markedDatesTemp[day.dateString];
-      // console.log(markedDatesTemp, "after delete");
-      setMarkedDates(markedDatesTemp);
-    } else {
-      markedDatesTemp[day.dateString] = {
-        selected: true,
-        selectedColor: "blue",
-      };
-      setMarkedDates(markedDatesTemp);
-      setInlineOpen(false);
-      timeout(10);
-      setInlineOpen(true);
-    }
-  }
+
   //config for formatting calendar dates and days
-
   LocaleConfig.locales.fr = LocaleConfig.locales[""];
   LocaleConfig.locales.en = {
     monthNames:
@@ -141,15 +133,17 @@ const CalendarScreen = ({navigation}) => {
     today: "Today",
   };
 
-
-
   LocaleConfig.defaultLocale = "en";
+  // a function to make the code wait for x amount of time
+
   function timeout(delay) {
     return new Promise((res) => setTimeout(res, delay));
   }
+
+  // a function to save the selected day on the calendar
+
   function selectDay(day) {
     setSelectedDay(day);
-    // changeMarkedDates(day);
     let startDateValue = new Date(day.dateString);
     const currentTime = new Date();
     startDateValue.setHours(currentTime.getHours());
@@ -157,12 +151,9 @@ const CalendarScreen = ({navigation}) => {
     setStartDate(startDateValue);
   }
 
-  const colors = {
-    background: "transparent",
-    primary: "transparent",
-  };
+  //render the calendar screen view
   return (
-    <View style={[styles.container, { top: shiftHeight }]}>
+    <View style={styles.container}>
       <StatusBar
         animated={true}
         backgroundColor="#D4FFF6"
@@ -191,23 +182,14 @@ const CalendarScreen = ({navigation}) => {
             setAddAppointmentMode(true);
           }}
           theme={{
-            backgroundColor: "black",
             calendarBackground: "transparent",
             textSectionTitleColor: "rgba(16, 112, 112, 1)",
-
-            textSectionTitleDisabledColor: "blue",
             selectedDayBackgroundColor: "rgba(16, 112, 112, 1)",
-            // selectedDayTextColor: "#ffffff",
-            todayTextColor: "#00adf5",
-            dayTextColor: "#2d4150",
             textDisabledColor: "lightgrey",
             dotColor: "#00adf5",
-            selectedDotColor: "#ffffff",
             arrowColor: "#61CBB4",
             disabledArrowColor: "#d9e1e8",
-            monthTextColor: "blue",
-            indicatorColor: "blue",
-
+            selectedDotColor: "#ffffff",
             textDayFontWeight: "bold",
             textMonthFontWeight: "bold",
             textDayHeaderFontWeight: "300",
@@ -220,10 +202,7 @@ const CalendarScreen = ({navigation}) => {
           style={styles.calendarStyle}
           initialDate={fullDate}
           minDate={fullDate}
-          //change language
           monthFormat={"MMMM yyyy"}
-          //change language
-          // Handler which gets executed on day press. Default = undefined
           onDayPress={(day) => {
             selectDay(day);
           }}
@@ -235,33 +214,20 @@ const CalendarScreen = ({navigation}) => {
             [selectedDay.dateString]: {
               selected: true,
               selectedColor: "#61CBB4",
-              text: "red",
             },
           }}
         />
       </View>
       <View style={styles.agendaPart}>
-        <DayAgenda  fullDate={fullDate} appointments={appointments} coach={coach} setAddAppointmentMode={setAddAppointmentMode}date={selectedDay}/>
-        {/* <FlatList
-        horizontal={true}
-        numColumns={1}
-        pagingEnabled={true}
-        showsHorizontalScrollIndicator={false}
-        data={data}
-        style={styles.flatlist}
-        renderItem={({ item }) => (
-          <CalendarItem
-            setAddAppointmentMode={setAddAppointmentMode}
-            bottomHeight={bottomHeight}
-            setBottomHeight={setBottomHeight}
-            moveBottomSheet={moveBottomSheet}
-            dayarray={item.days}
-            item={item}
-          />
-        )}
-      /> */}
+        <DayAgenda
+          fullDate={fullDate}
+          appointments={appointments}
+          coach={coach}
+          setAddAppointmentMode={setAddAppointmentMode}
+          date={selectedDay}
+        />
       </View>
-
+      {/* if a date is long pressed open the bottomsheet to make an appointment */}
       {addAppointmentMode ? (
         <BottomSheetCalendar
           setAddAppointmentMode={setAddAppointmentMode}
@@ -280,17 +246,10 @@ const CalendarScreen = ({navigation}) => {
     </View>
   );
 };
+
+//declare styles & Dimensions
 const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
- 
-  flatlist: {
-    top: getStatusBarHeight() + height / 10,
-    width: width,
-    height: height * 0.6,
-    borderRadius: width / 20,
-    //align container to the center of the flatlist
-    alignSelf: "center",
-  },
   calendar: {
     top: 0,
     height: height * 0.48,
@@ -302,36 +261,16 @@ const styles = StyleSheet.create({
     height: height * 0.22,
     top: getStatusBarHeight() + height * 0.01,
   },
-  calendarContainer: {
-    backgroundColor: "white",
-    width: width,
-    height: "fit-content",
-    borderRadius: width / 20,
-    //create shadow for the container
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 2,
-      height: -2,
-    },
-    padding: width / 10,
-    shadowOpacity: 0.5,
-    zIndex: 12,
-    shadowRadius: 11.84,
-    elevation: 5,
-  },
-
   container: {
     flex: 1,
     display: "flex",
     flexDirection: "column",
-
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "space-between",
   },
   agendaPart: {
     top: 0,
-
     width: width,
     flex: 1,
   },
@@ -346,4 +285,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CalendarScreen;
+export default CalendarScreen;

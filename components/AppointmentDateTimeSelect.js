@@ -5,14 +5,11 @@ import {
   StyleSheet,
   Pressable,
   Switch,
-  ScrollView,
-  TextInput,
-  Platform,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import RNPickerSelect from "react-native-picker-select";
-import { Calendar, CalendarList, Agenda } from "react-native-calendars";
+import { Calendar } from "react-native-calendars";
 import { LocaleConfig } from "react-native-calendars";
 
 const AppointmentDateTimeSelect = ({
@@ -23,11 +20,11 @@ const AppointmentDateTimeSelect = ({
   endDate,
   setEndDate,
   allDay,
-  setTravelTime
+  setTravelTime,
 }) => {
-  const { height, width } = Dimensions.get("screen");
+  //declare states & Dimensions
 
-  const [endDateEnable, setEndDateEnable] = useState(false);
+  const { height, width } = Dimensions.get("screen");
   const [inlineOpen, setInlineOpen] = useState(false);
   const [inlineTimeOpen, setInlineTimeOpen] = useState(false);
   const [inlineOpenEnd, setInlineOpenEnd] = useState(false);
@@ -35,19 +32,16 @@ const AppointmentDateTimeSelect = ({
   const [containerHeight, setContainerHeight] = useState(0.25);
   const [selectedDay, setSelectedDay] = useState(new Date());
   const [markedDates, setMarkedDates] = useState({});
-  const [currentCoach, setCurrentCoach] = useState(coach);
 
-  useEffect(() => {
-    console.log(coach, "coach");
-  }, [coach]);
-
+  //a toggle function for when the switch is flipped
   const toggleSwitch = () => {
     setAllDay((previousState) => !previousState);
-    
-      containerHeight === 0.25 ? setContainerHeight(0.2) : setContainerHeight(0.25)
-   
+    //changing the container height if allday is pressed
+    containerHeight === 0.25
+      ? setContainerHeight(0.2)
+      : setContainerHeight(0.25);
   };
-
+  
   LocaleConfig.locales.fr = LocaleConfig.locales[""];
   LocaleConfig.locales.en = {
     monthNames:
