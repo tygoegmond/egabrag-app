@@ -8,6 +8,7 @@ import {
   Image,
   TouchableOpacity,
   Animated,
+  Platform,
 } from "react-native";
 import React, { useCallback, useState, useRef } from "react";
 import { getStatusBarHeight } from "react-native-status-bar-height";
@@ -53,9 +54,6 @@ const ProgressWidget = ({ goalTitle, startAmount, endAmount, amount }) => {
   return (
     <TouchableOpacity onPress={pressHandler} style={styles.progressView}>
       <Text style={styles.title}>Progress towards:</Text>
-      <View style={styles.textContainer}>
-        <Text style={styles.profileText}>Goals</Text>
-      </View>
       <View style={styles.profileInfoContainer}>
         <Text style={styles.recent}>{goalTitle}</Text>
         <View
@@ -68,7 +66,7 @@ const ProgressWidget = ({ goalTitle, startAmount, endAmount, amount }) => {
         <View
           style={{
             position: "absolute",
-            top: height * 0.05,
+            top: height * 0.08,
           }}
         >
           <Progress.Bar
@@ -96,95 +94,285 @@ const ProgressWidget = ({ goalTitle, startAmount, endAmount, amount }) => {
 // local styles
 const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
-  container: {
-    width: width / 10,
-  },
-  progressView: {
-    backgroundColor: "#107070",
-    width: width / 1.18,
-    borderRadius: 25,
-    height: height / 5.6,
-    bottom:height * 0.14,
-    position: "absolute",
-    justifyContent: "center",
-  },
+  ...Platform.select({
+    ios: {
+      container: {
+        width: width / 10,
+      },
+      progressView: {
+        backgroundColor: "#107070",
+        width: width / 1.18,
+        borderRadius: 25,
+        height: height / 5.6,
+        bottom: height * 0.14,
+        position: "absolute",
+        justifyContent: "center",
+      },
 
-  profileText: {
-    color: "#fff",
-    backgroundColor: "#61CBB4",
-    padding: 15,
-    paddingHorizontal: 30,
+      profileText: {
+        color: "#fff",
+        backgroundColor: "#61CBB4",
+        padding: 15,
+        paddingHorizontal: 30,
 
-    borderRadius: 24,
-    overflow: "hidden",
-    fontWeight: "bold",
-    flexWrap: "wrap",
-  },
-  textContainer: {
-    width: width / 1.5,
-    textAlign: "center",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 30,
-    overflow: "hidden",
-    left: width / 2.9,
-    position: "absolute",
-    top: getStatusBarHeight() + height / 11,
-  },
+        borderRadius: 24,
+        overflow: "hidden",
+        fontWeight: "bold",
+        flexWrap: "wrap",
+      },
+      textContainer: {
+        width: width / 1.5,
+        textAlign: "center",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 30,
+        overflow: "hidden",
+        left: width / 2.9,
+        position: "absolute",
+        top: getStatusBarHeight() + height / 11,
+      },
 
-  profileInfoContainer: {
-    width: width / 1.5,
-    left: width / 14,
-    top: getStatusBarHeight() - height * 0.1,
-  },
-  author: {
-    color: "#107070",
-    fontSize: 16,
-    fontWeight: "bold",
-    top: height * 0.11,
-    marginBottom: height / 120,
-    position: "absolute",
-    right: 0,
-  },
-  profileInfo: {
-    color: "black",
-    fontSize: 14,
-    fontWeight: "bold",
-    top: height * 0.03,
-    position: "relative",
-  },
-  recent: {
-    color: "#fff",
-    fontSize: 22,
-    fontWeight: "bold",
-    top: height * 0.012,
+      profileInfoContainer: {
+        width: width / 1.5,
+        left: width / 14,
+        top: getStatusBarHeight() - height * 0.1,
+      },
+      author: {
+        color: "#107070",
+        fontSize: 16,
+        fontWeight: "bold",
+        top: height * 0.11,
+        marginBottom: height / 120,
+        position: "absolute",
+        right: 0,
+      },
+      profileInfo: {
+        color: "black",
+        fontSize: 14,
+        fontWeight: "bold",
+        top: height * 0.03,
 
-    position: "absolute",
-  },
-  title: {
-    color: "#61CBB4",
-    fontSize: 18,
-    fontWeight: "bold",
-    height: height * 0.15,
-    left: width / 14,
-    top: height * 0.02,
-    marginBottom: height / 120,
-    position: "absolute",
-  },
-  start: {
-    color: "#fff",
-    fontSize: 18,
-    top: height * 0.07,
-    fontWeight: "bold",
-  },
-  end: {
-    color: "#fff",
-    fontSize: 18,
-    top: height * 0.07,
-    fontWeight: "bold",
-    right: -width * 0.02,
-    position: "absolute",
-  },
+        position: "relative",
+      },
+      recent: {
+        color: "#fff",
+        fontSize: 22,
+        fontWeight: "bold",
+        top: height * 0.012,
+
+        position: "absolute",
+      },
+      title: {
+        color: "#61CBB4",
+        fontSize: 18,
+        fontWeight: "bold",
+        height: height * 0.15,
+        left: width / 14,
+        top: height * 0.02,
+        marginBottom: height / 120,
+        position: "absolute",
+      },
+      start: {
+        color: "#fff",
+        fontSize: 18,
+        top: height * 0.07,
+        fontWeight: "bold",
+      },
+      end: {
+        color: "#fff",
+        fontSize: 18,
+        top: height * 0.07,
+        fontWeight: "bold",
+        right: -width * 0.02,
+        position: "absolute",
+      },
+    },
+    //---------------------------------------------------android-----------------------------------------------------------------
+    android: {
+      container: {
+        width: width / 10,
+      },
+      progressView: {
+        backgroundColor: "#107070",
+        width: width / 1.18,
+        borderRadius: 25,
+        height: height / 5.6,
+        bottom: height * 0.14,
+        position: "absolute",
+        justifyContent: "center",
+      },
+
+      profileText: {
+        color: "#fff",
+        backgroundColor: "#61CBB4",
+        padding: 15,
+        paddingHorizontal: 30,
+
+        borderRadius: 24,
+        overflow: "hidden",
+        fontWeight: "bold",
+        flexWrap: "wrap",
+      },
+      textContainer: {
+        width: width / 1.5,
+        textAlign: "center",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 30,
+        overflow: "hidden",
+        left: width / 2.9,
+        position: "absolute",
+        top: getStatusBarHeight() + height / 11,
+      },
+
+      profileInfoContainer: {
+        width: width / 1.5,
+        left: width / 14,
+        top: getStatusBarHeight() - height * 0.1,
+      },
+      author: {
+        color: "#107070",
+        fontSize: 16,
+        fontWeight: "bold",
+        top: height * 0.11,
+        marginBottom: height / 120,
+        position: "absolute",
+        right: 0,
+      },
+      profileInfo: {
+        color: "black",
+        fontSize: 14,
+        fontWeight: "bold",
+        top: height * 0.03,
+
+        position: "relative",
+      },
+      recent: {
+        color: "#fff",
+        fontSize: 22,
+        fontWeight: "bold",
+        top: height * 0.04,
+        position: "absolute",
+      },
+      title: {
+        color: "#61CBB4",
+        fontSize: 18,
+        fontWeight: "bold",
+        height: height * 0.15,
+        left: width / 14,
+        top: height * 0.02,
+        marginBottom: height / 120,
+        position: "absolute",
+      },
+      start: {
+        color: "#fff",
+        fontSize: 18,
+        top: height * 0.112,
+        fontWeight: "bold",
+      },
+      end: {
+        color: "#fff",
+        fontSize: 18,
+        top: height * 0.112,
+        fontWeight: "bold",
+        right: -width * 0.02,
+        position: "absolute",
+      },
+    },
+    //---------------------------------------------------------default----------------------------------------------------------------
+    default: {
+      container: {
+        width: width / 10,
+      },
+      progressView: {
+        backgroundColor: "#107070",
+        width: width / 1.18,
+        borderRadius: 25,
+        height: height / 5.6,
+        bottom: height * 0.14,
+        position: "absolute",
+        justifyContent: "center",
+      },
+
+      profileText: {
+        color: "#fff",
+        backgroundColor: "#61CBB4",
+        padding: 15,
+        paddingHorizontal: 30,
+
+        borderRadius: 24,
+        overflow: "hidden",
+        fontWeight: "bold",
+        flexWrap: "wrap",
+      },
+      textContainer: {
+        width: width / 1.5,
+        textAlign: "center",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 30,
+        overflow: "hidden",
+        left: width / 2.9,
+        position: "absolute",
+        top: getStatusBarHeight() + height / 11,
+      },
+
+      profileInfoContainer: {
+        width: width / 1.5,
+        left: width / 14,
+        top: getStatusBarHeight() - height * 0.1,
+      },
+      author: {
+        color: "#107070",
+        fontSize: 16,
+        fontWeight: "bold",
+        top: height * 0.11,
+        marginBottom: height / 120,
+        position: "absolute",
+        right: 0,
+      },
+      profileInfo: {
+        color: "black",
+        fontSize: 14,
+        fontWeight: "bold",
+        top: height * 0.03,
+
+        position: "relative",
+      },
+      recent: {
+        color: "#fff",
+        fontSize: 22,
+        fontWeight: "bold",
+        top: height * 0.012,
+
+        position: "absolute",
+      },
+      title: {
+        color: "#61CBB4",
+        fontSize: 18,
+        fontWeight: "bold",
+        height: height * 0.15,
+        left: width / 14,
+        top: height * 0.02,
+        marginBottom: height / 120,
+        position: "absolute",
+      },
+      start: {
+        color: "#fff",
+        fontSize: 18,
+        top: height * 0.07,
+        fontWeight: "bold",
+      },
+      end: {
+        color: "#fff",
+        fontSize: 18,
+        top: height * 0.07,
+        fontWeight: "bold",
+        right: -width * 0.02,
+        position: "absolute",
+      },
+    },
+  }),
 });
 
 export default ProgressWidget;
