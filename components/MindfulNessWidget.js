@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
     width: width / 1.18,
     borderRadius: 25,
     height: height / 7.6,
-    bottom:  height * 0.53,
+    bottom: height * 0.53,
     position: "absolute",
     justifyContent: "center",
   },

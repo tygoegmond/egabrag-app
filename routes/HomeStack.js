@@ -12,12 +12,12 @@ import FinancialLiteracy from "../screens/FinancialLiteracy";
 import Mindfulness from "../screens/Mindfulness";
 import CreateUser from "../screens/CreateUser";
 import Ebooks from "../screens/Ebooks";
-import Articles from "../screens/Articles";
 import SplashScreen from "../screens/SplashScreen";
 import Profile from "../screens/Profile";
 import ArticlePage from "../screens/ArticlePage";
 import CalendarScreen from "../screens/CalendarScreen";
 import BottomDrawer from "../components/BottomDrawer";
+import AllEbooks from "../screens/AllEbooks";
 //define object with screens
 
 const screens = {
@@ -46,14 +46,14 @@ const screens = {
   Ebooks: {
     screen: Ebooks,
   },
-  Articles: {
-    screen: Articles,
-  },
   Profile: {
     screen: Profile,
   },
   ArticlePage: {
     screen: ArticlePage,
+  },
+  AllEbooks: {
+    screen: AllEbooks,
   },
 };
 //creating homestack to navigate between screens

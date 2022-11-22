@@ -23,7 +23,7 @@ const AppointmentDateTimeSelect = ({
   endDate,
   setEndDate,
   allDay,
-  setTravelTime
+  setTravelTime,
 }) => {
   const { height, width } = Dimensions.get("screen");
 
@@ -43,9 +43,10 @@ const AppointmentDateTimeSelect = ({
 
   const toggleSwitch = () => {
     setAllDay((previousState) => !previousState);
-    
-      containerHeight === 0.25 ? setContainerHeight(0.2) : setContainerHeight(0.25)
-   
+
+    containerHeight === 0.25
+      ? setContainerHeight(0.2)
+      : setContainerHeight(0.25);
   };
 
   LocaleConfig.locales.fr = LocaleConfig.locales[""];
@@ -471,7 +472,7 @@ const AppointmentDateTimeSelect = ({
 
       {inlineEnd()}
       {inlineEndTime()}
-      <View style={styles.travelTimeContainer}>
+      {/* <View style={styles.travelTimeContainer}>
         <Text style={styles.datePickerText}>Travel time</Text>
         <RNPickerSelect
           onValueChange={(value) => setTravelTime(value)}
@@ -524,7 +525,7 @@ const AppointmentDateTimeSelect = ({
             { label: "2 hours", value: 120 },
           ]}
         />
-      </View>
+      </View> */}
     </View>
   );
 };

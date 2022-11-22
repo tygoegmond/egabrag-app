@@ -234,5 +234,4 @@ const styles = StyleSheet.create({
     position: "absolute",
     justifyContent: "center",
   },
-  Text: {},
 });

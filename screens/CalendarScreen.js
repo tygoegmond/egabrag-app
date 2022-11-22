@@ -15,8 +15,7 @@ import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 import { LocaleConfig } from "react-native-calendars";
 import DayAgenda from "../components/DayAgenda";
 
-const CalendarScreen = ({navigation}) => {
-
+const CalendarScreen = ({ navigation }) => {
   //declare states
 
   const [data, setData] = useState([]);
@@ -29,55 +28,73 @@ const CalendarScreen = ({navigation}) => {
   const [selectedDay, setSelectedDay] = useState(new Date());
   const [markedDates, setMarkedDates] = useState({});
   const [month, setMonth] = useState(new Date().getMonth());
-  const [appointments, setAppointments] = useState(
-    {
-    "2022-11-29": [{
-      startTime: null,
-      location: "Almere",
-      title: "Jake's 18th Birthday",
-      coach: null, 
-      travelTime: null,
-      duration: null,
-      allDay: true,
-      alert: null,
-    },{
-      startTime: "11:00",
-      location: "Almere",
-      title: "Coaching session",
-      coach:  { name: "A. Baino", organization: "Classy Notes", website: "https://www.cn-lawfinancegroup.com/", type: "Financial Literacy", availability: [1,2,4] }, 
-      travelTime: "30 min",
-      duration: 120,
-      allDay: false,
-    },{
-      startTime: "12:00",
-      location: "Almere",
-      title: "Dentist Appointment",
-      coach: null, 
-      travelTime: "30 min",
-      duration: 120,
-      allDay: false,
-    }],
-    "2022-11-17": [{
-      startTime: "11:00",
-      location: "Almere",
-      title: "Coaching session",
-      coach:  { name: "J. Schmidt", organization: "1 met jezelf", website: "https://www.1metjezelf-coaching.com/Coaching/", type: "Mindfulness", availability: [1,2,4] },
-      travelTime: "30 min",
-      duration: 120,
-      allDay: false,
-    },{
-      startTime: "12:00",
-      location: "Almere",
-      title: "Biking trip",
-      coach: null, 
-      travelTime: "30 min",
-      duration: 120,
-      allDay: false,
-    }]
-  })
-  
+  const [appointments, setAppointments] = useState({
+    "2022-11-29": [
+      {
+        startTime: null,
+        location: "Almere",
+        title: "Jake's 18th Birthday",
+        coach: null,
+        travelTime: null,
+        duration: null,
+        allDay: true,
+        alert: null,
+      },
+      {
+        startTime: "11:00",
+        location: "Almere",
+        title: "Coaching session",
+        coach: {
+          name: "A. Baino",
+          organization: "Classy Notes",
+          website: "https://www.cn-lawfinancegroup.com/",
+          type: "Financial Literacy",
+          availability: [1, 2, 4],
+        },
+        travelTime: "30 min",
+        duration: 120,
+        allDay: false,
+      },
+      {
+        startTime: "12:00",
+        location: "Almere",
+        title: "Dentist Appointment",
+        coach: null,
+        travelTime: "30 min",
+        duration: 120,
+        allDay: false,
+      },
+    ],
+    "2022-11-17": [
+      {
+        startTime: "11:00",
+        location: "Almere",
+        title: "Coaching session",
+        coach: {
+          name: "J. Schmidt",
+          organization: "1 met jezelf",
+          website: "https://www.1metjezelf-coaching.com/Coaching/",
+          type: "Mindfulness",
+          availability: [1, 2, 4],
+        },
+        travelTime: "30 min",
+        duration: 120,
+        allDay: false,
+      },
+      {
+        startTime: "12:00",
+        location: "Almere",
+        title: "Biking trip",
+        coach: null,
+        travelTime: "30 min",
+        duration: 120,
+        allDay: false,
+      },
+    ],
+  });
+
   //function to make bottomsheet appear
-  
+
   function moveBottomSheet(amount) {
     if (amount === -1) {
       setBottomHeight(1);
@@ -99,7 +116,7 @@ const CalendarScreen = ({navigation}) => {
     shiftHeight = onFocusShift ? -height * 0.4 : 0;
   }
   const options = { month: "long" };
- 
+
   const date = new Date();
   let fullDate = `${date.getFullYear()}-${
     date.getMonth() + 1
@@ -140,8 +157,6 @@ const CalendarScreen = ({navigation}) => {
     dayNamesShort: "Sun_Mon_Tue_Wed_Thu_Fri_Sat".split("_"),
     today: "Today",
   };
-
-
 
   LocaleConfig.defaultLocale = "en";
   function timeout(delay) {
@@ -241,7 +256,13 @@ const CalendarScreen = ({navigation}) => {
         />
       </View>
       <View style={styles.agendaPart}>
-        <DayAgenda  fullDate={fullDate} appointments={appointments} coach={coach} setAddAppointmentMode={setAddAppointmentMode}date={selectedDay}/>
+        <DayAgenda
+          fullDate={fullDate}
+          appointments={appointments}
+          coach={coach}
+          setAddAppointmentMode={setAddAppointmentMode}
+          date={selectedDay}
+        />
         {/* <FlatList
         horizontal={true}
         numColumns={1}
@@ -282,7 +303,6 @@ const CalendarScreen = ({navigation}) => {
 };
 const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
- 
   flatlist: {
     top: getStatusBarHeight() + height / 10,
     width: width,
@@ -346,4 +366,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CalendarScreen;
+export default CalendarScreen;

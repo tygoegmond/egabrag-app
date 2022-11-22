@@ -11,7 +11,7 @@ import React, { useEffect, useState } from "react";
 import AppointmentDateTimeSelect from "./AppointmentDateTimeSelect";
 import CoachSelect from "./CoachSelect";
 import CoachList from "./CoachList";
-import AlertMe from "./AlertMe";  
+import AlertMe from "./AlertMe";
 import { LocaleConfig } from "react-native-calendars";
 
 //Config for locale fomrmatting for calendar
@@ -32,7 +32,7 @@ LocaleConfig.defaultLocale = "en";
 
 //
 const BottomSheetCalendar = ({ setAddAppointmentMode }) => {
-  const API_URL = "https://egabrag.tygoegmond.nl/api"
+  const API_URL = "https://egabrag.tygoegmond.nl/api";
   //config for intl date formatting
   const options = { month: "long" };
   //declaring screen dimensions
@@ -73,7 +73,7 @@ const BottomSheetCalendar = ({ setAddAppointmentMode }) => {
     let coachValue;
     let duration;
     //if coach is not selected, set coachValue to null else set it to the current coach
-    coach === {} ?  coachValue = null : coachValue = coach;
+    coach === {} ? (coachValue = null) : (coachValue = coach);
     //if allDay is true, set duration to 0 minutes else calculate the duration
     allDay ? (duration = 0) : (duration = durationCalc(startDate, endDate));
 
@@ -89,27 +89,23 @@ const BottomSheetCalendar = ({ setAddAppointmentMode }) => {
       allDay: allDay,
       alert: alert,
     };
-    
+
     //post data to the database using axios fetch
 
-      try {
-        const response = await axios.post(
-          `${API_URL}/appointments`,
-          {
-            headers: {
-              Authorization:
-                "Bearer " + (await Securestore.getItemAsync("token")),
-              Accept: "application/json",
-            },
-            body: data,
-          }
-        );
-        console.log(response.data);
-        setResponse(response.data);
-        return response.data;
-      } catch (error) {
-        console.log(error);
-      }
+    try {
+      const response = await axios.post(`${API_URL}/appointments`, {
+        headers: {
+          Authorization: "Bearer " + (await Securestore.getItemAsync("token")),
+          Accept: "application/json",
+        },
+        body: data,
+      });
+      console.log(response.data);
+      setResponse(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
   }
   // render actual bottomsheet page
   return (
