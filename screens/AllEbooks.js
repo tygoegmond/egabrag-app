@@ -26,8 +26,7 @@ import content4 from "../assets/images/content4.png";
 import content5 from "../assets/images/content5.jpg";
 import content6 from "../assets/images/content6.webp";
 import BottomDrawer from "../components/BottomDrawer";
-import ProgressWidget from "../components/ProgressWidget";
-import Ebooks from "../screens/Ebooks.js";
+import { ScrollView } from "react-native-gesture-handler";
 
 export default function FinancialLiteracy({ navigation }) {
   //import fonts
@@ -268,7 +267,7 @@ const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
   AllEbooks: {
     color: "#107070",
-    backgroundColor: "rgba(163, 237, 182, 0.15)",
+    backgroundColor: "rgba(123, 255, 157, 0.1)",
     width: width / 1,
     height: height / 1,
     flex: 1,
@@ -283,7 +282,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   widgetViewContentTitle: {
-    color: "#52A4D2",
+    color: "rgba(36, 118, 114, 1)",
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 8,
