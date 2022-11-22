@@ -60,8 +60,10 @@ const ProfileWidget = ({ profilePic, user, navigation }) => {
         <Text style={styles.profileText}>Profile</Text>
       </View>
       <View style={styles.profileInfoContainer}>
-        <Image style={styles.pointsIcon} source={pointsIcon} />
-        <Text style={styles.profileInfo}>{coinAmount}</Text>
+        <View style={styles.coin}>
+          <Text style={styles.profileInfo}>{coinAmount}</Text>
+          <Image style={styles.pointsIcon} source={pointsIcon} />
+        </View>
         <Text style={styles.profileInfo}>
           {prefix} at {suffix}
         </Text>
@@ -75,6 +77,13 @@ const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
   container: {
     width: width / 10,
+  },
+  coin: {
+    flexDirection: "row",
+    alignContent: "center",
+    width: width / 10,
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   image: {
     resizeMode: "cover",
@@ -251,30 +260,28 @@ const styles = StyleSheet.create({
   profilePic: {
     width: width / 4,
     height: height / 9,
-    top: getStatusBarHeight() - height / 9,
+    top: height * -0.07,
+
     left: width / 16,
   },
   profileText: {
     color: "#fff",
-    backgroundColor: "#61CBB4",
-    padding: 15,
-    paddingHorizontal: 30,
-    borderRadius: 24,
-    overflow: "hidden",
+    fontSize: 15,
     fontWeight: "bold",
-    flexWrap: "wrap",
-    height: 40,
   },
   textContainer: {
-    width: width / 1.5,
+    width: width * 0.28,
+    backgroundColor: "#61CBB4",
     textAlign: "center",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 30,
+    height: height * 0.04,
+    alignContent: "center",
     overflow: "hidden",
-    left: width / 2.9,
+    left: width * 0.5,
     position: "absolute",
-    top: getStatusBarHeight() + height / 11,
+    top: getStatusBarHeight() + height * 0.1,
   },
   name: {
     color: "#61CBB4",
@@ -294,15 +301,12 @@ const styles = StyleSheet.create({
     color: "#000",
     fontSize: 16,
     fontWeight: "bold",
-    marginBottom: height / 180,
+
     position: "relative",
   },
   pointsIcon: {
     width: width / 20,
     height: height / 40,
-    top: getStatusBarHeight() - height * 0.03,
-    left: width / 16,
-    position: "absolute",
   },
 });
 

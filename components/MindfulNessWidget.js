@@ -39,7 +39,7 @@ const MindfulnessWidget = ({ quote, author, navigation }) => {
     navigation.navigate("Mindfulness");
   };
   return (
-    <TouchableOpacity onPress={pressHandler} style={styles.profileView}>
+    <TouchableOpacity onPress={pressHandler} style={styles.mindfulView}>
       <View style={styles.profileInfoContainer}>
         <Text style={styles.profileInfo}>Mindfulness</Text>
         <Text style={styles.profileInfo}>{quote}</Text>
@@ -218,12 +218,12 @@ const styles = StyleSheet.create({
     left: width / 11.5,
     position: "absolute",
   },
-  profileView: {
+  mindfulView: {
     backgroundColor: "white",
     width: width / 1.18,
     borderRadius: 25,
     height: height / 7.6,
-    bottom: getStatusBarHeight() + height / 2.25,
+    bottom:  height * 0.53,
     position: "absolute",
     justifyContent: "center",
   },

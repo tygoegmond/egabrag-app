@@ -18,7 +18,7 @@ const CoachCard = ({ setCoachListState, setCoach, item, setLastCoach}) => {
       <View style={styles.cardText}>
         <Text style={styles.name}>{item.name}</Text>
         <Text style={styles.type}>{item.type}</Text>
-        <Text style={styles.email}>{item.email}</Text>
+        <Text style={styles.email}>{item.organization}</Text>
         <Text style={styles.website}>{item.website}</Text>
         <TouchableOpacity
           style={styles.booking}

@@ -4,18 +4,17 @@ import {
   Dimensions,
   StyleSheet,
   Pressable,
-  Switch,
   ScrollView,
   TextInput,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import RNPickerSelect from "react-native-picker-select";
 import AppointmentDateTimeSelect from "./AppointmentDateTimeSelect";
 import CoachSelect from "./CoachSelect";
 import CoachList from "./CoachList";
+import AlertMe from "./AlertMe";  
 import { LocaleConfig } from "react-native-calendars";
-import { Calendar, CalendarList, Agenda } from "react-native-calendars";
+
+//Config for locale fomrmatting for calendar
 
 LocaleConfig.locales.en = {
   monthNames:
@@ -30,21 +29,97 @@ LocaleConfig.locales.en = {
   today: "Today",
 };
 LocaleConfig.defaultLocale = "en";
+
+//
 const BottomSheetCalendar = ({ setAddAppointmentMode }) => {
+  const API_URL = "https://egabrag.tygoegmond.nl/api"
+  //config for intl date formatting
   const options = { month: "long" };
+  //declaring screen dimensions
   const { height, width } = Dimensions.get("screen");
+  //Declaring states
+
   const [coachListState, setCoachListState] = useState(false);
   const [coach, setCoach] = useState({});
+  const [title, setTitle] = useState("");
+  const [location, setLocation] = useState("");
   const [lastCoach, setLastCoach] = useState({});
   const [month, setMonth] = useState(new Date().getMonth());
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [travelTime, setTravelTime] = useState(0);
+  const [allDay, setAllDay] = useState(false);
+  const [alert, setAlert] = useState(false);
+  const [response, setResponse] = useState("");
+
+  //declaring date and fullDate variables
   const date = new Date();
   let fullDate = `${date.getFullYear()}-${
     date.getMonth() + 1
   }-${date.getDate()}`;
+
+  //function to Calculate difference between 2 timestamps. returns time in minutes
+
+  function durationCalc(timestamp1, timestamp2) {
+    let difference = timestamp1 - timestamp2;
+    let minuteDifference = Math.floor(difference / 1000 / 60);
+
+    return minuteDifference;
+  }
+
+  //post handler function for posting appointments to the database
+
+  async function postAppointment() {
+    let coachValue;
+    let duration;
+    //if coach is not selected, set coachValue to null else set it to the current coach
+    coach === {} ?  coachValue = null : coachValue = coach;
+    //if allDay is true, set duration to 0 minutes else calculate the duration
+    allDay ? (duration = 0) : (duration = durationCalc(startDate, endDate));
+
+    //declare data object to be posted
+
+    const data = {
+      startTime: startDate,
+      location: location,
+      title: title,
+      coach: coachValue,
+      travelTime: travelTime,
+      duration: duration * -1,
+      allDay: allDay,
+      alert: alert,
+    };
+    
+    //post data to the database using axios fetch
+
+      try {
+        const response = await axios.post(
+          `${API_URL}/appointments`,
+          {
+            headers: {
+              Authorization:
+                "Bearer " + (await Securestore.getItemAsync("token")),
+              Accept: "application/json",
+            },
+            body: data,
+          }
+        );
+        console.log(response.data);
+        setResponse(response.data);
+        return response.data;
+      } catch (error) {
+        console.log(error);
+      }
+  }
+  // render actual bottomsheet page
   return (
     <View style={styles.page}>
       {coachListState ? (
-        <CoachList setCoach={setCoach} setLastCoach={setLastCoach} setCoachListState={setCoachListState} />
+        <CoachList
+          setCoach={setCoach}
+          setLastCoach={setLastCoach}
+          setCoachListState={setCoachListState}
+        />
       ) : null}
       <View style={[styles.bottomSheetContainer, { top: height / 10 }]}>
         <View style={styles.topPart}>
@@ -55,17 +130,46 @@ const BottomSheetCalendar = ({ setAddAppointmentMode }) => {
           >
             <Text style={styles.cancel}>Cancel</Text>
           </Pressable>
-          <Text style={styles.listTitle}>Make Appointment</Text>
+          <Pressable
+            onPress={() => {
+              postAppointment();
+            }}
+          >
+            <Text style={styles.listTitle}>Make Appointment</Text>
+          </Pressable>
         </View>
         <ScrollView style={styles.bottomPart}>
           <View style={styles.inputs}>
             <View style={styles.titleLocation}>
-              <TextInput placeholder="Title" style={styles.singularInput1} />
-              <TextInput placeholder="Location" style={styles.singularInput2} />
+              <TextInput
+                onChangeText={(e) => setTitle(e)}
+                placeholder="Title"
+                style={styles.singularInput1}
+              />
+              <TextInput
+                onChangeText={(e) => setLocation(e)}
+                placeholder="Location"
+                style={styles.singularInput2}
+              />
             </View>
-            <CoachSelect coach={coach} lastCoach={lastCoach} setLastCoach={setLastCoach} setCoach={setCoach} setCoachListState={setCoachListState} />
-            <AppointmentDateTimeSelect coach={coach}/>
-            
+            <CoachSelect
+              coach={coach}
+              lastCoach={lastCoach}
+              setLastCoach={setLastCoach}
+              setCoach={setCoach}
+              setCoachListState={setCoachListState}
+            />
+            <AppointmentDateTimeSelect
+              allDay={allDay}
+              setAllDay={setAllDay}
+              setTravelTime={setTravelTime}
+              endDate={endDate}
+              setEndDate={setEndDate}
+              startDate={startDate}
+              setStartDate={setStartDate}
+              coach={coach}
+            />
+            <AlertMe setAlert={setAlert} alert={alert} />
           </View>
         </ScrollView>
       </View>
@@ -74,6 +178,7 @@ const BottomSheetCalendar = ({ setAddAppointmentMode }) => {
 };
 
 export default BottomSheetCalendar;
+//declaring styles & dimensions
 const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
   calendar: {
@@ -121,7 +226,6 @@ const styles = StyleSheet.create({
     height: height * 0.13,
     borderRadius: width * 0.04,
     backgroundColor: "#f2f2f2",
-    // backgroundColor: "grey"
   },
   singularInput1: {
     width: width * 0.85,
@@ -131,7 +235,6 @@ const styles = StyleSheet.create({
     borderColor: "lightgrey",
     borderBottomWidth: 1,
     marginLeft: width * 0.05,
-    // backgroundColor: "red",
     left: 0,
   },
   singularInput2: {
@@ -140,7 +243,6 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: width * 0.05,
     fontWeight: "400",
-    // backgroundColor: "red",
     left: 0,
   },
   date: {
@@ -148,13 +250,8 @@ const styles = StyleSheet.create({
     height: height * 0.2,
     marginRight: width * 0.05,
     borderRadius: 10,
-
     color: "black",
     fontSize: 20,
-    fontWeight: "bold",
-  },
-  bottomText: {
-    fontSize: 16,
     fontWeight: "bold",
   },
   inputs: {
@@ -162,17 +259,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignContent: "center",
     alignItems: "center",
-  },
-  closeContainer: {
-    right: width * 0.34,
-    alignContent: "center",
-    justifyContent: "center",
-    alignItems: "center",
-    // backgroundColor: "#493d8a",
-    position: "absolute",
-    top: height * -0.02,
-    width: width * 0.2,
-    height: height * 0.05,
   },
   page: {
     display: "flex",
@@ -188,7 +274,6 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     textAlign: "center",
     position: "absolute",
-    // right: width * 0.4,
   },
   topPart: {
     display: "flex",
@@ -201,10 +286,6 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: height * 0.02,
     borderTopRightRadius: height * 0.02,
   },
-  moveButton: {
-    zIndex: 1000,
-    paddingBottom: 10,
-  },
   bottomSheetContainer: {
     height: height * 0.9,
     flex: 0.93,
@@ -213,7 +294,6 @@ const styles = StyleSheet.create({
     padding: 0,
     margin: 0,
     backgroundColor: "white",
-    //shadow for the bottom sheet
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -222,18 +302,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.55,
     shadowRadius: 3.84,
     elevation: 5,
-
     position: "absolute",
-
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
-  },
-  line: {
-    width: width * 0.2,
-    height: 5,
-    backgroundColor: "grey",
-    borderRadius: 10,
-    alignSelf: "center",
-    marginTop: height * 0.02,
   },
 });

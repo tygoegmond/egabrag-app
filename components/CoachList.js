@@ -18,14 +18,9 @@ const CoachList = ({setCoachListState, setLastCoach, setCoach}) => {
         <FlatList
           style={styles.list}
           data={[
-              { name: "Devin James", email: "DevinJames@outlook.com", website: "www.DevinJamesCoaching.com", type: "Mindfulness", availability: [1,2,4] },
-              { name: "Jackson Larry", email: "JacksonLarry@outlook.com", website: "www.JacksonLarryCoaching.com", type: "Mindfulness", availability: [1,2,4] },
-            { name: "James Fowler", email: "JamesFowler@outlook.com", website: "www.JamesFowlerCoaching.com", type: "Mindfulness", availability: [1,2,4] },
-            { name: "Joel Mckenzie", email: "JoelMckenzie@outlook.com", website: "www.JoelMckenzieCoaching.com", type: "Mindfulness", availability: [1,2,4] },
-            { name: "John Lillard", email: "JohnLillard@outlook.com", website: "www.JohnLillardCoaching.com", type: "Mindfulness", availability: [1,2,4] },
-            { name: "Jillian Rose", email: "JillianRose@outlook.com", website: "www.JillianRoseCoaching.com", type: "Mindfulness", availability: [1,2,4] },
-            { name: "Jimmy Fallon", email: "JimmyFallon@outlook.com", website: "www.JimmyFallonCoaching.com", type: "Mindfulness", availability: [1,2,4] },
-            { name: "Julie Crowder", email: "JulieCrowder@outlook.com", website: "www.JulieCrowderCoaching.com", type: "Mindfulness", availability: [1,2,4] },
+              { name: "A. Baino", organization: "Classy Notes", website: "https://www.cn-lawfinancegroup.com/", type: "Financial Literacy", availability: [1,2,4] },
+              { name: "J. Schmidt", organization: "1 met jezelf", website: "https://www.1metjezelf-coaching.com/Coaching/", type: "Mindfulness", availability: [1,2,4] },
+           
           ]}
           renderItem={({ item }) => <CoachCard setLastCoach={setLastCoach} setCoachListState={setCoachListState}setCoach={setCoach} item={item}/>}
         />
@@ -39,7 +34,6 @@ const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
   list: {
     width: width,
-
     height: height * 0.5,
   },
   cancel: {

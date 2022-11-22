@@ -16,7 +16,7 @@ import Articles from "../screens/Articles";
 import SplashScreen from "../screens/SplashScreen";
 import Profile from "../screens/Profile";
 import ArticlePage from "../screens/ArticlePage";
-//import CalendarScreen from "../screens/CalendarScreen";
+import CalendarScreen from "../screens/CalendarScreen";
 import BottomDrawer from "../components/BottomDrawer";
 //define object with screens
 
@@ -31,9 +31,9 @@ const screens = {
   Login: {
     screen: Login,
   },
-  // CalendarScreen: {
-  //   screen: CalendarScreen,
-  // },
+  CalendarScreen: {
+    screen: CalendarScreen,
+  },
   FinancialLiteracy: {
     screen: FinancialLiteracy,
   },

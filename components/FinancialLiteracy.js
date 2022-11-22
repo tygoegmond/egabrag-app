@@ -58,7 +58,7 @@ const FinancialLiteracy = ({ recentTrainings, navigation }) => {
     );
   });
   return (
-    <TouchableOpacity onPress={pressHandler} style={styles.profileView}>
+    <TouchableOpacity onPress={pressHandler} style={styles.financialView}>
       <Text style={styles.title}>Financial Literacy</Text>
       <View style={styles.profileInfoContainer}>
         <Text style={styles.recent}>Recent Trainings:</Text>
@@ -102,12 +102,12 @@ const styles = StyleSheet.create({
   container: {
     width: width / 10,
   },
-  profileView: {
+  financialView: {
     backgroundColor: "#fff",
     width: width / 1.18,
     borderRadius: 25,
     height: height / 5.8,
-    bottom: getStatusBarHeight() + height / 3.9,
+    bottom: height * 0.34,
     position: "absolute",
     justifyContent: "center",
     opacity: 0.8,

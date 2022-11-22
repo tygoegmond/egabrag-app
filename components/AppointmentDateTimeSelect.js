@@ -15,11 +15,18 @@ import RNPickerSelect from "react-native-picker-select";
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 import { LocaleConfig } from "react-native-calendars";
 
-const AppointmentDateTimeSelect = ({ coach }) => {
+const AppointmentDateTimeSelect = ({
+  coach,
+  setAllDay,
+  startDate,
+  setStartDate,
+  endDate,
+  setEndDate,
+  allDay,
+  setTravelTime
+}) => {
   const { height, width } = Dimensions.get("screen");
-  const [isEnabled, setIsEnabled] = useState(false);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+
   const [endDateEnable, setEndDateEnable] = useState(false);
   const [inlineOpen, setInlineOpen] = useState(false);
   const [inlineTimeOpen, setInlineTimeOpen] = useState(false);
@@ -34,7 +41,12 @@ const AppointmentDateTimeSelect = ({ coach }) => {
     console.log(coach, "coach");
   }, [coach]);
 
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const toggleSwitch = () => {
+    setAllDay((previousState) => !previousState);
+    
+      containerHeight === 0.25 ? setContainerHeight(0.2) : setContainerHeight(0.25)
+   
+  };
 
   LocaleConfig.locales.fr = LocaleConfig.locales[""];
   LocaleConfig.locales.en = {
@@ -107,14 +119,14 @@ const AppointmentDateTimeSelect = ({ coach }) => {
       setInlineOpenEnd(false);
       if (inlineOpen === true) {
         setInlineOpen(false);
-        if (isEnabled) {
+        if (allDay) {
           setContainerHeight(0.2);
         } else {
           setContainerHeight(0.25);
         }
       }
     } else if (from === "time") {
-      if (!isEnabled) {
+      if (!allDay) {
         setContainerHeight(0.55);
       } else {
         setContainerHeight(0.5);
@@ -125,7 +137,7 @@ const AppointmentDateTimeSelect = ({ coach }) => {
       setInlineOpenEnd(false);
       if (inlineTimeOpen === true) {
         setInlineTimeOpen(false);
-        if (isEnabled) {
+        if (allDay) {
           setContainerHeight(0.2);
         } else {
           setContainerHeight(0.25);
@@ -247,7 +259,7 @@ const AppointmentDateTimeSelect = ({ coach }) => {
         </View>
       );
     } else {
-      // if(isEnabled === false){
+      // if(allDay === false){
       //   if (containerHeight !== 0.25 && containerHeight === 0.7) {
       //     setContainerHeight(0.25);
       //     console.log("het is dicht maar het gaat tot 25")
@@ -273,6 +285,7 @@ const AppointmentDateTimeSelect = ({ coach }) => {
             display="inline"
             style={styles.inlinedate}
             themeVariant="light"
+            minimumDate={startDate}
             value={endDate}
             mode="date"
             onChange={(e) => {
@@ -355,19 +368,19 @@ const AppointmentDateTimeSelect = ({ coach }) => {
   };
   useEffect(() => {
     if (
-      isEnabled &&
+      allDay &&
       inlineOpenEnd === false &&
       inlineOpen === false &&
       inlineTimeOpen === false &&
       inlineTimeOpenEnd === false
     ) {
-      if (isEnabled && inlineOpen === true) {
+      if (allDay && inlineOpen === true) {
         setContainerHeight(0.7);
       }
 
       setContainerHeight(0.2);
     } else {
-      if (isEnabled && inlineOpen === false && inlineTimeOpen == false) {
+      if (allDay && inlineOpen === false && inlineTimeOpen == false) {
         setContainerHeight(0.25);
       }
       setContainerHeight(0.25);
@@ -412,10 +425,10 @@ const AppointmentDateTimeSelect = ({ coach }) => {
         <Switch
           style={styles.switch}
           trackColor={{ false: "#767577", true: "#61CBB4" }}
-          thumbColor={isEnabled ? "#fff" : "#f4f3f4"}
+          thumbColor={allDay ? "#fff" : "#f4f3f4"}
           ios_backgroundColor="#f2f2f2"
           onValueChange={toggleSwitch}
-          value={isEnabled}
+          value={allDay}
         />
       </View>
       <View style={[styles.datePickerContainer, { zIndex: 10 }]}>
@@ -454,14 +467,14 @@ const AppointmentDateTimeSelect = ({ coach }) => {
 
       {inlineStart()}
       {inlineStartTime()}
-      {isEnabled ? null : endDateComponent()}
+      {allDay ? null : endDateComponent()}
 
       {inlineEnd()}
       {inlineEndTime()}
       <View style={styles.travelTimeContainer}>
         <Text style={styles.datePickerText}>Travel time</Text>
         <RNPickerSelect
-          onValueChange={(value) => console.log(value)}
+          onValueChange={(value) => setTravelTime(value)}
           style={{
             iconContainer: {
               top: 20,
