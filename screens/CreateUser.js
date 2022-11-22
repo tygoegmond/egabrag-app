@@ -17,6 +17,7 @@ import { getStatusBarHeight } from "react-native-status-bar-height";
 import Swiper from "react-native-swiper";
 import axios from "axios";
 import * as Securestore from "expo-secure-store";
+import TwoField from "../components/TwoField";
 
 //import assets
 
@@ -33,6 +34,7 @@ export default function Login({ navigation }) {
   axios.defaults.headers.post["Accept"] = "application/json";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [education, setEducation] = useState("");
   const [errors, setErrors] = useState("");
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
@@ -128,6 +130,7 @@ export default function Login({ navigation }) {
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
     22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
   ];
+
   return (
     <View style={Global.container}>
       <View style={Global.container}>
@@ -137,37 +140,38 @@ export default function Login({ navigation }) {
           style={styles.logo}
           source={require("../assets/images/medLogo.png")}
         />
-        <View
-          style={[
-            Global.input,
-            {
-              marginTop: 0,
-              bottom: getStatusBarHeight() + height / 3.5,
-              position: "absolute",
-            },
-          ]}
-        >
-          <TextInput
-            autoCapitalize="none"
-            keyboardType={"email-address"}
-            style={Global.largeField}
-            onChangeText={(e) => setEmail(e)}
-            name="Email"
-            defaultValue={"me@tygoegmond.nl"}
-          />
-          <Text style={Global.placeholder}>Email</Text>
-        </View>
 
         <LargeField
+          type={"name"}
+          position={1.385}
+          title="Full name"
+          setFunction={setEmail}
+          keyboardType={"email-address"}
+        />
+        <TwoField
+          type={"name"}
+          position={1.59}
+          title="lastName"
+          setFunction={setEmail}
+          keyboardType={"email-address"}
+        />
+        <LargeField
+          type={"Education"}
+          position={1.87}
+          title="Education"
+          setFunction={setEducation}
+          keyboardType={"default"}
+        />
+        <LargeField
           type={"email"}
-          position={2.65}
-          title="Date"
+          position={2.26}
+          title="Birtdate"
           setFunction={setEmail}
           keyboardType={"email-address"}
         />
         <LargeField
           type={"email"}
-          position={3.5}
+          position={2.86}
           title="Email"
           setFunction={setEmail}
           keyboardType={"email-address"}
@@ -180,54 +184,7 @@ export default function Login({ navigation }) {
           keyboardType={"password"}
         />
         <Text style={styles.error}>{errors}</Text>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
-            setModalVisible(!modalVisible);
-          }}
-        >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <View style={styles.listView}>
-                <FlatList
-                  onViewableItemsChanged={viewableItemsChanged}
-                  viewabilityConfig={viewConfig}
-                  pagingEnabled={true}
-                  snapToAlignment={'center'}
-                  ref={flatlistRef}
-                  snapToInterval={1}
-                  showsVerticalScrollIndicator={false}
-                  bounces={false}
-                  style={styles.list}
-                  maxToRenderPerBatch={3}
-                  horizontal={false}
-                  data={data}
-                  renderItem={({ item }) => (
-                    <View style={styles.day}>
-                      {/* singular on boarding screen word gerendered */}
-                      <Text style={[styles.dayItem, {backgroundColor: currentPage == item ? "red" : "transparent"}]}>{item}</Text>
-                    </View>
-                  )}
-                />
-              </View>
-              <Pressable
-                style={[styles.button, styles.buttonOpen]}
-                onPress={() => setModalVisible(false)}
-              >
-                <Text style={styles.textStyle}>Show Modal</Text>
-              </Pressable>
-            </View>
-          </View>
-        </Modal>
-        <Pressable
-          style={[styles.button, styles.buttonOpen]}
-          onPress={() => setModalVisible(true)}
-        >
-          <Text style={styles.textStyle}>Show Modal</Text>
-        </Pressable>
+        
         {/* <View
           style={[
             Global.input,

@@ -26,15 +26,12 @@ import content4 from "../assets/images/content4.png";
 import content5 from "../assets/images/content5.jpg";
 import content6 from "../assets/images/content6.webp";
 import ContentGrid from "../components/ContentGrid";
+import BottomDrawer from "../components/BottomDrawer";
 
 export default function Ebooks({ navigation }) {
   //import fonts
-  const [fontsLoaded] = useFonts({
-    "Nabla-Regular": require("../assets/fonts/Nabla-Regular.ttf"),
-    "great-escape": require("../assets/fonts/great-escape.ttf"),
-  });
 
-  const ebooks = [
+  const Ebooks = [
     {
       source: content1,
       title: "a",
@@ -62,25 +59,26 @@ export default function Ebooks({ navigation }) {
   ];
 
   return (
-    <View style={styles.Ebooks}>
+    <View style={styles.ebooks}>
       <Text style={styles.title}>E-Books</Text>
       <View style={styles.widgetView}>
         <View style={{ marginLeft: width / 20, marginRight: width / 20 }}>
           <View>
-            <Text>categories bla bla bla bla bla</Text>
+            <Text>Categories bla bla bla bla bla</Text>
           </View>
           <View>
-            <ContentGrid data={ebooks} navigation={navigation} />
+            <ContentGrid data={Ebooks} navigation={navigation} />
           </View>
         </View>
       </View>
+      <BottomDrawer navigation={navigation} />
     </View>
   );
 }
 
 const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
-  Ebooks: {
+  ebooks: {
     color: "#107070",
     flex: 1,
     justifyContent: "center",

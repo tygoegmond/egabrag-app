@@ -1,11 +1,18 @@
 //importing react / react native assets
 import React from "react";
-import { View, Text, StyleSheet, Dimensions, Image, Progress } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  Image,
+  Progress,
+} from "react-native";
 import { getStatusBarHeight } from "react-native-status-bar-height";
-import houseIcon from "../assets/images/houseIcon2.png";
-import searchIcon from "../assets/images/searchIcon.png";
-import ebookIcon from "../assets/images/ebookIcon.png";
-import profileIcon from "../assets/images/profile.png";
+import houseIcon from "../assets/images/houseIcon3.png";
+import ebookIcon from "../assets/images/ebookIcon3.png";
+import calendarIcon from "../assets/images/calendarIcon.png";
+import profileIcon from "../assets/images/profile3.png";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 //creating navigation dots for on boarding component
 
@@ -16,12 +23,12 @@ export default BottomDrawer = ({ navigation }) => {
       label: "Dashboard",
     },
     {
-      icon: searchIcon,
-      label: "Search",
-    },
-    {
       icon: ebookIcon,
       label: "Ebooks",
+    },
+    {
+      icon: calendarIcon,
+      label: "CalendarScreen",
     },
     {
       icon: profileIcon,
@@ -31,7 +38,10 @@ export default BottomDrawer = ({ navigation }) => {
 
   const bottomTabs = data.map((item) => {
     return (
-      <Pressable key={item.label} onPress={() => navigation.navigate(item.label)}>
+      <Pressable
+        key={item.label}
+        onPress={() => navigation.navigate(item.label)}
+      >
         <View style={styles.bottomTab} key={item.icon}>
           <Image source={item.icon} style={styles.bottomTabIcon} />
         </View>
@@ -52,16 +62,18 @@ export default BottomDrawer = ({ navigation }) => {
         zIndex: 111,
         flex: 1,
         bottom: 0,
+        opacity: 0.8,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
         //shadow
         shadowColor: "#000",
         shadowOffset: {
-            width: 0,
-            height: -1,
+          width: 0,
+          height: -1,
         },
         shadowOpacity: 0.22,
         shadowRadius: 2.22,
         elevation: 3,
-
       }}
     >
       {bottomTabs}
@@ -82,11 +94,9 @@ const styles = StyleSheet.create({
   bottomTabIcon: {
     width: width * 0.08,
     height: width * 0.08,
-
-
     resizeMode: "contain",
     // padding: 20,
-    marginTop: 10,
+    marginTop: 15,
   },
   bottomTab: {
     height: height / 11,

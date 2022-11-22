@@ -170,6 +170,7 @@ export default function Login({ navigation }) {
         >
           <Text style={Global.buttonText}>Login</Text>
         </TouchableOpacity>
+        <Text style={styles.accountText}>Dont have an account? <Text onPress={() => navigation.navigate("CreateUser")}style={styles.accountText2}>Create an account!</Text></Text>
       </View>
     </View>
   );
@@ -178,6 +179,15 @@ export default function Login({ navigation }) {
 //local stylesheet
 const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
+  accountText:{
+    color: "#fff",
+    top: height / 6.5,
+    fontSize: 16,
+  },
+  accountText2:{
+    color: "#61CBB4",
+    fontWeight: "bold",
+  },
   container: {
     flex: 1,
     backgroundColor: "#eee",

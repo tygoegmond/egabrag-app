@@ -15,13 +15,13 @@ import Ebooks from "../screens/Ebooks";
 import Articles from "../screens/Articles";
 import SplashScreen from "../screens/SplashScreen";
 import Profile from "../screens/Profile";
+import ArticlePage from "../screens/ArticlePage";
+//import CalendarScreen from "../screens/CalendarScreen";
+import BottomDrawer from "../components/BottomDrawer";
 //define object with screens
 
 const screens = {
-  //start with name of screen js file
-  // SplashScreen: {
-  //   screen: SplashScreen,
-  // },
+  //start with nam
   Start: {
     screen: Start,
   },
@@ -31,6 +31,9 @@ const screens = {
   Login: {
     screen: Login,
   },
+  // CalendarScreen: {
+  //   screen: CalendarScreen,
+  // },
   FinancialLiteracy: {
     screen: FinancialLiteracy,
   },
@@ -49,12 +52,15 @@ const screens = {
   Profile: {
     screen: Profile,
   },
+  ArticlePage: {
+    screen: ArticlePage,
+  },
 };
 //creating homestack to navigate between screens
 
 const HomeStack = createStackNavigator(screens, {
   defaultNavigationOptions: {
-    headerShown: false,
+    header: (navigation) => <BottomDrawer navigation={navigation} />,
   },
 });
 

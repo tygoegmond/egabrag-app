@@ -27,6 +27,7 @@ import content5 from "../assets/images/content5.jpg";
 import content6 from "../assets/images/content6.webp";
 import BottomDrawer from "../components/BottomDrawer";
 import ProgressWidget from "../components/ProgressWidget";
+import Ebooks from "../screens/Ebooks.js";
 
 export default function FinancialLiteracy({ navigation }) {
   //import fonts
@@ -35,11 +36,8 @@ export default function FinancialLiteracy({ navigation }) {
     "Nabla-Regular": require("../assets/fonts/Nabla-Regular.ttf"),
     "great-escape": require("../assets/fonts/great-escape.ttf"),
   });
-  const ebooks = () => {
-    navigation.navigate("Ebooks");
-  };
-  const articles = () => {
-    navigation.navigate("Articles");
+  const pressHandler = () => {
+    navigation.navigate("ArticlePage");
   };
   const goalAmount = "100";
   const recentEbooks = [
@@ -97,6 +95,9 @@ export default function FinancialLiteracy({ navigation }) {
       description: "a",
     },
   ];
+  const EbookHandler = () => {
+    navigation.navigate("Ebooks");
+  };
 
   return (
     <View style={styles.FinancialLiteracy}>
@@ -123,7 +124,7 @@ export default function FinancialLiteracy({ navigation }) {
               </View>
             )}
           />
-          <Pressable onPress={ebooks}>
+          <Pressable onPress={EbookHandler}>
             <Text
               style={{
                 textAlign: "right",
@@ -138,34 +139,39 @@ export default function FinancialLiteracy({ navigation }) {
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Articles</Text>
-          <FlatList
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            data={recentArticles}
-            style={styles.flatlist}
-            renderItem={({ item }) => (
-              <View>
-                {/* singular on boarding screen word gerendered */}
-                <Image source={item.source} style={styles.images} />
-                <Text>{item.title}</Text>
-              </View>
-            )}
-          />
-          <Pressable onPress={articles}>
-            <Text
-              style={{
-                textAlign: "right",
-                marginRight: width / 29,
-                marginTop: 8,
-                color: "#52A4D2",
-              }}
-            >
-              View all
-            </Text>
-          </Pressable>
+          <TouchableOpacity onPress={pressHandler}>
+            <Image style={styles.images} source={content6} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.widgetViewContentContainer}>
+          <Text style={styles.widgetViewContentTitle}>Your Savings</Text>
+          <View
+            style={[
+              {
+                flexDirection: "row",
+                zIndex: 10,
+                height: 100,
+              },
+              styles.widgetViewContent,
+            ]}
+          >
+            <View style={{ flex: 1 }}>
+              <Text
+                style={{
+                  justifyContent: "flex-start",
+                  right: 0,
+                  position: "absolute",
+                  fontWeight: "bold",
+                }}
+              >
+                €{currentAmount}
+              </Text>
+              <Text style={{ justifyContent: "flex-end" }}>€{goalAmount}</Text>
+            </View>
+          </View>
         </View>
       </View>
-      {/* <BottomDrawer navigation={navigation} /> */}
+      <BottomDrawer navigation={navigation} />
     </View>
   );
 }

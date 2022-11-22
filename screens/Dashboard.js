@@ -18,10 +18,11 @@ import Swiper from "react-native-swiper";
 import React, { useCallback, useEffect, useState } from "react";
 import Dashboardpic from "../assets/images/background.png";
 import ProfileWidget from "../components/ProfileWidget";
-import MindfulNessWidget from "../components/MindfulnessWidget";
+import MindfulnessWidget from "../components/MindfulnessWidget";
 import BottomDrawer from "../components/BottomDrawer";
 import FinancialLiteracy from "../components/FinancialLiteracy";
 import profilePic from "../assets/images/profilePic.png";
+import backgroundImg from "../assets/images/backgroundImg.png";
 import * as Securestore from "expo-secure-store";
 import axios from "axios";
 import ProgressWidget from "../components/ProgressWidget";
@@ -118,15 +119,14 @@ export default function Dashboard({ navigation }) {
         horizontal={true}
       >
         <View style={styles.container}>
-          <Image style={styles.imgback2} source={Dashboardpic} />
-          <Text style={styles.dashboard}>Dashboard</Text>
+          <Image style={styles.imgback2} source={backgroundImg} />
 
           <ProfileWidget
             navigation={navigation}
             user={user}
             profilePic={profilePic}
           />
-          <MindfulNessWidget
+          <MindfulnessWidget
             author={"Sharon Saltzberg"}
             quote={
               "Worrying is stupid, It is like walking around with an umbrella, waiting for it to rain"
@@ -141,19 +141,13 @@ export default function Dashboard({ navigation }) {
               "The art of budgeting",
             ]}
           />
-          <TouchableOpacity style={styles.profileView}>
-            <ProgressWidget
-              goalTitle={"Laptop for school"}
-              endAmount={"800.00"}
-              amount={"330.00"}
-            />
-          </TouchableOpacity>
+          <ProgressWidget
+            goalTitle={"Laptop for school"}
+            endAmount={"800.00"}
+            amount={"200.00"}
+          />
           <BottomDrawer navigation={navigation} />
         </View>
-        <Pressable
-          style={{ height: height, width: width, backgroundColor: "black" }}
-          onPress={signOut}
-        ></Pressable>
       </Swiper>
     </View>
   );
@@ -173,8 +167,8 @@ const styles = StyleSheet.create({
   },
 
   container: {
+    backgroundImg: backgroundImg,
     flex: 1,
-    backgroundColor: "#eee",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -197,6 +191,7 @@ const styles = StyleSheet.create({
     fontFamily: "great-escape",
   },
   dashboard: {
+    backgroundColor: "#D4FFF6",
     color: "#107070",
     fontSize: 30,
     fontWeight: "bold",

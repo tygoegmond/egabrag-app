@@ -12,9 +12,9 @@ import {
 const ContentGrid = ({ data, navigation }) => {
   const grid = data.map((ebook, index) => {
     return (
-      <View style={styles.gridItem}>
+      <View key={index} style={styles.gridItem}>
         <Image style={styles.images} source={ebook.source} />
-        <Text key={index}>{ebook.title}</Text>
+        <Text>{ebook.title}</Text>
       </View>
     );
   });

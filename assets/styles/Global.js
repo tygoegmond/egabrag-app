@@ -33,6 +33,28 @@ const Global =  StyleSheet.create({
     shadowBlur: 3,
 
   },
+  smallField: {
+    //dropshadow
+    shadowColor: "#000",
+    shadowOffset: {
+        width: -1,
+        height: 1.2,
+    },
+    width: width / 2.6,
+    
+    borderRadius: 10,
+    shadowOpacity: 0.15,   
+    shadowRadius: 0.8,
+    elevation: 5,
+    marginBottom: 10,
+    paddingLeft: width / 20,
+    paddingTop: height / 50,
+    fontSize: 20,
+    height: height / 13,
+    backgroundColor: "#F8F4F4",
+    shadowBlur: 3,
+
+  },
   placeholder: {
      position: "absolute",
      top: height / 77,

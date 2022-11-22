@@ -20,7 +20,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useFonts } from "expo-font";
 
 // create onboarding component
-const ProgressWidget = ({ goalTitle, endAmount, amount }) => {
+const ProgressWidget = ({ goalTitle, startAmount, endAmount, amount }) => {
   //declare states
   const [progress, setProgress] = useState(0);
 
@@ -51,7 +51,7 @@ const ProgressWidget = ({ goalTitle, endAmount, amount }) => {
   updateProgress(500);
 
   return (
-    <View>
+    <TouchableOpacity onPress={pressHandler} style={styles.profileView}>
       <Text style={styles.title}>Progress towards:</Text>
       <View style={styles.textContainer}>
         <Text style={styles.profileText}>Goals</Text>
@@ -89,7 +89,7 @@ const ProgressWidget = ({ goalTitle, endAmount, amount }) => {
         <Text style={styles.start}>€{amount}</Text>
         <Text style={styles.end}>€{endAmount}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -104,10 +104,11 @@ const styles = StyleSheet.create({
     width: width / 1.18,
     borderRadius: 25,
     height: height / 5.6,
-    bottom: getStatusBarHeight() + height / 16,
+    bottom: getStatusBarHeight() + height / 19,
     position: "absolute",
     justifyContent: "center",
   },
+
   profileText: {
     color: "#fff",
     backgroundColor: "#61CBB4",

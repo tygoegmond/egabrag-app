@@ -33,8 +33,9 @@ import yoga4 from "../assets/images/yoga4.jpg";
 import yoga5 from "../assets/images/yoga5.jpg";
 import opdracht1 from "../assets/images/mindfulnessopdracht1.png";
 import opdracht2 from "../assets/images/mindfulnessopdracht2.png";
+import BottomDrawer from "../components/BottomDrawer";
 
-export default function Mindfulness() {
+export default function Mindfulness({ navigation }) {
   //import fonts
   const [currentAmount, setCurrentAmount] = useState();
   const [fontsLoaded] = useFonts({
@@ -139,6 +140,7 @@ export default function Mindfulness() {
           </View>
           <View style={styles.widgetViewContentContainer}>
             <Text style={styles.widgetViewContentTitle}>Yoga moves</Text>
+            {/*https://dailyburn.com/life/fitness/beginner-yoga-poses-positions*/}
             <FlatList
               horizontal={true}
               showsHorizontalScrollIndicator={false}
@@ -169,6 +171,7 @@ export default function Mindfulness() {
           </View>
         </ScrollView>
       </View>
+      <BottomDrawer navigation={navigation} />
     </View>
   );
 }
