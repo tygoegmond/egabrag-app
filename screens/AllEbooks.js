@@ -316,7 +316,7 @@ const styles = StyleSheet.create({
   },
   popularityNumber: {
     color: "rgba(36, 118, 114, 0.25)",
-    fontSize: width / 3.5,
+    fontSize: width / 3.8,
     fontWeight: "bold",
     position: "absolute",
     bottom: height / 100,
