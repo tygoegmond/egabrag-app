@@ -27,7 +27,7 @@ import content5 from "../assets/images/content5.jpg";
 import content6 from "../assets/images/content6.webp";
 import BottomDrawer from "../components/BottomDrawer";
 import ProgressWidget from "../components/ProgressWidget";
-import Ebooks from "../screens/Ebooks.js";
+import backgroundImg from "../assets/images/backgroundImg.png";
 
 export default function FinancialLiteracy({ navigation }) {
   //import fonts
@@ -101,13 +101,14 @@ export default function FinancialLiteracy({ navigation }) {
 
   return (
     <View style={styles.FinancialLiteracy}>
-      <Text style={styles.title}>Financial Literacy</Text>
+      <Image style={styles.backgroundImage} source={backgroundImg} />
       <View style={styles.widgetView}>
+        <Text style={styles.title}>Financial Literacy</Text>
         <View style={styles.widgetViewContentContainer}>
-          <Text style={styles.widgetViewContentTitle}>Recent Trainings</Text>
-          <Text style={styles.widgetViewContent}>Assets vs Liabilities</Text>
-          <Text style={styles.widgetViewContent}>Savings vs Investment</Text>
-          <Text style={styles.widgetViewContent}>The art of Budgeting</Text>
+          <Text style={styles.widgetViewContent}>Recent Trainings:</Text>
+          <Text style={styles.widgetViewContent}>○ Assets vs Liabilities</Text>
+          <Text style={styles.widgetViewContent}>○ Savings vs Investment</Text>
+          <Text style={styles.widgetViewContent}>○ The art of Budgeting</Text>
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>E-Books</Text>
@@ -180,42 +181,40 @@ const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
   FinancialLiteracy: {
     color: "#107070",
+    backgroundColor: "rgba(244, 255, 242, 1)",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#D4FFF6",
   },
   title: {
-    color: "#107070",
-    fontSize: 32,
+    color: "rgba(36, 118, 114, 1)",
+    fontSize: width / 15,
     fontWeight: "bold",
-    top: getStatusBarHeight() + height / 32,
-    left: width / 11.5,
-    position: "absolute",
+    paddingLeft: width / 15,
   },
   widgetView: {
-    backgroundColor: "#fff",
-    width: width / 1,
-    height: height / 1.25,
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
+    width: width / 1.1,
+    height: height / 1.1,
     borderRadius: 35,
-    bottom: getStatusBarHeight() - 70,
+    bottom: getStatusBarHeight() - height / 15,
     boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
-    paddingTop: 16,
+    paddingTop: height / 50,
   },
   widgetViewContentTitle: {
-    color: "#52A4D2",
-    fontSize: 20,
+    color: "#107070",
+    fontSize: width / 20,
     fontWeight: "bold",
-    marginBottom: 8,
+    marginBottom: height / 100,
   },
   widgetViewContent: {
     color: "#000000",
-    fontSize: 15,
-    marginRight: 16,
+    fontSize: width / 25,
+    marginRight: width / 15,
   },
   widgetViewContentContainer: {
-    marginBottom: 18,
-    marginLeft: width / 20,
+    marginBottom: height / 50,
+    marginLeft: width / 15,
   },
   images: {
     width: width / 4.5,
@@ -223,15 +222,15 @@ const styles = StyleSheet.create({
     marginRight: width / 40,
   },
   flatlist: {
-    width: width * 0.9,
+    width: width * 0.776,
   },
-  profileView: {
-    backgroundColor: "#107070",
-    width: width / 1.18,
-    borderRadius: 25,
-    height: height / 5.6,
-    bottom: getStatusBarHeight() + height / 16,
-    position: "absolute",
+  backgroundImage: {
+    flex: 1,
+    resizeMode: "cover",
     justifyContent: "center",
+    position: "absolute",
+    zIndex: 0,
+    width: width,
+    height: height,
   },
 });

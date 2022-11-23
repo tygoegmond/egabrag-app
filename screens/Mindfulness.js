@@ -206,12 +206,10 @@ const styles = StyleSheet.create({
       widgetView: {
         backgroundColor: "#fff",
         width: width / 1.1,
-        height: height / 1.35,
+        height: height / 1.1,
         borderRadius: 25,
         bottom: getStatusBarHeight() - 70,
         boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
-        paddingTop: 20,
-        paddingBottom: 20,
       },
       widgetViewContentTitle: {
         color: "#52A4D2",

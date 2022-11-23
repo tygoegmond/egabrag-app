@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
         position: "relative",
       },
       title: {
-        color: "#52A4D2",
+        color: "#107070",
         fontSize: 18,
         fontWeight: "bold",
         height: height * 0.15,
@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
         position: "relative",
       },
       title: {
-        color: "#52A4D2",
+        color: "#107070",
         fontSize: 18,
         fontWeight: "bold",
         height: height * 0.15,
@@ -323,7 +323,7 @@ const styles = StyleSheet.create({
         position: "relative",
       },
       title: {
-        color: "#52A4D2",
+        color: "#107070",
         fontSize: 18,
         fontWeight: "bold",
         height: height * 0.15,

@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
         top: getStatusBarHeight() + height * 0.1,
       },
       name: {
-        color: "#61CBB4",
+        color: "#107070",
         fontSize: 25,
         fontWeight: "bold",
         top: getStatusBarHeight() + height * 0.001,
@@ -523,7 +523,7 @@ const styles = StyleSheet.create({
         top: getStatusBarHeight() + height * 0.1,
       },
       name: {
-        color: "#61CBB4",
+        color: "#107070",
         fontSize: 24,
         fontWeight: "bold",
         top: getStatusBarHeight() + height * 0.01,
@@ -758,7 +758,7 @@ const styles = StyleSheet.create({
         top: getStatusBarHeight() + height * 0.1,
       },
       name: {
-        color: "#61CBB4",
+        color: "#107070",
         fontSize: 25,
         fontWeight: "bold",
         top: getStatusBarHeight() + height * 0.001,
