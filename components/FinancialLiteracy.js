@@ -82,7 +82,7 @@ const FinancialLiteracy = ({ recentTrainings, navigation }) => {
           <Progress.Circle
             size={100}
             thickness={12}
-            color={"#52A4D2"}
+            color={"#107070"}
             unfilledColor={"#eee"}
             borderWidth={0}
             strokeCap={"round"}

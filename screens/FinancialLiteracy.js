@@ -16,7 +16,7 @@ import { useFonts } from "expo-font";
 import { useState } from "react";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import Swiper from "react-native-swiper";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import Dashboardpic from "../assets/images/Dashboardpic2.png";
 import Global from "../assets/styles/Global";
 import content1 from "../assets/images/content1.png";
@@ -28,9 +28,11 @@ import content6 from "../assets/images/content6.webp";
 import BottomDrawer from "../components/BottomDrawer";
 import ProgressWidget from "../components/ProgressWidget";
 import backgroundImg from "../assets/images/backgroundImg.png";
+import * as Progress from "react-native-progress";
 
 export default function FinancialLiteracy({ navigation }) {
   //import fonts
+  const [progress, setProgress] = useState(0.55);
   const [currentAmount, setCurrentAmount] = useState();
   const [fontsLoaded] = useFonts({
     "Nabla-Regular": require("../assets/fonts/Nabla-Regular.ttf"),
@@ -39,7 +41,7 @@ export default function FinancialLiteracy({ navigation }) {
   const pressHandler = () => {
     navigation.navigate("ArticlePage");
   };
-  const goalAmount = "100";
+  const goalAmount = "200";
   const recentEbooks = [
     {
       source: content1,
@@ -98,6 +100,17 @@ export default function FinancialLiteracy({ navigation }) {
   const EbookHandler = () => {
     navigation.navigate("Ebooks");
   };
+  function timeout(delay) {
+    return new Promise((res) => setTimeout(res, delay));
+  }
+
+  async function updateProgress(time) {
+    await timeout(time);
+    setProgress(0.56);
+  }
+  useEffect(() => {
+    updateProgress(500);
+  }, []);
 
   return (
     <View style={styles.FinancialLiteracy}>
@@ -109,6 +122,19 @@ export default function FinancialLiteracy({ navigation }) {
           <Text style={styles.widgetViewContent}>○ Assets vs Liabilities</Text>
           <Text style={styles.widgetViewContent}>○ Savings vs Investment</Text>
           <Text style={styles.widgetViewContent}>○ The art of Budgeting</Text>
+          <Progress.Circle
+            size={100}
+            thickness={12}
+            color={"#107070"}
+            unfilledColor={"#eee"}
+            borderWidth={0}
+            strokeCap={"round"}
+            endAngle={0.5}
+            showsText={true}
+            animated={true}
+            progress={progress}
+            style={{ position: "absolute", left: width / 2 }}
+          />
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>E-Books</Text>
@@ -146,6 +172,21 @@ export default function FinancialLiteracy({ navigation }) {
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Your Savings</Text>
+          <Progress.Bar
+            width={width * 0.78}
+            thickness={12}
+            height={height * 0.02}
+            color={"#61CBB4"}
+            unfilledColor={"#eee"}
+            borderWidth={0}
+            borderRadius={25}
+            strokeCap={"round"}
+            endAngle={0.5}
+            showsText={true}
+            animated={true}
+            progress={progress}
+            style={{}}
+          />
           <View
             style={[
               {
