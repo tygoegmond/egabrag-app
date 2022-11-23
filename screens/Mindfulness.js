@@ -13,6 +13,7 @@ import {
   TouchableOpacity,
   FlatList,
   ScrollView,
+  Platform,
 } from "react-native";
 import { useFonts } from "expo-font";
 import { useState } from "react";
@@ -34,6 +35,7 @@ import yoga5 from "../assets/images/yoga5.jpg";
 import opdracht1 from "../assets/images/mindfulnessopdracht1.png";
 import opdracht2 from "../assets/images/mindfulnessopdracht2.png";
 import BottomDrawer from "../components/BottomDrawer";
+import backgroundImg from "../assets/images/backgroundImg.png";
 
 export default function Mindfulness({ navigation }) {
   //import fonts
@@ -43,7 +45,7 @@ export default function Mindfulness({ navigation }) {
     "great-escape": require("../assets/fonts/great-escape.ttf"),
   });
 
-  const quote = "Mindfulness is the key to a happy life";
+  const quote = "Fear kills more dreams than failure will ever be able to.";
   const dataEbooks = [
     {
       source: content7,
@@ -112,14 +114,14 @@ export default function Mindfulness({ navigation }) {
   ];
   return (
     <View style={styles.Mindfulness}>
-      <Text style={styles.title}>Mindfulness</Text>
-
+      <Image source={backgroundImg} style={styles.backgroundImg} />
       <View style={styles.widgetView}>
         <ScrollView
           showsVerticalScrollIndicator={false}
           style={styles.scrollview}
         >
           <View style={styles.widgetViewContentContainer}>
+            <Text style={styles.widgetViewContentTitle}>Mindfulness</Text>
             <Text style={styles.widgetViewContentTitle}>Daily Quote</Text>
             <Text style={styles.widgetViewContent}>{quote}</Text>
           </View>
@@ -178,61 +180,190 @@ export default function Mindfulness({ navigation }) {
 
 const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
-  Mindfulness: {
-    color: "#107070",
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#D4FFF6",
-  },
-  title: {
-    color: "#107070",
-    fontSize: 32,
-    fontWeight: "bold",
-    top: getStatusBarHeight() + height / 18,
-    left: width / 11.5,
-    position: "absolute",
-  },
-  widgetView: {
-    backgroundColor: "#fff",
-    width: width / 1.1,
-    height: height / 1.35,
-    borderRadius: 25,
-    bottom: getStatusBarHeight() - 70,
-    boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
-    paddingTop: 20,
-    paddingBottom: 20,
-  },
-  widgetViewContentTitle: {
-    color: "#52A4D2",
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 8,
-  },
-  widgetViewContent: {
-    color: "#000000",
-    fontSize: 15,
-    marginRight: 16,
-  },
-  widgetViewContentContainer: {
-    marginBottom: 32,
-    marginLeft: 22,
-  },
-  images: {
-    width: width / 5,
-    height: height / 7,
-    marginRight: width / 40,
-  },
-  imagesYoga: {
-    width: width / 2.5,
-    height: height / 7,
-    marginRight: width / 40,
-  },
-  flatlist: {
-    marginRight: width / 10,
-    width: width * 0.8,
-  },
-  scrollview: {
-    backgroundColor: "#fff",
-  },
+  ...Platform.select({
+    ios: {
+      Mindfulness: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundImg: backgroundImg,
+      },
+      title: {
+        color: "#107070",
+        fontSize: 32,
+        fontWeight: "bold",
+        top: getStatusBarHeight() + height / 18,
+        left: width / 11.5,
+        position: "absolute",
+      },
+      widgetView: {
+        backgroundColor: "#fff",
+        width: width / 1.1,
+        height: height / 1.35,
+        borderRadius: 25,
+        bottom: getStatusBarHeight() - 70,
+        boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
+        paddingTop: 20,
+        paddingBottom: 20,
+      },
+      widgetViewContentTitle: {
+        color: "#52A4D2",
+        fontSize: 20,
+        fontWeight: "bold",
+        marginBottom: 8,
+      },
+      widgetViewContent: {
+        color: "#000000",
+        fontSize: 15,
+        marginRight: 16,
+      },
+      widgetViewContentContainer: {
+        marginBottom: 32,
+        marginLeft: 22,
+      },
+      images: {
+        width: width / 5,
+        height: height / 7,
+        marginRight: width / 40,
+      },
+      imagesYoga: {
+        width: width / 2.5,
+        height: height / 7,
+        marginRight: width / 40,
+      },
+      flatlist: {
+        marginRight: width / 10,
+        width: width * 0.8,
+      },
+      scrollview: {
+        backgroundColor: "#fff",
+      },
+    },
+    //---------------------------------------------------------android-----------------------------------------------------------
+    android: {
+      Mindfulness: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundImg: backgroundImg,
+      },
+      title: {
+        color: "#107070",
+        fontSize: 32,
+        fontWeight: "bold",
+        top: getStatusBarHeight() + height / 18,
+        left: width / 11.5,
+        position: "absolute",
+      },
+      widgetView: {
+        backgroundColor: "rgba(255, 255, 255, 0.8)",
+        width: width / 1.1,
+        height: height / 1.1,
+        borderRadius: 25,
+        bottom: getStatusBarHeight() - 70,
+        boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
+        paddingTop: 20,
+        paddingBottom: 20,
+      },
+      widgetViewContentTitle: {
+        color: "#107070",
+        fontSize: 20,
+        fontWeight: "bold",
+        marginBottom: 8,
+      },
+      widgetViewContent: {
+        color: "#000000",
+        fontSize: 15,
+        marginRight: 16,
+      },
+      widgetViewContentContainer: {
+        marginBottom: 32,
+        marginLeft: 22,
+      },
+      images: {
+        width: width / 5,
+        height: height / 7,
+        marginRight: width / 40,
+      },
+      imagesYoga: {
+        width: width / 2.5,
+        height: height / 7,
+        marginRight: width / 40,
+      },
+      flatlist: {
+        marginRight: width / 10,
+        width: width * 0.8,
+      },
+
+      backgroundImg: {
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center",
+        position: "absolute",
+        zIndex: 0,
+        width: width,
+        height: height,
+      },
+    },
+    //---------------------------------------------------------------------default----------------------------------------------------
+    default: {
+      Mindfulness: {
+        color: "#107070",
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#D4FFF6",
+      },
+      title: {
+        color: "#107070",
+        fontSize: 32,
+        fontWeight: "bold",
+        top: getStatusBarHeight() + height / 18,
+        left: width / 11.5,
+        position: "absolute",
+      },
+      widgetView: {
+        backgroundColor: "#fff",
+        width: width / 1.1,
+        height: height / 1.35,
+        borderRadius: 25,
+        bottom: getStatusBarHeight() - 70,
+        boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
+        paddingTop: 20,
+        paddingBottom: 20,
+      },
+      widgetViewContentTitle: {
+        color: "#52A4D2",
+        fontSize: 20,
+        fontWeight: "bold",
+        marginBottom: 8,
+      },
+      widgetViewContent: {
+        color: "#000000",
+        fontSize: 15,
+        marginRight: 16,
+      },
+      widgetViewContentContainer: {
+        marginBottom: 32,
+        marginLeft: 22,
+      },
+      images: {
+        width: width / 5,
+        height: height / 7,
+        marginRight: width / 40,
+      },
+      imagesYoga: {
+        width: width / 2.5,
+        height: height / 7,
+        marginRight: width / 40,
+      },
+      flatlist: {
+        marginRight: width / 10,
+        width: width * 0.8,
+      },
+      scrollview: {
+        backgroundColor: "#fff",
+      },
+    },
+  }),
 });
