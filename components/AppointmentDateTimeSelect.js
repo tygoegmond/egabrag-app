@@ -41,7 +41,7 @@ const AppointmentDateTimeSelect = ({
       ? setContainerHeight(0.2)
       : setContainerHeight(0.25);
   };
-  
+
   LocaleConfig.locales.fr = LocaleConfig.locales[""];
   LocaleConfig.locales.en = {
     monthNames:
@@ -465,7 +465,7 @@ const AppointmentDateTimeSelect = ({
 
       {inlineEnd()}
       {inlineEndTime()}
-      <View style={styles.travelTimeContainer}>
+      {/* <View style={styles.travelTimeContainer}>
         <Text style={styles.datePickerText}>Travel time</Text>
         <RNPickerSelect
           onValueChange={(value) => setTravelTime(value)}
@@ -518,7 +518,7 @@ const AppointmentDateTimeSelect = ({
             { label: "2 hours", value: 120 },
           ]}
         />
-      </View>
+      </View> */}
     </View>
   );
 };
