@@ -143,7 +143,7 @@ export default function Mindfulness({ navigation }) {
             />
           </View>
           <View style={styles.widgetViewContentContainer}>
-            <Text style={styles.widgetViewContentTitle}>Yoga moves</Text>
+            <Text style={styles.widgetViewContentTitle}>Yoga Exercises</Text>
             {/*https://dailyburn.com/life/fitness/beginner-yoga-poses-positions*/}
             <FlatList
               horizontal={true}
@@ -164,7 +164,7 @@ export default function Mindfulness({ navigation }) {
               { marginBottom: height * 0.15 },
             ]}
           >
-            <Text style={styles.widgetViewContentTitle}>Opdrachten</Text>
+            <Text style={styles.widgetViewContentTitle}>Articles</Text>
             <FlatList
               horizontal={true}
               showsHorizontalScrollIndicator={false}
