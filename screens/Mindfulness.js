@@ -36,6 +36,7 @@ import opdracht1 from "../assets/images/mindfulnessopdracht1.png";
 import opdracht2 from "../assets/images/mindfulnessopdracht2.png";
 import BottomDrawer from "../components/BottomDrawer";
 import backgroundImg from "../assets/images/backgroundImg.png";
+import lotus from "../assets/images/lotus.png";
 
 export default function Mindfulness({ navigation }) {
   //import fonts
@@ -123,6 +124,7 @@ export default function Mindfulness({ navigation }) {
           <View style={styles.widgetViewContentContainer}>
             <Text style={styles.widgetViewContentTitle}>Mindfulness</Text>
             <Text style={styles.widgetViewContentTitle}>Daily Quote</Text>
+            <Image source={lotus} style={styles.lotus} />
             <Text style={styles.widgetViewContent}>{quote}</Text>
           </View>
           <View style={styles.widgetViewContentContainer}>
@@ -156,7 +158,12 @@ export default function Mindfulness({ navigation }) {
               )}
             />
           </View>
-          <View style={styles.widgetViewContentContainer}>
+          <View
+            style={[
+              styles.widgetViewContentContainer,
+              { marginBottom: height * 0.15 },
+            ]}
+          >
             <Text style={styles.widgetViewContentTitle}>Opdrachten</Text>
             <FlatList
               horizontal={true}
@@ -215,11 +222,11 @@ const styles = StyleSheet.create({
       widgetViewContent: {
         color: "#000000",
         fontSize: 15,
-        marginRight: 16,
+        // marginRight: 16,
       },
       widgetViewContentContainer: {
         marginBottom: 32,
-        marginLeft: 22,
+        // marginLeft: 22,
       },
       images: {
         width: width / 5,
@@ -256,7 +263,7 @@ const styles = StyleSheet.create({
         position: "absolute",
       },
       widgetView: {
-        backgroundColor: "rgba(255, 255, 255, 0.8)",
+        // backgroundColor: "rgba(255, 255, 255, 0.8)",
         width: width / 1.1,
         height: height / 1.1,
         borderRadius: 25,
@@ -274,11 +281,12 @@ const styles = StyleSheet.create({
       widgetViewContent: {
         color: "#000000",
         fontSize: 15,
-        marginRight: 16,
+        // marginRight: 16,
+        alignSelf: "center",
       },
       widgetViewContentContainer: {
         marginBottom: 32,
-        marginLeft: 22,
+        // marginLeft: 22,
       },
       images: {
         width: width / 5,
@@ -303,6 +311,18 @@ const styles = StyleSheet.create({
         zIndex: 0,
         width: width,
         height: height,
+      },
+      lotus: {
+        width: width / 3,
+        height: height / 7,
+        position: "absolute",
+        alignSelf: "center",
+      },
+      scrollview: {
+        backgroundColor: "rgba(255, 255, 255, 0.8)",
+        padding: width * 0.05,
+        borderTopLeftRadius: width * 0.05,
+        borderTopRightRadius: width * 0.05,
       },
     },
     //---------------------------------------------------------------------default----------------------------------------------------
@@ -341,11 +361,11 @@ const styles = StyleSheet.create({
       widgetViewContent: {
         color: "#000000",
         fontSize: 15,
-        marginRight: 16,
+        // marginRight: 16,
       },
       widgetViewContentContainer: {
         marginBottom: 32,
-        marginLeft: 22,
+        // marginLeft: 22,
       },
       images: {
         width: width / 5,
