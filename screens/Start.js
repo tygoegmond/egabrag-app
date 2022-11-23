@@ -94,15 +94,19 @@ export default function Start({ navigation }) {
     },
     {
       title: "Free e-books",
-      subtext: "Find free e-books about financial literacy and mindfulness",
+      subtext:
+        "Find free e-books about financial literacy, Mindfullness, education and many more",
       image: landingpage2,
     },
     {
       title: "Daily mindful quotes",
+      subtext:
+        "Get daily mindful quotes to help you stay focused and motivated",
       image: landing3,
     },
     {
       title: "Track personal goals",
+      subtext: "Set goals and track your progress",
       image: landing4,
     },
   ];

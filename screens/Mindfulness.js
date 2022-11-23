@@ -204,15 +204,17 @@ const styles = StyleSheet.create({
         position: "absolute",
       },
       widgetView: {
-        backgroundColor: "#fff",
+        // backgroundColor: "rgba(255, 255, 255, 0.8)",
         width: width / 1.1,
         height: height / 1.1,
         borderRadius: 25,
         bottom: getStatusBarHeight() - 70,
         boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
+        paddingTop: 20,
+        paddingBottom: 20,
       },
       widgetViewContentTitle: {
-        color: "#52A4D2",
+        color: "#107070",
         fontSize: 20,
         fontWeight: "bold",
         marginBottom: 8,
@@ -221,6 +223,7 @@ const styles = StyleSheet.create({
         color: "#000000",
         fontSize: 15,
         // marginRight: 16,
+        alignSelf: "center",
       },
       widgetViewContentContainer: {
         marginBottom: 32,
@@ -230,18 +233,43 @@ const styles = StyleSheet.create({
         width: width / 5,
         height: height / 7,
         marginRight: width / 40,
+        elevation: 115,
       },
       imagesYoga: {
         width: width / 2.5,
+        aspectRatio: 1,
         height: height / 7,
         marginRight: width / 40,
+        // boxShadow: "0px 0px 10px 0px rgba(255,0,0,0.75)",
+        //make shadow
+        elevation: 115,
+        zIndex: 1,
       },
       flatlist: {
         marginRight: width / 10,
         width: width * 0.8,
       },
+
+      backgroundImg: {
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center",
+        position: "absolute",
+        zIndex: 0,
+        width: width,
+        height: height,
+      },
+      lotus: {
+        width: width / 3,
+        height: height / 7,
+        position: "absolute",
+        alignSelf: "center",
+      },
       scrollview: {
-        backgroundColor: "#fff",
+        backgroundColor: "rgba(255, 255, 255, 0.8)",
+        padding: width * 0.05,
+        borderTopLeftRadius: width * 0.05,
+        borderTopRightRadius: width * 0.05,
       },
     },
     //---------------------------------------------------------android-----------------------------------------------------------
@@ -290,11 +318,17 @@ const styles = StyleSheet.create({
         width: width / 5,
         height: height / 7,
         marginRight: width / 40,
+        elevation: 115,
       },
       imagesYoga: {
         width: width / 2.5,
+        aspectRatio: 1,
         height: height / 7,
         marginRight: width / 40,
+        // boxShadow: "0px 0px 10px 0px rgba(255,0,0,0.75)",
+        //make shadow
+        elevation: 115,
+        zIndex: 1,
       },
       flatlist: {
         marginRight: width / 10,
@@ -326,11 +360,10 @@ const styles = StyleSheet.create({
     //---------------------------------------------------------------------default----------------------------------------------------
     default: {
       Mindfulness: {
-        color: "#107070",
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#D4FFF6",
+        backgroundImg: backgroundImg,
       },
       title: {
         color: "#107070",
@@ -341,9 +374,9 @@ const styles = StyleSheet.create({
         position: "absolute",
       },
       widgetView: {
-        backgroundColor: "#fff",
+        // backgroundColor: "rgba(255, 255, 255, 0.8)",
         width: width / 1.1,
-        height: height / 1.35,
+        height: height / 1.1,
         borderRadius: 25,
         bottom: getStatusBarHeight() - 70,
         boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
@@ -351,7 +384,7 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
       },
       widgetViewContentTitle: {
-        color: "#52A4D2",
+        color: "#107070",
         fontSize: 20,
         fontWeight: "bold",
         marginBottom: 8,
@@ -360,6 +393,7 @@ const styles = StyleSheet.create({
         color: "#000000",
         fontSize: 15,
         // marginRight: 16,
+        alignSelf: "center",
       },
       widgetViewContentContainer: {
         marginBottom: 32,
@@ -369,18 +403,43 @@ const styles = StyleSheet.create({
         width: width / 5,
         height: height / 7,
         marginRight: width / 40,
+        elevation: 115,
       },
       imagesYoga: {
         width: width / 2.5,
+        aspectRatio: 1,
         height: height / 7,
         marginRight: width / 40,
+        // boxShadow: "0px 0px 10px 0px rgba(255,0,0,0.75)",
+        //make shadow
+        elevation: 115,
+        zIndex: 1,
       },
       flatlist: {
         marginRight: width / 10,
         width: width * 0.8,
       },
+
+      backgroundImg: {
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center",
+        position: "absolute",
+        zIndex: 0,
+        width: width,
+        height: height,
+      },
+      lotus: {
+        width: width / 3,
+        height: height / 7,
+        position: "absolute",
+        alignSelf: "center",
+      },
       scrollview: {
-        backgroundColor: "#fff",
+        backgroundColor: "rgba(255, 255, 255, 0.8)",
+        padding: width * 0.05,
+        borderTopLeftRadius: width * 0.05,
+        borderTopRightRadius: width * 0.05,
       },
     },
   }),
