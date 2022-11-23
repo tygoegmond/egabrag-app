@@ -116,7 +116,7 @@ export default function Login({ navigation }) {
         <View style={styles.imgback} />
         <Image
           style={styles.logo}
-          source={require("../assets/images/medLogo.png")}
+          source={require("../assets/images/MEL.png")}
         />
         <View
           style={[
@@ -170,7 +170,15 @@ export default function Login({ navigation }) {
         >
           <Text style={Global.buttonText}>Login</Text>
         </TouchableOpacity>
-        <Text style={styles.accountText}>Dont have an account? <Text onPress={() => navigation.navigate("CreateUser")}style={styles.accountText2}>Create an account!</Text></Text>
+        <Text style={styles.accountText}>
+          Dont have an account?{" "}
+          <Text
+            onPress={() => navigation.navigate("CreateUser")}
+            style={styles.accountText2}
+          >
+            Create an account!
+          </Text>
+        </Text>
       </View>
     </View>
   );
@@ -179,12 +187,12 @@ export default function Login({ navigation }) {
 //local stylesheet
 const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
-  accountText:{
+  accountText: {
     color: "#fff",
     top: height / 6.5,
     fontSize: 16,
   },
-  accountText2:{
+  accountText2: {
     color: "#61CBB4",
     fontWeight: "bold",
   },
@@ -202,6 +210,7 @@ const styles = StyleSheet.create({
     zIndex: 0,
     width: width,
     height: height,
+    opacity: 0.8,
   },
   imgback: {
     flex: 1,
