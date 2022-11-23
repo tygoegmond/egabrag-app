@@ -53,7 +53,6 @@ export default BottomDrawer = ({ navigation }) => {
     <View
       style={{
         flexDirection: "row",
-
         width: width,
         height: height / 11,
         justifyContent: "center",
@@ -62,7 +61,6 @@ export default BottomDrawer = ({ navigation }) => {
         zIndex: 111,
         flex: 1,
         bottom: 0,
-        opacity: 0.8,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         //shadow

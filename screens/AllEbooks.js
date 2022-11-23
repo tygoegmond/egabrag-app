@@ -40,26 +40,32 @@ export default function FinancialLiteracy({ navigation }) {
     {
       source: content1,
       title: "a",
+      popularity: "1",
     },
     {
       source: content2,
       title: "b",
+      popularity: "2",
     },
     {
       source: content3,
       title: "c",
+      popularity: "3",
     },
     {
       source: content4,
       title: "d",
+      popularity: "4",
     },
     {
       source: content5,
       title: "e",
+      popularity: "5",
     },
     {
       source: content6,
       title: "f",
+      popularity: "6",
     },
   ];
 
@@ -194,70 +200,74 @@ export default function FinancialLiteracy({ navigation }) {
 
   return (
     <View style={styles.AllEbooks}>
-      <View style={styles.widgetViewContentContainer}>
-        <Text style={styles.widgetViewContentTitle}>Popular</Text>
-        <FlatList
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          data={popular}
-          style={styles.flatlist}
-          renderItem={({ item }) => (
-            <View>
-              {/* singular on boarding screen word gerendered */}
-              <Image source={item.source} style={styles.images} />
-              <Text>{item.title}</Text>
-            </View>
-          )}
-        />
-      </View>
-      <View style={styles.widgetViewContentContainer}>
-        <Text style={styles.widgetViewContentTitle}>Finance</Text>
-        <FlatList
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          data={finance}
-          style={styles.flatlist}
-          renderItem={({ item }) => (
-            <View>
-              {/* singular on boarding screen word gerendered */}
-              <Image source={item.source} style={styles.images} />
-              <Text>{item.title}</Text>
-            </View>
-          )}
-        />
-      </View>
-      <View style={styles.widgetViewContentContainer}>
-        <Text style={styles.widgetViewContentTitle}>Mindfulness</Text>
-        <FlatList
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          data={mindfulness}
-          style={styles.flatlist}
-          renderItem={({ item }) => (
-            <View>
-              {/* singular on boarding screen word gerendered */}
-              <Image source={item.source} style={styles.images} />
-              <Text>{item.title}</Text>
-            </View>
-          )}
-        />
-      </View>
-      <View style={styles.widgetViewContentContainer}>
-        <Text style={styles.widgetViewContentTitle}>Education</Text>
-        <FlatList
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          data={education}
-          style={styles.flatlist}
-          renderItem={({ item }) => (
-            <View>
-              {/* singular on boarding screen word gerendered */}
-              <Image source={item.source} style={styles.images} />
-              <Text>{item.title}</Text>
-            </View>
-          )}
-        />
-      </View>
+      <ScrollView>
+        <Text style={styles.title}>E-Books</Text>
+        <View style={styles.widgetViewContentContainer}>
+          <Text style={styles.widgetViewContentTitle}>Popular</Text>
+          <FlatList
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            data={popular}
+            style={styles.flatlist}
+            renderItem={({ item }) => (
+              <View>
+                {/* singular on boarding screen word gerendered */}
+                <Text style={styles.popularityNumber}>{item.popularity}</Text>
+                <Image source={item.source} style={styles.imagesPopular} />
+                <Text style={{ left: width / 10 }}>{item.title}</Text>
+              </View>
+            )}
+          />
+        </View>
+        <View style={styles.widgetViewContentContainer}>
+          <Text style={styles.widgetViewContentTitle}>Finance</Text>
+          <FlatList
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            data={finance}
+            style={styles.flatlist}
+            renderItem={({ item }) => (
+              <View>
+                {/* singular on boarding screen word gerendered */}
+                <Image source={item.source} style={styles.images} />
+                <Text>{item.title}</Text>
+              </View>
+            )}
+          />
+        </View>
+        <View style={styles.widgetViewContentContainer}>
+          <Text style={styles.widgetViewContentTitle}>Mindfulness</Text>
+          <FlatList
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            data={mindfulness}
+            style={styles.flatlist}
+            renderItem={({ item }) => (
+              <View>
+                {/* singular on boarding screen word gerendered */}
+                <Image source={item.source} style={styles.images} />
+                <Text>{item.title}</Text>
+              </View>
+            )}
+          />
+        </View>
+        <View style={styles.widgetViewContentContainer}>
+          <Text style={styles.widgetViewContentTitle}>Education</Text>
+          <FlatList
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            data={education}
+            style={styles.flatlist}
+            renderItem={({ item }) => (
+              <View>
+                {/* singular on boarding screen word gerendered */}
+                <Image source={item.source} style={styles.images} />
+                <Text>{item.title}</Text>
+              </View>
+            )}
+          />
+        </View>
+      </ScrollView>
       <BottomDrawer navigation={navigation} />
     </View>
   );
@@ -267,30 +277,24 @@ const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
   AllEbooks: {
     color: "#107070",
-    backgroundColor: "rgba(123, 255, 157, 0.1)",
+    backgroundColor: "rgba(244, 255, 242, 0.8)",
     width: width / 1,
     height: height / 1,
     flex: 1,
-    paddingTop: 32,
+    paddingTop: height / 20,
+    paddingBottom: height / 10,
   },
   title: {
-    color: "#107070",
-    fontSize: 32,
+    color: "rgba(36, 118, 114, 0.25)",
+    fontSize: width / 10,
     fontWeight: "bold",
-    top: getStatusBarHeight() + height * -0.1,
-    left: width / 11.5,
-    position: "absolute",
+    paddingLeft: width / 20,
   },
   widgetViewContentTitle: {
     color: "rgba(36, 118, 114, 1)",
-    fontSize: 20,
+    fontSize: width / 18,
     fontWeight: "bold",
-    marginBottom: 8,
-  },
-  widgetViewContent: {
-    color: "#000000",
-    fontSize: 15,
-    marginRight: 16,
+    marginBottom: height / 100,
   },
   widgetViewContentContainer: {
     marginBottom: 18,
@@ -301,16 +305,19 @@ const styles = StyleSheet.create({
     height: height / 7,
     marginRight: width / 40,
   },
+  imagesPopular: {
+    width: width / 5,
+    height: height / 7,
+    marginRight: width / 7,
+    left: width / 10,
+  },
   flatlist: {
     width: width * 0.9,
   },
-  profileView: {
-    backgroundColor: "#107070",
-    width: width / 1.18,
-    borderRadius: 25,
-    height: height / 5.6,
-    bottom: getStatusBarHeight() + height / 16,
+  popularityNumber: {
+    color: "rgba(36, 118, 114, 0.25)",
+    fontSize: width / 4,
+    fontWeight: "bold",
     position: "absolute",
-    justifyContent: "center",
   },
 });
