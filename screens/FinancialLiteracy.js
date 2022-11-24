@@ -151,18 +151,6 @@ export default function FinancialLiteracy({ navigation }) {
               </View>
             )}
           />
-          <Pressable onPress={EbookHandler}>
-            <Text
-              style={{
-                textAlign: "right",
-                marginRight: width / 20,
-                marginTop: 8,
-                color: "#52A4D2",
-              }}
-            >
-              View all
-            </Text>
-          </Pressable>
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Articles</Text>
