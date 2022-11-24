@@ -221,7 +221,6 @@ export default function FinancialLiteracy({ navigation }) {
                 {/* singular on boarding screen word gerendered */}
                 <Text style={styles.popularityNumber}>{item.popularity}</Text>
                 <Image source={item.source} style={styles.imagesPopular} />
-                <Text style={{ left: width / 10 }}>{item.title}</Text>
               </View>
             )}
           />
@@ -240,7 +239,6 @@ export default function FinancialLiteracy({ navigation }) {
               <View>
                 {/* singular on boarding screen word gerendered */}
                 <Image source={item.source} style={styles.images} />
-                <Text>{item.title}</Text>
               </View>
             )}
           />
@@ -259,7 +257,6 @@ export default function FinancialLiteracy({ navigation }) {
               <View>
                 {/* singular on boarding screen word gerendered */}
                 <Image source={item.source} style={styles.images} />
-                <Text>{item.title}</Text>
               </View>
             )}
           />
@@ -283,7 +280,6 @@ export default function FinancialLiteracy({ navigation }) {
               <View>
                 {/* singular on boarding screen word gerendered */}
                 <Image source={item.source} style={styles.images} />
-                <Text>{item.title}</Text>
               </View>
             )}
           />
@@ -331,21 +327,12 @@ const styles = StyleSheet.create({
     marginRight: width / 7,
     left: width / 10,
   },
-  flatlist: {},
   popularityNumber: {
     color: "rgba(36, 118, 114, 0.25)",
     fontSize: width / 3.8,
     fontWeight: "bold",
     position: "absolute",
     bottom: height / 100,
-  },
-  dots: {
-    position: "absolute",
-    left: width / 1.2,
-    color: "rgba(36, 118, 114, 1)",
-    fontSize: width / 18,
-    fontWeight: "bold",
-    bottom: height / 50,
   },
   backgroundImg: {
     flex: 1,
@@ -356,5 +343,14 @@ const styles = StyleSheet.create({
     width: width,
     height: height,
     opacity: 0.5,
+  },
+  dots: {
+    position: "absolute",
+    left: width / 1.2,
+    color: "rgba(36, 118, 114, 1)",
+    fontSize: width / 18,
+    fontWeight: "bold",
+    bottom: height / 100,
+    paddingHorizontal: width / 100,
   },
 });
