@@ -18,6 +18,7 @@ import Profile from "../screens/Profile";
 import ArticlePage from "../screens/ArticlePage";
 import CalendarScreen from "../screens/CalendarScreen";
 import BottomDrawer from "../components/BottomDrawer";
+import PdfPage from "../screens/PdfPage";
 //define object with screens
 
 const screens = {
@@ -54,6 +55,9 @@ const screens = {
   },
   ArticlePage: {
     screen: ArticlePage,
+  },
+  PdfPage: {
+    screen: PdfPage,
   },
 };
 //creating homestack to navigate between screens

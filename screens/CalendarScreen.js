@@ -159,6 +159,7 @@ const CalendarScreen = ({ navigation }) => {
         backgroundColor="#D4FFF6"
         barStyle={"dark-content"}
         showHideTransition={"fade"}
+        hidden={false}
       />
       <Image style={styles.imgback2} source={Dashboardpic} />
       <View style={styles.calendar}>

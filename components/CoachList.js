@@ -1,16 +1,45 @@
-import { View, Text, StyleSheet, Dimensions, FlatList, Pressable, } from "react-native";
-import React, { useState} from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  FlatList,
+  Pressable,
+} from "react-native";
+import React, { useState } from "react";
 import CoachCard from "./CoachCard";
 
-const CoachList = ({setCoachListState, setLastCoach, setCoach}) => {
-  
+const CoachList = ({ setCoachListState, setLastCoach, setCoach, coach }) => {
+  const data = [];
+  coach.type === "Financial Literacy"
+    ? [
+        {
+          name: "A. Baino",
+          organization: "Classy Notes",
+          website: "https://www.cn-lawfinancegroup.com/",
+          type: "Financial Literacy",
+          availability: [1, 2, 4],
+        },
+      ]
+    : [
+        {
+          name: "J. Schmidt",
+          organization: "1 met jezelf",
+          website: "https://www.1metjezelf-coaching.com/Coaching/",
+          type: "Mindfulness",
+          availability: [1, 2, 4],
+        },
+      ];
+
   return (
     <View style={styles.container}>
       <View style={styles.topPart}>
-        <Pressable onPress={() => {
-            setCoachListState(false)
-        }}>
-        <Text style={styles.cancel}>Cancel</Text>
+        <Pressable
+          onPress={() => {
+            setCoachListState(false);
+          }}
+        >
+          <Text style={styles.cancel}>Cancel</Text>
         </Pressable>
         <Text style={styles.listTitle}>Coach List</Text>
       </View>
@@ -18,11 +47,29 @@ const CoachList = ({setCoachListState, setLastCoach, setCoach}) => {
         <FlatList
           style={styles.list}
           data={[
-              { name: "A. Baino", organization: "Classy Notes", website: "https://www.cn-lawfinancegroup.com/", type: "Financial Literacy", availability: [1,2,4] },
-              { name: "J. Schmidt", organization: "1 met jezelf", website: "https://www.1metjezelf-coaching.com/Coaching/", type: "Mindfulness", availability: [1,2,4] },
-           
+            {
+              name: "A. Baino",
+              organization: "Classy Notes",
+              website: "https://www.cn-lawfinancegroup.com/",
+              type: "Financial Literacy",
+              availability: [1, 2, 4],
+            },
+            {
+              name: "J. Schmidt",
+              organization: "1 met jezelf",
+              website: "https://www.1metjezelf-coaching.com/Coaching/",
+              type: "Mindfulness",
+              availability: [1, 2, 4],
+            },
           ]}
-          renderItem={({ item }) => <CoachCard setLastCoach={setLastCoach} setCoachListState={setCoachListState}setCoach={setCoach} item={item}/>}
+          renderItem={({ item }) => (
+            <CoachCard
+              setLastCoach={setLastCoach}
+              setCoachListState={setCoachListState}
+              setCoach={setCoach}
+              item={item}
+            />
+          )}
         />
       </View>
     </View>
@@ -63,9 +110,9 @@ const styles = StyleSheet.create({
   ListContainer: {
     flex: 1,
     marginBottom: 100,
-  
+
     width: width,
-    
+
     justifyContent: "center",
     alignItems: "center",
   },

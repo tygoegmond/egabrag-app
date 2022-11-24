@@ -97,6 +97,7 @@ const CoachSelect = ({ setCoachListState, coach, setCoach, lastCoach }) => {
               }}
               placeholder={{ label: "Choose coach type", value: null }}
               items={[
+                
                 { label: "Mindfulness", value: "Mindfulness" },
                 { label: "Financial Literacy", value: "Financial Literacy" },
               ]}

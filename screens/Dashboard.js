@@ -110,6 +110,7 @@ export default function Dashboard({ navigation }) {
         backgroundColor="#D4FFF6"
         barStyle={"dark-content"}
         showHideTransition={"fade"}
+        
       />
       <Swiper
         showsPagination={false}
