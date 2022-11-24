@@ -32,8 +32,9 @@ import * as Progress from "react-native-progress";
 
 export default function FinancialLiteracy({ navigation }) {
   //import fonts
-  const [progress, setProgress] = useState(0.55);
+  const [progress, setProgress] = useState(0.25);
   const [currentAmount, setCurrentAmount] = useState();
+
   const [fontsLoaded] = useFonts({
     "Nabla-Regular": require("../assets/fonts/Nabla-Regular.ttf"),
     "great-escape": require("../assets/fonts/great-escape.ttf"),
@@ -41,7 +42,7 @@ export default function FinancialLiteracy({ navigation }) {
   const pressHandler = () => {
     navigation.navigate("ArticlePage");
   };
-  const goalAmount = "200";
+  const goalAmount = "400";
   const recentEbooks = [
     {
       source: content1,
@@ -106,10 +107,11 @@ export default function FinancialLiteracy({ navigation }) {
 
   async function updateProgress(time) {
     await timeout(time);
-    setProgress(0.56);
+    setProgress(0.5);
   }
   useEffect(() => {
     updateProgress(500);
+    setCurrentAmount("800");
   }, []);
 
   return (
@@ -147,7 +149,7 @@ export default function FinancialLiteracy({ navigation }) {
               <View>
                 {/* singular on boarding screen word gerendered */}
                 <Image source={item.source} style={styles.images} />
-                <Text>{item.title}</Text>
+                {/* // <Text>{item.title}</Text> */}
               </View>
             )}
           />
@@ -191,7 +193,6 @@ export default function FinancialLiteracy({ navigation }) {
                   justifyContent: "flex-start",
                   right: 0,
                   position: "absolute",
-                  fontWeight: "bold",
                 }}
               >
                 €{currentAmount}
@@ -246,8 +247,8 @@ const styles = StyleSheet.create({
     marginLeft: width / 15,
   },
   images: {
-    width: width / 4.5,
-    height: height / 6.3,
+    width: width / 5,
+    height: height / 7,
     marginRight: width / 40,
   },
   flatlist: {
