@@ -317,7 +317,8 @@ const styles = StyleSheet.create({
   },
   widgetViewContentContainer: {
     marginBottom: 18,
-    marginLeft: width / 20,
+    width: width * 0.9,
+    alignSelf: "center",
   },
   images: {
     width: width / 5,
@@ -330,9 +331,7 @@ const styles = StyleSheet.create({
     marginRight: width / 7,
     left: width / 10,
   },
-  flatlist: {
-    width: width * 0.9,
-  },
+  flatlist: {},
   popularityNumber: {
     color: "rgba(36, 118, 114, 0.25)",
     fontSize: width / 3.8,
