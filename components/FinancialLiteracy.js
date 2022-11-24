@@ -47,7 +47,7 @@ const FinancialLiteracy = ({ recentTrainings, navigation }) => {
   }
   async function updateProgress(time) {
     await timeout(time);
-    setProgress(0.56);
+    setProgress(0.5);
   }
   updateProgress(500);
 

@@ -98,8 +98,8 @@ export default function FinancialLiteracy({ navigation }) {
       description: "a",
     },
   ];
-  const EbookHandler = () => {
-    navigation.navigate("Ebooks");
+  const allEbookHandler = () => {
+    navigation.navigate("AllEbooks");
   };
   function timeout(delay) {
     return new Promise((res) => setTimeout(res, delay));
@@ -140,6 +140,9 @@ export default function FinancialLiteracy({ navigation }) {
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>E-Books</Text>
+          <Pressable onPress={allEbookHandler}>
+            <Text style={styles.dots}>•••</Text>
+          </Pressable>
           <FlatList
             horizontal={true}
             showsHorizontalScrollIndicator={false}
@@ -156,6 +159,9 @@ export default function FinancialLiteracy({ navigation }) {
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Articles</Text>
+          <Pressable onPress={allEbookHandler}>
+            <Text style={styles.dots}>•••</Text>
+          </Pressable>
           <TouchableOpacity onPress={pressHandler}>
             <Image style={styles.images} source={content6} />
           </TouchableOpacity>
@@ -262,5 +268,13 @@ const styles = StyleSheet.create({
     zIndex: 0,
     width: width,
     height: height,
+  },
+  dots: {
+    position: "absolute",
+    left: width / 1.4,
+    color: "rgba(36, 118, 114, 1)",
+    fontSize: width / 18,
+    fontWeight: "bold",
+    bottom: height / 120,
   },
 });

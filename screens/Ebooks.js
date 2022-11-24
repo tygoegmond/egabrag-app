@@ -69,7 +69,7 @@ export default function Ebooks({ navigation }) {
             alignItems: "center",
           }}
         >
-          <View style={{ alignItems }}>
+          <View>
             <Text>Categories bla bla bla bla bla</Text>
           </View>
           <View>
