@@ -27,6 +27,7 @@ import content5 from "../assets/images/content5.jpg";
 import content6 from "../assets/images/content6.webp";
 import BottomDrawer from "../components/BottomDrawer";
 import { ScrollView } from "react-native-gesture-handler";
+import backgroundImg from "../assets/images/backgroundImg.png";
 
 export default function FinancialLiteracy({ navigation }) {
   //import fonts
@@ -200,6 +201,8 @@ export default function FinancialLiteracy({ navigation }) {
 
   return (
     <View style={styles.AllEbooks}>
+      <Image source={backgroundImg} style={styles.backgroundImg} />
+
       <ScrollView>
         <Text style={styles.title}>E-Books</Text>
         <View style={styles.widgetViewContentContainer}>
@@ -277,7 +280,7 @@ const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
   AllEbooks: {
     color: "#107070",
-    backgroundColor: "rgba(244, 255, 242, 0.8)",
+    backgroundColor: "white",
     width: width / 1,
     height: height / 1,
     flex: 1,
@@ -319,5 +322,15 @@ const styles = StyleSheet.create({
     fontSize: width / 4,
     fontWeight: "bold",
     position: "absolute",
+  },
+  backgroundImg: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    position: "absolute",
+    zIndex: 0,
+    width: width,
+    height: height,
+    opacity: 0.5,
   },
 });
