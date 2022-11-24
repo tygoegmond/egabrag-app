@@ -37,6 +37,10 @@ export default function FinancialLiteracy({ navigation }) {
     "great-escape": require("../assets/fonts/great-escape.ttf"),
   });
 
+  const EbookHandler = () => {
+    navigation.navigate("Ebooks");
+  };
+
   const popular = [
     {
       source: content1,
@@ -204,7 +208,7 @@ export default function FinancialLiteracy({ navigation }) {
       <Image source={backgroundImg} style={styles.backgroundImg} />
 
       <ScrollView>
-        <Text style={styles.title}>E-Books</Text>
+        <Text style={[styles.title, { marginTop: height / 25 }]}>E-Books</Text>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Popular</Text>
           <FlatList
@@ -224,6 +228,9 @@ export default function FinancialLiteracy({ navigation }) {
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Finance</Text>
+          <Pressable onPress={EbookHandler}>
+            <Text style={styles.eBookDots}>•••</Text>
+          </Pressable>
           <FlatList
             horizontal={true}
             showsHorizontalScrollIndicator={false}
@@ -240,6 +247,9 @@ export default function FinancialLiteracy({ navigation }) {
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Mindfulness</Text>
+          <Pressable onPress={EbookHandler}>
+            <Text style={styles.eBookDots}>•••</Text>
+          </Pressable>
           <FlatList
             horizontal={true}
             showsHorizontalScrollIndicator={false}
@@ -254,8 +264,16 @@ export default function FinancialLiteracy({ navigation }) {
             )}
           />
         </View>
-        <View style={styles.widgetViewContentContainer}>
+        <View
+          style={[
+            styles.widgetViewContentContainer,
+            { marginBottom: height / 10 },
+          ]}
+        >
           <Text style={styles.widgetViewContentTitle}>Education</Text>
+          <Pressable onPress={EbookHandler}>
+            <Text style={styles.eBookDots}>•••</Text>
+          </Pressable>
           <FlatList
             horizontal={true}
             showsHorizontalScrollIndicator={false}
@@ -284,8 +302,6 @@ const styles = StyleSheet.create({
     width: width / 1,
     height: height / 1,
     flex: 1,
-    paddingTop: height / 20,
-    paddingBottom: height / 10,
   },
   title: {
     color: "rgba(36, 118, 114, 0.25)",
@@ -319,9 +335,18 @@ const styles = StyleSheet.create({
   },
   popularityNumber: {
     color: "rgba(36, 118, 114, 0.25)",
-    fontSize: width / 4,
+    fontSize: width / 3.8,
     fontWeight: "bold",
     position: "absolute",
+    bottom: height / 100,
+  },
+  eBookDots: {
+    position: "absolute",
+    left: width / 1.2,
+    color: "rgba(36, 118, 114, 1)",
+    fontSize: width / 18,
+    fontWeight: "bold",
+    bottom: height / 50,
   },
   backgroundImg: {
     flex: 1,

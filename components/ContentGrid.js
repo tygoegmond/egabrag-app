@@ -7,22 +7,19 @@ import {
   Image,
   Pressable,
   Dimensions,
+  ScrollView,
 } from "react-native";
 
 const ContentGrid = ({ data, navigation }) => {
   const grid = data.map((ebook, index) => {
     return (
-      <View key={index} style={styles.gridItem}>
+      <ScrollView key={index} style={styles.gridItem}>
         <Image style={styles.images} source={ebook.source} />
         <Text>{ebook.title}</Text>
-      </View>
+      </ScrollView>
     );
   });
-  return (
-    <View style={styles.contentGrid}>
-      <Text>{grid}</Text>
-    </View>
-  );
+  return <View style={styles.contentGrid}>{grid}</View>;
 };
 
 const { height, width } = Dimensions.get("screen");
@@ -31,19 +28,19 @@ const styles = StyleSheet.create({
   contentGrid: {
     display: "flex",
     top: 0,
-    height: height,
-    flexGrow: 1,
-    alignContent: "center",
-    alignItems: "center",
-    gap: width / 10,
+    width: width,
+    flexWrap: "wrap",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    gap: "10% 10%",
   },
   gridItem: {
     width: width / 5,
+    margin: width * 0.05,
   },
   images: {
     width: width / 4.5,
     height: height / 6.3,
-    marginRight: width / 40,
   },
 });
 

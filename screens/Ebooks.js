@@ -62,8 +62,14 @@ export default function Ebooks({ navigation }) {
     <View style={styles.ebooks}>
       <Text style={styles.title}>E-Books</Text>
       <View style={styles.widgetView}>
-        <View style={{ marginLeft: width / 20, marginRight: width / 20 }}>
-          <View>
+        <View
+          style={{
+            backgroundColor: "red",
+            alignContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <View style={{ alignItems }}>
             <Text>Categories bla bla bla bla bla</Text>
           </View>
           <View>
