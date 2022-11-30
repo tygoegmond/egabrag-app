@@ -227,7 +227,7 @@ export default function FinancialLiteracy({ navigation }) {
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Finance</Text>
-          <Pressable onPress={EbookHandler}>
+          <Pressable style={styles.pressableDots}>
             <Text style={styles.dots}>•••</Text>
           </Pressable>
           <FlatList
@@ -245,7 +245,7 @@ export default function FinancialLiteracy({ navigation }) {
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Mindfulness</Text>
-          <Pressable onPress={EbookHandler}>
+          <Pressable style={styles.pressableDots}>
             <Text style={styles.dots}>•••</Text>
           </Pressable>
           <FlatList
@@ -268,7 +268,7 @@ export default function FinancialLiteracy({ navigation }) {
           ]}
         >
           <Text style={styles.widgetViewContentTitle}>Education</Text>
-          <Pressable onPress={EbookHandler}>
+          <Pressable style={styles.pressableDots}>
             <Text style={styles.dots}>•••</Text>
           </Pressable>
           <FlatList
@@ -346,11 +346,15 @@ const styles = StyleSheet.create({
   },
   dots: {
     position: "absolute",
-    left: width / 1.2,
     color: "rgba(36, 118, 114, 1)",
     fontSize: width / 18,
     fontWeight: "bold",
-    bottom: height / 100,
-    paddingHorizontal: width / 100,
+    alignSelf: "center",
+  },
+  pressableDots: {
+    position: "absolute",
+    left: width / 1.25,
+    paddingHorizontal: width / 20,
+    paddingVertical: height / 60,
   },
 });
