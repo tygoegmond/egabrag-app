@@ -125,7 +125,7 @@ export default function FinancialLiteracy({ navigation }) {
           <Text style={styles.widgetViewContent}>○ Savings vs Investment</Text>
           <Text style={styles.widgetViewContent}>○ The art of Budgeting</Text>
           <Progress.Circle
-            size={100}
+            size={width / 4.5}
             thickness={12}
             color={"#107070"}
             unfilledColor={"#eee"}
@@ -135,12 +135,16 @@ export default function FinancialLiteracy({ navigation }) {
             showsText={true}
             animated={true}
             progress={progress}
-            style={{ position: "absolute", left: width / 2 }}
+            style={{
+              position: "absolute",
+              left: width / 1.8,
+              bottom: height * 0.001,
+            }}
           />
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>E-Books</Text>
-          <Pressable onPress={allEbookHandler}>
+          <Pressable style={styles.pressableDots} onPress={allEbookHandler}>
             <Text style={styles.dots}>•••</Text>
           </Pressable>
           <FlatList
@@ -159,7 +163,7 @@ export default function FinancialLiteracy({ navigation }) {
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Articles</Text>
-          <Pressable onPress={allEbookHandler}>
+          <Pressable style={styles.pressableDots} onPress={allEbookHandler}>
             <Text style={styles.dots}>•••</Text>
           </Pressable>
           <TouchableOpacity onPress={pressHandler}>
@@ -167,7 +171,7 @@ export default function FinancialLiteracy({ navigation }) {
           </TouchableOpacity>
         </View>
         <View style={styles.widgetViewContentContainer}>
-          <Text style={styles.widgetViewContentTitle}>Your Savings</Text>
+          <Text style={styles.widgetViewContentTitle}>Your Goals</Text>
           <Progress.Bar
             width={width * 0.78}
             thickness={12}
@@ -181,7 +185,6 @@ export default function FinancialLiteracy({ navigation }) {
             showsText={true}
             animated={true}
             progress={progress}
-            style={{}}
           />
           <View
             style={[
@@ -271,10 +274,15 @@ const styles = StyleSheet.create({
   },
   dots: {
     position: "absolute",
-    left: width / 1.4,
     color: "rgba(36, 118, 114, 1)",
     fontSize: width / 18,
     fontWeight: "bold",
-    bottom: height / 120,
+    alignSelf: "center",
+  },
+  pressableDots: {
+    position: "absolute",
+    left: width / 1.4,
+    paddingHorizontal: width / 20,
+    paddingVertical: height / 60,
   },
 });

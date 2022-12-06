@@ -16,7 +16,6 @@ import DayAgenda from "../components/DayAgenda";
 
 const CalendarScreen = ({ navigation }) => {
   //declare states
-
   const [bottomHeight, setBottomHeight] = React.useState(1);
   const [onFocusShift, setFocusShift] = useState(false);
   const [startDate, setStartDate] = useState(new Date());

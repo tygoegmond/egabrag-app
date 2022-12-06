@@ -37,7 +37,6 @@ function articlepage({ navigation }) {
       );
       console.log(response.data.data.title, "response");
       setUser(response.data.data.body.blocks);
-
       setTitle(response.data.data.title);
       return response.data;
     } catch (error) {
