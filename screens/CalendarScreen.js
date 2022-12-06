@@ -115,7 +115,6 @@ const CalendarScreen = ({ navigation }) => {
     date.getMonth() + 1
   }-${date.getDate()}`;
 
-
   //config for formatting calendar dates and days
   LocaleConfig.locales.fr = LocaleConfig.locales[""];
   LocaleConfig.locales.en = {
@@ -229,7 +228,7 @@ const CalendarScreen = ({ navigation }) => {
         />
       </View>
       {/* if a date is long pressed open the bottomsheet to make an appointment */}
-      {addAppointmentMode ? (
+      {/* {addAppointmentMode ? (
         <BottomSheetCalendar
           setAddAppointmentMode={setAddAppointmentMode}
           onFocusShift={onFocusShift}
@@ -242,7 +241,7 @@ const CalendarScreen = ({ navigation }) => {
           coach={coach}
           setCoach={setCoach}
         />
-      ) : null}
+      ) : null} */}
       <BottomDrawer navigation={navigation} />
     </View>
   );

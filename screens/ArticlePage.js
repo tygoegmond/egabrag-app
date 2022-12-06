@@ -17,6 +17,7 @@ import {
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import * as Securestore from "expo-secure-store";
 import axios from "axios";
+import backgroundImg from "../assets/images/backgroundImg.png";
 
 function articlepage({ navigation }) {
   const [title, setTitle] = useState("");
@@ -63,6 +64,8 @@ function articlepage({ navigation }) {
   });
   return (
     <View style={styles.ArticlePage}>
+      <Image source={backgroundImg} style={styles.backgroundImg} />
+
       <Text style={styles.title}>{title}</Text>
       <View>
         <ScrollView
@@ -136,9 +139,18 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: "bold",
     top: getStatusBarHeight() + height / 40,
-    left: width / 11.5,
     position: "absolute",
     flexWrap: "wrap",
+    alignSelf: "center",
+  },
+  backgroundImg: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    position: "absolute",
+    zIndex: 0,
+    width: width,
+    height: height,
   },
 });
 

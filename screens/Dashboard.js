@@ -178,7 +178,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     position: "absolute",
     zIndex: 0,
-    top: -height / 18,
     width: width,
     height: height,
   },

@@ -24,7 +24,7 @@ export default BottomDrawer = ({ navigation }) => {
     },
     {
       icon: ebookIcon,
-      label: "Ebooks",
+      label: "AllEbooks",
     },
     {
       icon: calendarIcon,
@@ -53,16 +53,14 @@ export default BottomDrawer = ({ navigation }) => {
     <View
       style={{
         flexDirection: "row",
-        height: 15,
         width: width,
-        height: height / 11,
+        height: height / 13,
         justifyContent: "center",
         position: "absolute",
         backgroundColor: "white",
         zIndex: 111,
         flex: 1,
         bottom: 0,
-        opacity: 0.8,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         //shadow
@@ -71,9 +69,9 @@ export default BottomDrawer = ({ navigation }) => {
           width: 0,
           height: -1,
         },
-        shadowOpacity: 0.22,
-        shadowRadius: 2.22,
-        elevation: 3,
+        shadowOpacity: 1,
+        shadowRadius: 4,
+        elevation: 5,
       }}
     >
       {bottomTabs}
@@ -84,23 +82,71 @@ export default BottomDrawer = ({ navigation }) => {
 //local stylesheet
 const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
-  dot: {
-    position: "relative",
-    height: 10,
-    borderRadius: 8,
-    backgroundColor: "#493d8a",
-    marginHorizontal: 8,
-  },
-  bottomTabIcon: {
-    width: width * 0.08,
-    height: width * 0.08,
-    resizeMode: "contain",
-    // padding: 20,
-    marginTop: 15,
-  },
-  bottomTab: {
-    height: height / 11,
+  ...Platform.select({
+    ios: {
+      dot: {
+        position: "relative",
+        height: 10,
+        borderRadius: 8,
+        backgroundColor: "#493d8a",
+        marginHorizontal: 8,
+      },
+      bottomTabIcon: {
+        width: width * 0.08,
+        height: width * 0.08,
+        resizeMode: "contain",
+        // padding: 20,
+        marginTop: 15,
+      },
+      bottomTab: {
+        height: height / 11,
 
-    marginHorizontal: 30,
-  },
+        marginHorizontal: 30,
+      },
+    },
+    //---------------------------------------------------------android---------------------------------------------------------
+    android: {
+      dot: {
+        position: "relative",
+        height: 10,
+        borderRadius: 8,
+        backgroundColor: "#493d8a",
+        marginHorizontal: 8,
+      },
+      bottomTabIcon: {
+        width: width * 0.08,
+        height: width * 0.07,
+        resizeMode: "contain",
+        // padding: 20,
+        marginTop: 20,
+      },
+      bottomTab: {
+        height: height / 11,
+
+        marginHorizontal: 30,
+      },
+    },
+    //----------------------------------------------------------default--------------------------------------------------------------
+    default: {
+      dot: {
+        position: "relative",
+        height: 10,
+        borderRadius: 8,
+        backgroundColor: "#493d8a",
+        marginHorizontal: 8,
+      },
+      bottomTabIcon: {
+        width: width * 0.08,
+        height: width * 0.08,
+        resizeMode: "contain",
+        // padding: 20,
+        marginTop: 15,
+      },
+      bottomTab: {
+        height: height / 11,
+
+        marginHorizontal: 30,
+      },
+    },
+  }),
 });
