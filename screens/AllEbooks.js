@@ -217,23 +217,17 @@ export default function FinancialLiteracy({ navigation }) {
             data={popular}
             style={styles.flatlist}
             renderItem={({ item }) => (
-              <Pressable onPress={() => navigation.navigate("PdfPage")}>
               <View>
                 {/* singular on boarding screen word gerendered */}
                 <Text style={styles.popularityNumber}>{item.popularity}</Text>
                 <Image source={item.source} style={styles.imagesPopular} />
-<<<<<<< Updated upstream
-=======
-                {/* <Text style={{ left: width / 10 }}>{item.title}</Text> */}
->>>>>>> Stashed changes
               </View>
-              </Pressable>
             )}
           />
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Finance</Text>
-          <Pressable style={styles.pressableDots}>
+          <Pressable style={styles.pressableDots} onPress={EbookHandler}>
             <Text style={styles.dots}>•••</Text>
           </Pressable>
           <FlatList
@@ -245,17 +239,13 @@ export default function FinancialLiteracy({ navigation }) {
               <View>
                 {/* singular on boarding screen word gerendered */}
                 <Image source={item.source} style={styles.images} />
-<<<<<<< Updated upstream
-=======
-                {/* <Text>{item.title}</Text> */}
->>>>>>> Stashed changes
               </View>
             )}
           />
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Mindfulness</Text>
-          <Pressable style={styles.pressableDots}>
+          <Pressable style={styles.pressableDots} onPress={EbookHandler}>
             <Text style={styles.dots}>•••</Text>
           </Pressable>
           <FlatList
@@ -267,10 +257,6 @@ export default function FinancialLiteracy({ navigation }) {
               <View>
                 {/* singular on boarding screen word gerendered */}
                 <Image source={item.source} style={styles.images} />
-<<<<<<< Updated upstream
-=======
-                {/* <Text>{item.title}</Text> */}
->>>>>>> Stashed changes
               </View>
             )}
           />
@@ -282,7 +268,7 @@ export default function FinancialLiteracy({ navigation }) {
           ]}
         >
           <Text style={styles.widgetViewContentTitle}>Education</Text>
-          <Pressable style={styles.pressableDots}>
+          <Pressable style={styles.pressableDots} onPress={EbookHandler}>
             <Text style={styles.dots}>•••</Text>
           </Pressable>
           <FlatList
@@ -294,10 +280,6 @@ export default function FinancialLiteracy({ navigation }) {
               <View>
                 {/* singular on boarding screen word gerendered */}
                 <Image source={item.source} style={styles.images} />
-<<<<<<< Updated upstream
-=======
-                {/* <Text>{item.title}</Text> */}
->>>>>>> Stashed changes
               </View>
             )}
           />
