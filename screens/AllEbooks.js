@@ -317,8 +317,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   images: {
-    width: width / 5,
-    height: height / 7,
+    width: width / 4.8,
+    height: height / 6.72,
     marginRight: width / 40,
   },
   imagesPopular: {
