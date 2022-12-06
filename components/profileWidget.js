@@ -308,7 +308,7 @@ const styles = StyleSheet.create({
         position: "relative",
       },
       pointsIcon: {
-        top: getStatusBarHeight() - height * 0.08,
+       
         width: width / 20,
         height: height / 40,
       },

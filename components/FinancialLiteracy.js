@@ -75,7 +75,7 @@ const FinancialLiteracy = ({ recentTrainings, navigation }) => {
         <View
           style={{
             position: "absolute",
-            top: height * 0.019,
+            // top: height * 0.019,
             right: -width * 0.05,
           }}
         >

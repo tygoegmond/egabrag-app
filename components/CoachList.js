@@ -11,25 +11,25 @@ import CoachCard from "./CoachCard";
 
 const CoachList = ({ setCoachListState, setLastCoach, setCoach, coach }) => {
   const data = [];
-  coach.type === "Financial Literacy"
-    ? [
-        {
-          name: "A. Baino",
-          organization: "Classy Notes",
-          website: "https://www.cn-lawfinancegroup.com/",
-          type: "Financial Literacy",
-          availability: [1, 2, 4],
-        },
-      ]
-    : [
-        {
-          name: "J. Schmidt",
-          organization: "1 met jezelf",
-          website: "https://www.1metjezelf-coaching.com/Coaching/",
-          type: "Mindfulness",
-          availability: [1, 2, 4],
-        },
-      ];
+  // coach.type === "Financial Literacy"
+  //   ? [
+  //       {
+  //         name: "A. Baino",
+  //         organization: "Classy Notes",
+  //         website: "https://www.cn-lawfinancegroup.com/",
+  //         type: "Financial Literacy",
+  //         availability: [1, 2, 4],
+  //       },
+  //     ]
+  //   : [
+  //       {
+  //         name: "J. Schmidt",
+  //         organization: "1 met jezelf",
+  //         website: "https://www.1metjezelf-coaching.com/Coaching/",
+  //         type: "Mindfulness",
+  //         availability: [1, 2, 4],
+  //       },
+  //     ];
 
   return (
     <View style={styles.container}>
