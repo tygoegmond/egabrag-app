@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
   scrollView: {
     marginTop: height / 6,
     backgroundColor: "white",
+    opacity: 0.8,
     width: width,
     flex: 1,
     borderTopLeftRadius: 30,
