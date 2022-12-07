@@ -204,14 +204,14 @@ const styles = StyleSheet.create({
         position: "absolute",
       },
       widgetView: {
-        // backgroundColor: "rgba(255, 255, 255, 0.8)",
+        backgroundColor: "rgba(255, 255, 255, 0.8)",
         width: width / 1.1,
         height: height / 1.1,
-        borderRadius: 25,
-        bottom: getStatusBarHeight() - 70,
+        bottom: getStatusBarHeight() - height / 15,
         boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
-        paddingTop: 20,
         paddingBottom: 20,
+        borderTopLeftRadius: width * 0.05,
+        borderTopRightRadius: width * 0.05,
       },
       widgetViewContentTitle: {
         color: "#107070",
@@ -266,7 +266,6 @@ const styles = StyleSheet.create({
         alignSelf: "center",
       },
       scrollview: {
-        backgroundColor: "rgba(255, 255, 255, 0.8)",
         padding: width * 0.05,
         borderTopLeftRadius: width * 0.05,
         borderTopRightRadius: width * 0.05,
@@ -289,14 +288,14 @@ const styles = StyleSheet.create({
         position: "absolute",
       },
       widgetView: {
-        // backgroundColor: "rgba(255, 255, 255, 0.8)",
+        backgroundColor: "rgba(255, 255, 255, 0.8)",
         width: width / 1.1,
         height: height / 1.1,
-        borderRadius: 25,
-        bottom: getStatusBarHeight() - 70,
+        bottom: getStatusBarHeight() - height / 15,
         boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
-        paddingTop: 20,
         paddingBottom: 20,
+        borderTopLeftRadius: width * 0.05,
+        borderTopRightRadius: width * 0.05,
       },
       widgetViewContentTitle: {
         color: "#107070",
@@ -307,12 +306,10 @@ const styles = StyleSheet.create({
       widgetViewContent: {
         color: "#000000",
         fontSize: 15,
-        // marginRight: 16,
         alignSelf: "center",
       },
       widgetViewContentContainer: {
         marginBottom: 32,
-        // marginLeft: 22,
       },
       images: {
         width: width / 5,
@@ -351,7 +348,6 @@ const styles = StyleSheet.create({
         alignSelf: "center",
       },
       scrollview: {
-        backgroundColor: "rgba(255, 255, 255, 0.8)",
         padding: width * 0.05,
         borderTopLeftRadius: width * 0.05,
         borderTopRightRadius: width * 0.05,
@@ -374,14 +370,14 @@ const styles = StyleSheet.create({
         position: "absolute",
       },
       widgetView: {
-        // backgroundColor: "rgba(255, 255, 255, 0.8)",
+        backgroundColor: "rgba(255, 255, 255, 0.8)",
         width: width / 1.1,
         height: height / 1.1,
-        borderRadius: 25,
-        bottom: getStatusBarHeight() - 70,
+        bottom: getStatusBarHeight() - height / 15,
         boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
-        paddingTop: 20,
         paddingBottom: 20,
+        borderTopLeftRadius: width * 0.05,
+        borderTopRightRadius: width * 0.05,
       },
       widgetViewContentTitle: {
         color: "#107070",
@@ -436,7 +432,6 @@ const styles = StyleSheet.create({
         alignSelf: "center",
       },
       scrollview: {
-        backgroundColor: "rgba(255, 255, 255, 0.8)",
         padding: width * 0.05,
         borderTopLeftRadius: width * 0.05,
         borderTopRightRadius: width * 0.05,

@@ -16,7 +16,6 @@ import DayAgenda from "../components/DayAgenda";
 
 const CalendarScreen = ({ navigation }) => {
   //declare states
-
   const [bottomHeight, setBottomHeight] = React.useState(1);
   const [onFocusShift, setFocusShift] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
@@ -158,6 +157,7 @@ const CalendarScreen = ({ navigation }) => {
         backgroundColor="#D4FFF6"
         barStyle={"dark-content"}
         showHideTransition={"fade"}
+        hidden={false}
       />
       <Image style={styles.imgback2} source={Dashboardpic} />
       <View style={styles.calendar}>
@@ -227,7 +227,7 @@ const CalendarScreen = ({ navigation }) => {
         />
       </View>
       {/* if a date is long pressed open the bottomsheet to make an appointment */}
-      {/* {addAppointmentMode ? (
+      {addAppointmentMode ? (
         <BottomSheetCalendar
           setAddAppointmentMode={setAddAppointmentMode}
           onFocusShift={onFocusShift}
@@ -240,7 +240,7 @@ const CalendarScreen = ({ navigation }) => {
           coach={coach}
           setCoach={setCoach}
         />
-      ) : null} */}
+      ) : null}
       <BottomDrawer navigation={navigation} />
     </View>
   );

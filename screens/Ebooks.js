@@ -64,13 +64,12 @@ export default function Ebooks({ navigation }) {
       <View style={styles.widgetView}>
         <View
           style={{
-            backgroundColor: "red",
             alignContent: "center",
             alignItems: "center",
           }}
         >
-          <View style={{ alignItems }}>
-            <Text>Categories bla bla bla bla bla</Text>
+          <View>
+            <Text>Categories</Text>
           </View>
           <View>
             <ContentGrid data={Ebooks} navigation={navigation} />

@@ -66,7 +66,7 @@ const ProgressWidget = ({ goalTitle, startAmount, endAmount, amount }) => {
         <View
           style={{
             position: "absolute",
-            top: height * 0.08,
+            top: height * 0.045,
           }}
         >
           <Progress.Bar

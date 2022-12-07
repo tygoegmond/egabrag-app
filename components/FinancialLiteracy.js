@@ -47,7 +47,7 @@ const FinancialLiteracy = ({ recentTrainings, navigation }) => {
   }
   async function updateProgress(time) {
     await timeout(time);
-    setProgress(0.56);
+    setProgress(0.5);
   }
   updateProgress(500);
 
@@ -75,7 +75,7 @@ const FinancialLiteracy = ({ recentTrainings, navigation }) => {
         <View
           style={{
             position: "absolute",
-            top: height * 0.019,
+            // top: height * 0.019,
             right: -width * 0.05,
           }}
         >

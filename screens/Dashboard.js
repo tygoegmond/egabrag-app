@@ -1,22 +1,14 @@
 import {
   StyleSheet,
-  Text,
   View,
-  ImageBackground,
-  Button,
-  Pressable,
-  TextInput,
   StatusBar,
   Image,
   Dimensions,
-  TouchableOpacity,
-  FlatList,
 } from "react-native";
 import { useFonts } from "expo-font";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import Swiper from "react-native-swiper";
 import React, { useCallback, useEffect, useState } from "react";
-import Dashboardpic from "../assets/images/background.png";
 import ProfileWidget from "../components/ProfileWidget";
 import MindfulnessWidget from "../components/MindfulnessWidget";
 import BottomDrawer from "../components/BottomDrawer";
@@ -110,6 +102,7 @@ export default function Dashboard({ navigation }) {
         backgroundColor="#D4FFF6"
         barStyle={"dark-content"}
         showHideTransition={"fade"}
+        
       />
       <Swiper
         showsPagination={false}
