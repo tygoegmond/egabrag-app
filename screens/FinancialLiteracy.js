@@ -253,15 +253,16 @@ const styles = StyleSheet.create({
   },
   widgetViewContentContainer: {
     marginBottom: height / 50,
-    marginLeft: width / 15,
+    alignSelf: "center",
+    width: width / 1.25,
   },
   images: {
-    width: width / 5,
-    height: height / 7,
-    marginRight: width / 40,
+    width: width / 4.8,
+    height: height / 6.72,
+    marginrRight: width / 40,
   },
   flatlist: {
-    width: width * 0.776,
+    width: width * 0.8,
   },
   backgroundImage: {
     flex: 1,

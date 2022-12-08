@@ -27,6 +27,8 @@ import content5 from "../assets/images/content5.jpg";
 import content6 from "../assets/images/content6.webp";
 import ContentGrid from "../components/ContentGrid";
 import BottomDrawer from "../components/BottomDrawer";
+import backgroundImg from "../assets/images/backgroundImg.png";
+import { ScrollView } from "react-native-gesture-handler";
 
 export default function Ebooks({ navigation }) {
   //import fonts
@@ -60,22 +62,13 @@ export default function Ebooks({ navigation }) {
 
   return (
     <View style={styles.ebooks}>
-      <Text style={styles.title}>E-Books</Text>
-      <View style={styles.widgetView}>
-        <View
-          style={{
-            alignContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <View>
-            <Text>Categories</Text>
-          </View>
-          <View>
-            <ContentGrid data={Ebooks} navigation={navigation} />
-          </View>
+      <Image source={backgroundImg} style={styles.backgroundImg} />
+      <ScrollView>
+        <Text style={[styles.title]}>E-Books</Text>
+        <View>
+          <ContentGrid data={Ebooks} navigation={navigation} />
         </View>
-      </View>
+      </ScrollView>
       <BottomDrawer navigation={navigation} />
     </View>
   );
@@ -84,11 +77,9 @@ export default function Ebooks({ navigation }) {
 const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
   ebooks: {
-    color: "#107070",
+    width: width / 1,
+    height: height / 1,
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#D4FFF6",
   },
   title: {
     color: "#107070",
@@ -96,19 +87,15 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     top: getStatusBarHeight() + height / 32,
     left: width / 11.5,
+  },
+  backgroundImg: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
     position: "absolute",
-  },
-  widgetView: {
-    backgroundColor: "#fff",
-    width: width / 1,
-    height: height / 1.25,
-    borderRadius: 35,
-    bottom: getStatusBarHeight() - 70,
-    boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
-    paddingTop: 16,
-  },
-  images: {
-    width: width / 5,
-    height: height / 7,
+    zIndex: 0,
+    width: width,
+    height: height,
+    opacity: 0.5,
   },
 });
