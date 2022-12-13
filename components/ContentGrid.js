@@ -13,10 +13,10 @@ import {
 const ContentGrid = ({ data, navigation }) => {
   const grid = data.map((ebook, index) => {
     return (
-      <ScrollView key={index} style={styles.gridItem}>
+      <View key={index} style={styles.gridItem}>
         <Image style={styles.images} source={ebook.source} />
         <Text>{ebook.title}</Text>
-      </ScrollView>
+      </View>
     );
   });
   return <View style={styles.contentGrid}>{grid}</View>;
@@ -27,7 +27,7 @@ const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
   contentGrid: {
     display: "flex",
-    top: 0,
+    width: width / 1,
     width: width,
     flexWrap: "wrap",
     flexDirection: "row",
@@ -36,11 +36,11 @@ const styles = StyleSheet.create({
   },
   gridItem: {
     width: width / 5,
-    margin: width * 0.05,
+    margin: width / 40,
   },
   images: {
-    width: width / 4.5,
-    height: height / 6.3,
+    width: width / 5,
+    height: height / 7,
   },
 });
 

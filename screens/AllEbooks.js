@@ -206,7 +206,6 @@ export default function FinancialLiteracy({ navigation }) {
   return (
     <View style={styles.AllEbooks}>
       <Image source={backgroundImg} style={styles.backgroundImg} />
-
       <ScrollView>
         <Text style={[styles.title, { marginTop: height / 25 }]}>E-Books</Text>
         <View style={styles.widgetViewContentContainer}>
@@ -217,19 +216,17 @@ export default function FinancialLiteracy({ navigation }) {
             data={popular}
             style={styles.flatlist}
             renderItem={({ item }) => (
-              <Pressable onPress={() => navigation.navigate("PdfPage")}>
               <View>
                 {/* singular on boarding screen word gerendered */}
                 <Text style={styles.popularityNumber}>{item.popularity}</Text>
                 <Image source={item.source} style={styles.imagesPopular} />
               </View>
-              </Pressable>
             )}
           />
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Finance</Text>
-          <Pressable style={styles.pressableDots}>
+          <Pressable style={styles.pressableDots} onPress={EbookHandler}>
             <Text style={styles.dots}>•••</Text>
           </Pressable>
           <FlatList
@@ -247,7 +244,7 @@ export default function FinancialLiteracy({ navigation }) {
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Mindfulness</Text>
-          <Pressable style={styles.pressableDots}>
+          <Pressable style={styles.pressableDots} onPress={EbookHandler}>
             <Text style={styles.dots}>•••</Text>
           </Pressable>
           <FlatList
@@ -270,7 +267,7 @@ export default function FinancialLiteracy({ navigation }) {
           ]}
         >
           <Text style={styles.widgetViewContentTitle}>Education</Text>
-          <Pressable style={styles.pressableDots}>
+          <Pressable style={styles.pressableDots} onPress={EbookHandler}>
             <Text style={styles.dots}>•••</Text>
           </Pressable>
           <FlatList
@@ -295,8 +292,6 @@ export default function FinancialLiteracy({ navigation }) {
 const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
   AllEbooks: {
-    color: "#107070",
-    backgroundColor: "white",
     width: width / 1,
     height: height / 1,
     flex: 1,
@@ -319,8 +314,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   images: {
-    width: width / 5,
-    height: height / 7,
+    width: width / 4.8,
+    height: height / 6.72,
     marginRight: width / 40,
   },
   imagesPopular: {
