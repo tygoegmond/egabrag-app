@@ -199,8 +199,8 @@ const CalendarScreen = ({ navigation }) => {
           enableSwipeMonths={true}
           showWeekNumbers={true}
           style={styles.calendarStyle}
-          initialDate={fullDate}
-          minDate={fullDate}
+          // initialDate={fullDate}
+          // minDate={fullDate}
           monthFormat={"MMMM yyyy"}
           onDayPress={(day) => {
             selectDay(day);

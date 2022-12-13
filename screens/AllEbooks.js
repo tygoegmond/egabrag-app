@@ -222,10 +222,6 @@ export default function FinancialLiteracy({ navigation }) {
                 {/* singular on boarding screen word gerendered */}
                 <Text style={styles.popularityNumber}>{item.popularity}</Text>
                 <Image source={item.source} style={styles.imagesPopular} />
-<<<<<<< Updated upstream
-=======
-                {/* <Text style={{ left: width / 10 }}>{item.title}</Text> */}
->>>>>>> Stashed changes
               </View>
               </Pressable>
             )}
@@ -245,10 +241,6 @@ export default function FinancialLiteracy({ navigation }) {
               <View>
                 {/* singular on boarding screen word gerendered */}
                 <Image source={item.source} style={styles.images} />
-<<<<<<< Updated upstream
-=======
-                {/* <Text>{item.title}</Text> */}
->>>>>>> Stashed changes
               </View>
             )}
           />
@@ -267,10 +259,6 @@ export default function FinancialLiteracy({ navigation }) {
               <View>
                 {/* singular on boarding screen word gerendered */}
                 <Image source={item.source} style={styles.images} />
-<<<<<<< Updated upstream
-=======
-                {/* <Text>{item.title}</Text> */}
->>>>>>> Stashed changes
               </View>
             )}
           />
@@ -294,10 +282,6 @@ export default function FinancialLiteracy({ navigation }) {
               <View>
                 {/* singular on boarding screen word gerendered */}
                 <Image source={item.source} style={styles.images} />
-<<<<<<< Updated upstream
-=======
-                {/* <Text>{item.title}</Text> */}
->>>>>>> Stashed changes
               </View>
             )}
           />

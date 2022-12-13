@@ -29,7 +29,7 @@ const Global =  StyleSheet.create({
     paddingTop: height / 50,
     fontSize: 20,
     height: height / 13,
-    backgroundColor: "#F8F4F4",
+    backgroundColor: "rgba(248,244,244,0.9)",
     shadowBlur: 3,
 
   },
@@ -51,7 +51,7 @@ const Global =  StyleSheet.create({
     paddingTop: height / 50,
     fontSize: 20,
     height: height / 13,
-    backgroundColor: "#F8F4F4",
+    backgroundColor: "rgba(248,244,244,0.9)",
     shadowBlur: 3,
 
   },
@@ -59,6 +59,7 @@ const Global =  StyleSheet.create({
      position: "absolute",
      top: height / 77,
      left: width / 20,
+     zIndex: 11,
      fontSize: 15,
      color: "#7C7C7C"
   },
