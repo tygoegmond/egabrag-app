@@ -15,7 +15,8 @@ import backgroundImg from "../assets/images/backgroundImg.png";
 import BottomDrawer from "../components/BottomDrawer";
 import InterestsWidget from "../components/InterestsWidget";
 export default function Profile({ navigation }) {
-  const signOut = () => {
+  const signOut = async () => {
+    await Securestore.deleteItemAsync("interests");
     Securestore.deleteItemAsync("token").then(navigation.navigate("Start"));
   };
   return (

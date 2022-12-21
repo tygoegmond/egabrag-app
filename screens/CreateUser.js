@@ -159,7 +159,7 @@ export default function Login({ navigation }) {
       console.log(response.data);
       setRes(response);
       updateSecurestore(response.data);
-      navigation.navigate("Interests");
+      navigation.replace("Interests");
     } catch (error) {
       console.log(error);
     }

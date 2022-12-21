@@ -34,10 +34,15 @@ export default function Interests({navigation}) {
   ]);
   async function UpdateInterests() {
     console.log(await Securestore.getItemAsync("interests"), "test")
+    
     let interestsString = await Securestore.getItemAsync("interests");
+    if(interestsString == null){
+        return
+    }
     let interestArray = []
     let id = 1;
     let interests = JSON.parse(interestsString);
+
     setSelected(interests);
 
     console.log(interestArray, "interests")
@@ -89,7 +94,7 @@ useEffect(() => {
         // );
         // console.log(response.data);
      
-        navigation.navigate("Dashboard");
+        navigation.replace("Dashboard");
     } catch (error) {
         console.log(error);
     }
