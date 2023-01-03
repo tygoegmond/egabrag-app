@@ -84,7 +84,7 @@ const BottomSheetCalendar = ({ setAddAppointmentMode }) => {
       location: location,
       title: title,
       coach: coachValue,
-      travelTime: travelTime,
+      travel_time: travelTime,
       duration: duration * -1,
       allDay: allDay,
       alert: alert,
