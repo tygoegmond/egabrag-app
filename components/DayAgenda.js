@@ -7,12 +7,13 @@ import {
   Dimensions,
   ScrollView,
   Platform,
+  TouchableOpacity,
 } from "react-native";
 
 //get screen dimensions
 const { height, width } = Dimensions.get("screen");
 
-const DayAgenda = ({ date, appointments, fullDate }) => {
+const DayAgenda = ({ date, appointments, fullDate,  setAddAppointmentMode }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   //change date if selected date is today
 
@@ -25,7 +26,9 @@ const DayAgenda = ({ date, appointments, fullDate }) => {
   //config for intl date formatting
 
   const options = { weekday: "long" };
-
+  const pressHandlerPlus = () => {
+    console.log("pressed plus");
+  };
   //if there are no appointments, display a message
 
   let currentAppointments = "no appointments";
@@ -66,7 +69,7 @@ const DayAgenda = ({ date, appointments, fullDate }) => {
 
       //if the appointment is a coaching session render it differently
 
-      if (item.coach !== null) {
+      if (item.coach_id !== null) {
         return (
           <Pressable
             style={{
@@ -85,7 +88,7 @@ const DayAgenda = ({ date, appointments, fullDate }) => {
                 {item.startTime} {item.title}
               </Text>
               <Text style={styles.appointmentTimeTextCoachSmall}>
-                {item.coach.name} - {item.coach.type}
+                {item.coach_id.name} - {item.coach_id.type}
               </Text>
             </View>
           </Pressable>
@@ -142,6 +145,19 @@ const DayAgenda = ({ date, appointments, fullDate }) => {
   // render the day agenda view
   return (
     <ScrollView style={styles.container}>
+      <TouchableOpacity
+        style={{
+          position: "absolute",
+          fontSize: 35,
+          zIndex: 221,
+          color: "#107070",
+          marginLeft: width * 0.1,
+          top: height * 0.1,
+        }}
+        onPress={ () => setAddAppointmentMode(true)}
+      >
+        <Text style={{ fontSize: 35, zIndex: 22, color: "#107070" }}>+</Text>
+      </TouchableOpacity>
       <View style={styles.agendaContainer}>
         <View style={styles.leftSide}>
           <View style={styles.dayItem}>
@@ -159,6 +175,7 @@ const DayAgenda = ({ date, appointments, fullDate }) => {
         <View style={styles.appointments}>
           {currentAppointments !== "no appointments" ? (
             currentAppointments
+            
           ) : (
             <View
               style={{
@@ -211,7 +228,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#959FFF",
         borderRadius: 10,
         justifyContent: "center",
-        alignItems: "left",
+        // alignItems: "left",
         paddingLeft: width * 0.05,
         margin: 10,
       },
@@ -222,7 +239,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#DB6464",
         borderRadius: 10,
         justifyContent: "center",
-        alignItems: "left",
+        // alignItems: "left",
         paddingLeft: width * 0.05,
         margin: 10,
       },
@@ -294,7 +311,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#959FFF",
         borderRadius: 10,
         justifyContent: "center",
-        alignItems: "left",
+        // alignItems: "left",
         paddingLeft: width * 0.05,
         margin: 10,
       },
@@ -305,7 +322,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#DB6464",
         borderRadius: 10,
         justifyContent: "center",
-        alignItems: "left",
+        // alignItems: "left",
         paddingLeft: width * 0.05,
         margin: 10,
       },
@@ -377,7 +394,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#959FFF",
         borderRadius: 10,
         justifyContent: "center",
-        alignItems: "left",
+        // alignItems: "left",
         paddingLeft: width * 0.05,
         margin: 10,
       },
@@ -388,7 +405,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#DB6464",
         borderRadius: 10,
         justifyContent: "center",
-        alignItems: "left",
+        // alignItems: "left",
         paddingLeft: width * 0.05,
         margin: 10,
       },

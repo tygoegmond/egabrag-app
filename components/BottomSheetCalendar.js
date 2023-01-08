@@ -13,6 +13,8 @@ import CoachSelect from "./CoachSelect";
 import CoachList from "./CoachList";
 import AlertMe from "./AlertMe";
 import { LocaleConfig } from "react-native-calendars";
+import axios from "axios";
+import * as Securestore from "expo-secure-store";
 
 //Config for locale fomrmatting for calendar
 
@@ -31,7 +33,7 @@ LocaleConfig.locales.en = {
 LocaleConfig.defaultLocale = "en";
 
 //
-const BottomSheetCalendar = ({ setAddAppointmentMode }) => {
+const BottomSheetCalendar = ({ setAddAppointmentMode, user }) => {
   const API_URL = "https://egabrag.tygoegmond.nl/api";
   //config for intl date formatting
   const options = { month: "long" };
@@ -78,33 +80,85 @@ const BottomSheetCalendar = ({ setAddAppointmentMode }) => {
     allDay ? (duration = 0) : (duration = durationCalc(startDate, endDate));
 
     //declare data object to be posted
+    console.log(startDate, "start time");
+    //remove last 5 characters from start date
 
+    // let startTime =
+    // console.log(startTime, 'start time')
+    // let startTime =
+    // console.log(startTime, "start tim asda sde");
+    //create new date
+    let startTime = new Date(startDate);
+    startTime = startTime.valueOf();
+
+    // // get date from new date
+    // let date = newDate.getDate();
+    // console.log(date, "date");
+    // //get month from new date
+    // let month = newDate.getMonth();
+
+    // console.log(month, "month");
+    // //get year from new date
+    // let year = newDate.getFullYear();
+    // console.log(year, "year");
+    // //get hours from new date
+    // let hours = newDate.getHours();
+
+    // console.log(hours, "hours");
+    // //get minutes from new date
+    // let minutes = newDate.getMinutes();
+    // console.log(minutes, "minutes");
+    // let startTime = `${year}-${month + 1}-${date}T${hours}:${minutes}`;
+    // console.log(9 + 1, "month + 1")
+    // if ((month + 1).length < 1) {
+    //   startTime = `${year}-0${month + 1}-${date}T${hours}:${minutes}`;
+    // }
+
+    // console.log(startTime, "start time datedada");
+    let coachSettings = -1;
+    if (coachValue.details?.id !== undefined) {
+      console.log(coachValue.length, coachValue.details.id);
+      coachSettings = coachValue.details?.id;
+    }
+    let alertSetting = alert ? 1 : 0;
     const data = {
-      startTime: startDate,
-      location: location,
       title: title,
-      coach: coachValue,
+      datetime: "2023-01-09T09:30",
+      location: location,
+      user_id: user.id,
+      coach_id: coachSettings,
       travel_time: travelTime,
       duration: duration * -1,
-      allDay: allDay,
-      alert: alert,
-    };
 
+      alert: alertSetting,
+    };
+    let data2 = {
+      "title": "Rijles",
+      "datetime": "2023-01-09T09:30",
+      "location": "Almere",
+      "user_id": 1,
+      "coach_id": -1,
+      "travel_time": 20,
+      "duration": 30,
+      "alert": 1
+   
+}
+    console.log(data);
     //post data to the database using axios fetch
 
     try {
-      const response = await axios.post(`${API_URL}/appointments`, {
-        headers: {
-          Authorization: "Bearer " + (await Securestore.getItemAsync("token")),
-          Accept: "application/json",
-        },
-        body: data,
-      });
+      const response = await axios.post(
+        `http://192.168.2.32:8000/api/appointments/store`,
+        {
+          
+          body: data,
+        }
+      );
       console.log(response.data);
       setResponse(response.data);
       return response.data;
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data);
     }
   }
   // render actual bottomsheet page
@@ -165,7 +219,7 @@ const BottomSheetCalendar = ({ setAddAppointmentMode }) => {
               setStartDate={setStartDate}
               coach={coach}
             />
-            <AlertMe setAlert={setAlert} alert={alert} />
+            {/* <AlertMe setAlert={setAlert} alert={alert} /> */}
           </View>
         </ScrollView>
       </View>
