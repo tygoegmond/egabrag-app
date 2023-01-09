@@ -4,27 +4,25 @@ import { FlatList } from "react-native-gesture-handler";
 import InterestItem from "./InterestItem";
 import axios from "axios";
 import * as Securestore from "expo-secure-store";
-export default function InterestsWidget({navigation}) {
-    
+export default function InterestsWidget({ navigation }) {
   const [selected, setSelected] = useState([]);
-  
+
   async function UpdateInterests() {
-    console.log(await Securestore.getItemAsync("interests"), "test")
+    console.log(await Securestore.getItemAsync("interests"), "test");
     var interestsString = await Securestore.getItemAsync("interests");
-    let interestArray = []
+    let interestArray = [];
     let id = 1;
     let interests = JSON.parse(interestsString);
     setSelected(interests);
 
-    console.log(interestArray, "interests")
-    
+    console.log(interestArray, "interests");
+
     // setInterestList(await Securestore.getItemAsync("token"))
   }
-  
+
   useEffect(() => {
     UpdateInterests();
-    }, []);
-
+  }, []);
 
   return (
     <View style={styles.InterestsWidget}>
@@ -37,8 +35,7 @@ export default function InterestsWidget({navigation}) {
       >
         <Text style={styles.header}>My Interests</Text>
         <Pressable onPress={() => navigation.navigate("Interests")}>
-            
-        <Text style={styles.edit}>View all</Text>
+          <Text style={styles.edit}>View all</Text>
         </Pressable>
       </View>
       <FlatList
@@ -67,7 +64,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     backgroundColor: "white",
 
-    alignItems: "left",
+    //alignItems: "left",
     padding: width * 0.05,
   },
   header: {

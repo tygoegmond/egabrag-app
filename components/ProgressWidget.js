@@ -63,12 +63,7 @@ const ProgressWidget = ({ goalTitle, startAmount, endAmount, amount }) => {
             marginTop: height * 0.01,
           }}
         ></View>
-        <View
-          style={{
-            position: "absolute",
-            top: height * 0.045,
-          }}
-        >
+        <View style={styles.progressbar}>
           <Progress.Bar
             width={width * 0.7}
             thickness={12}
@@ -162,6 +157,10 @@ const styles = StyleSheet.create({
 
         position: "absolute",
       },
+      progressbar: {
+        position: "absolute",
+        top: height * 0.045,
+      },
       title: {
         color: "#61CBB4",
         fontSize: 18,
@@ -253,6 +252,10 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         top: height * 0.04,
         position: "absolute",
+      },
+      progressbar: {
+        position: "absolute",
+        top: height * 0.08,
       },
       title: {
         color: "#61CBB4",
@@ -346,6 +349,10 @@ const styles = StyleSheet.create({
         top: height * 0.012,
 
         position: "absolute",
+      },
+      progressbar: {
+        position: "absolute",
+        top: height * 0.08,
       },
       title: {
         color: "#61CBB4",

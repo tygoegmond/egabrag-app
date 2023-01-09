@@ -21,9 +21,9 @@ export default function Profile({ navigation }) {
   };
   return (
     <View style={Global.container}>
-          <Image style={styles.imgback2} source={backgroundImg} />
+      <Image style={styles.imgback2} source={backgroundImg} />
       <Text style={styles.heroText}>Profile</Text>
-      <InterestsWidget navigation={navigation}/>
+      <InterestsWidget navigation={navigation} />
       <TouchableOpacity style={[Global.button, { top: 500 }]} onPress={signOut}>
         <Text style={Global.buttonText}>Sign out</Text>
       </TouchableOpacity>
