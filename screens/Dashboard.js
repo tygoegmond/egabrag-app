@@ -23,7 +23,6 @@ import Login from "./Login";
 import Start from "./Start";
 
 export default function Dashboard({ navigation }) {
-  //import fonts
   const [re, setRe] = useState("");
   const [user, setUser] = useState("");
   const [fontsLoaded] = useFonts({

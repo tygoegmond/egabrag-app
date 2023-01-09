@@ -208,81 +208,81 @@ export default function FinancialLiteracy({ navigation }) {
       <Image source={backgroundImg} style={styles.backgroundImg} />
       <ScrollView>
         <Text style={[styles.title, { marginTop: height / 25 }]}>E-Books</Text>
-        <View style={styles.widgetViewContentContainer}>
-          <Text style={styles.widgetViewContentTitle}>Popular</Text>
-          <FlatList
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            data={popular}
-            style={styles.flatlist}
-            renderItem={({ item }) => (
-              <View>
-                {/* singular on boarding screen word gerendered */}
+      <View style={styles.widgetViewContentContainer}>
+        <Text style={styles.widgetViewContentTitle}>Popular</Text>
+        <FlatList
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          data={popular}
+          style={styles.flatlist}
+          renderItem={({ item }) => (
+            <View>
+              {/* singular on boarding screen word gerendered */}
                 <Text style={styles.popularityNumber}>{item.popularity}</Text>
                 <Image source={item.source} style={styles.imagesPopular} />
-              </View>
-            )}
-          />
-        </View>
-        <View style={styles.widgetViewContentContainer}>
-          <Text style={styles.widgetViewContentTitle}>Finance</Text>
+            </View>
+          )}
+        />
+      </View>
+      <View style={styles.widgetViewContentContainer}>
+        <Text style={styles.widgetViewContentTitle}>Finance</Text>
           <Pressable style={styles.pressableDots} onPress={EbookHandler}>
             <Text style={styles.dots}>•••</Text>
           </Pressable>
-          <FlatList
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            data={finance}
-            style={styles.flatlist}
-            renderItem={({ item }) => (
-              <View>
-                {/* singular on boarding screen word gerendered */}
-                <Image source={item.source} style={styles.images} />
-              </View>
-            )}
-          />
-        </View>
-        <View style={styles.widgetViewContentContainer}>
-          <Text style={styles.widgetViewContentTitle}>Mindfulness</Text>
+        <FlatList
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          data={finance}
+          style={styles.flatlist}
+          renderItem={({ item }) => (
+            <View>
+              {/* singular on boarding screen word gerendered */}
+              <Image source={item.source} style={styles.images} />
+            </View>
+          )}
+        />
+      </View>
+      <View style={styles.widgetViewContentContainer}>
+        <Text style={styles.widgetViewContentTitle}>Mindfulness</Text>
           <Pressable style={styles.pressableDots} onPress={EbookHandler}>
             <Text style={styles.dots}>•••</Text>
           </Pressable>
-          <FlatList
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            data={mindfulness}
-            style={styles.flatlist}
-            renderItem={({ item }) => (
-              <View>
-                {/* singular on boarding screen word gerendered */}
-                <Image source={item.source} style={styles.images} />
-              </View>
-            )}
-          />
-        </View>
+        <FlatList
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          data={mindfulness}
+          style={styles.flatlist}
+          renderItem={({ item }) => (
+            <View>
+              {/* singular on boarding screen word gerendered */}
+              <Image source={item.source} style={styles.images} />
+            </View>
+          )}
+        />
+      </View>
         <View
           style={[
             styles.widgetViewContentContainer,
             { marginBottom: height / 10 },
           ]}
         >
-          <Text style={styles.widgetViewContentTitle}>Education</Text>
+        <Text style={styles.widgetViewContentTitle}>Education</Text>
           <Pressable style={styles.pressableDots} onPress={EbookHandler}>
             <Text style={styles.dots}>•••</Text>
           </Pressable>
-          <FlatList
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            data={education}
-            style={styles.flatlist}
-            renderItem={({ item }) => (
-              <View>
-                {/* singular on boarding screen word gerendered */}
-                <Image source={item.source} style={styles.images} />
-              </View>
-            )}
-          />
-        </View>
+        <FlatList
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          data={education}
+          style={styles.flatlist}
+          renderItem={({ item }) => (
+            <View>
+              {/* singular on boarding screen word gerendered */}
+              <Image source={item.source} style={styles.images} />
+            </View>
+          )}
+        />
+      </View>
       </ScrollView>
       <BottomDrawer navigation={navigation} />
     </View>

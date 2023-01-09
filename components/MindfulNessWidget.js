@@ -43,7 +43,6 @@ const MindfulnessWidget = ({ quote, author, navigation }) => {
     <TouchableOpacity onPress={pressHandler} style={styles.mindfulView}>
       <View style={styles.profileInfoContainer}>
         <Text style={styles.profileInfo}>Quote of the day!</Text>
-
         <Text style={styles.profileInfo}>{quote}</Text>
         <Text style={styles.author}>-{author}</Text>
       </View>

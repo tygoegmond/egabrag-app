@@ -201,13 +201,11 @@ const styles = StyleSheet.create({
         position: "absolute",
         justifyContent: "center",
       },
-
       profileText: {
         color: "#fff",
         backgroundColor: "#61CBB4",
         padding: 15,
         paddingHorizontal: 30,
-
         borderRadius: 24,
         overflow: "hidden",
         fontWeight: "bold",
@@ -224,7 +222,6 @@ const styles = StyleSheet.create({
         position: "absolute",
         top: getStatusBarHeight() + height / 11,
       },
-
       profileInfoContainer: {
         width: width / 1.5,
         left: width / 14,
@@ -244,14 +241,13 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: "bold",
         top: height * 0.03,
-
         position: "relative",
       },
       recent: {
         color: "#fff",
         fontSize: 22,
         fontWeight: "bold",
-        top: height * 0.04,
+        top: height * 0.03,
         position: "absolute",
       },
       title: {
@@ -260,7 +256,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         height: height * 0.15,
         left: width / 14,
-        top: height * 0.02,
+        top: height * 0.01,
         marginBottom: height / 120,
         position: "absolute",
       },

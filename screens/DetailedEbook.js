@@ -22,14 +22,30 @@ import Dashboardpic from "../assets/images/Dashboardpic2.png";
 import Global from "../assets/styles/Global";
 import backgroundImg from "../assets/images/backgroundImg.png";
 import content1 from "../assets/images/content1.png";
-// image cut off en idk why
+
 export default function DetailedEbook({ navigation }) {
+  const PdfPageHandler = () => {
+    navigation.navigate("PdfPage");
+  };
   return (
     <View style={styles.detailedEbook}>
       <Image source={backgroundImg} style={styles.backgroundImg} />
-      <ScrollView>         
+      <View>         
         <Image style={styles.image} source={content1} />
-      </ScrollView>
+      </View>
+      <View style={styles.boxNextToImage}>
+        <Text style={styles.title}>De intelligente belegger</Text>
+      </View>
+      <TouchableOpacity onPress={PdfPageHandler}>
+        <View style={styles.readButton}>
+          <Text>Read</Text>
+        </View>
+      </TouchableOpacity>
+      <View style={styles.description}>
+        <Text style={styles.descriptionText}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+        </Text>
+      </View>
       <BottomDrawer navigation={navigation} />
     </View>
   );
@@ -41,11 +57,43 @@ const styles = StyleSheet.create({
     height: height / 1,
     flex: 1,
   },
-  //image gets cut off when moving down
   image: {
-    width: width / 5,
-    height: height / 7,
+    width: width / 3.5,
+    height: height / 4.9,
     position: "relative",
+    left: width / 22,
+    top: height / 22,
+  },
+  boxNextToImage: {
+    width: width / 1.7,
+    height: height / 4.93,
+    left: width / 2.8,
+    bottom: height / 1.385,
+    position: "absolute",
+    },
+    title: {
+      fontSize: 20,
+    },
+  description: {
+    width: width / 1.1,
+    left: width / 22,
+    top: height / 20,
+  },
+  readButton: {
+    marginBottom: 10,
+    width: width / 1.1,
+    height: height / 25,
+    left: width / 22,
+    top: height / 18,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    backgroundColor: "#61CBB4",
+    borderWidth: 1,
+    borderColor: "#107070",
+  },
+  descriptionText: {
+    fontSize: 16,
   },
   backgroundImg: {
     flex: 1,
