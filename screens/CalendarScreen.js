@@ -5,6 +5,7 @@ import {
   Dimensions,
   StatusBar,
   Image,
+  Pressable,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import Dashboardpic from "../assets/images/background2.png";
@@ -13,11 +14,16 @@ import BottomSheetCalendar from "../components/BottomSheetCalendar";
 import { Calendar } from "react-native-calendars";
 import { LocaleConfig } from "react-native-calendars";
 import DayAgenda from "../components/DayAgenda";
+import * as Securestore from "expo-secure-store";
+import axios from "axios";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const CalendarScreen = ({ navigation }) => {
   //declare states
   const [bottomHeight, setBottomHeight] = React.useState(1);
   const [onFocusShift, setFocusShift] = useState(false);
+  const [re, setRe] = useState("");
+  const [user, setUser] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [addAppointmentMode, setAddAppointmentMode] = useState(false);
   const [coach, setCoach] = useState({});
@@ -90,6 +96,46 @@ const CalendarScreen = ({ navigation }) => {
     ],
   });
 
+  async function getUserData() {
+    try {
+      const user = await axios.get(
+        "https://egabrag.tygoegmond.nl/api/user",
+        {
+          headers: {
+            Authorization:
+              "Bearer " + (await Securestore.getItemAsync("token")),
+            Accept: "application/json",
+          },
+        }
+      );
+      const appointments = await axios.get(
+        "http://192.168.2.32:8000/api/appointments/user/1",
+        {
+          headers: {
+            // Authorization:
+            //   "Bearer " + (await Securestore.getItemAsync("token")),
+            Accept: "application/json",
+          },
+        }
+      );
+
+      setUser(user.data);
+      setAppointments(appointments.data);
+      console.log(appointments.data, " appointments")
+      console.log(user.data, " users")
+
+      return user.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    Securestore.getItemAsync("token").then((token) => {
+      setRe(token);
+    });
+    let data = getUserData();
+  }, []);
   //function to make bottomsheet appear
 
   function moveBottomSheet(amount) {
@@ -161,6 +207,7 @@ const CalendarScreen = ({ navigation }) => {
       />
       <Image style={styles.imgback2} source={Dashboardpic} />
       <View style={styles.calendar}>
+       
         <Calendar
           customHeaderTitle={
             <Text
@@ -199,8 +246,8 @@ const CalendarScreen = ({ navigation }) => {
           enableSwipeMonths={true}
           showWeekNumbers={true}
           style={styles.calendarStyle}
-          initialDate={fullDate}
-          minDate={fullDate}
+          // initialDate={fullDate}
+          // minDate={fullDate}
           monthFormat={"MMMM yyyy"}
           onDayPress={(day) => {
             selectDay(day);
@@ -239,6 +286,7 @@ const CalendarScreen = ({ navigation }) => {
           setLastCoach={setLastCoach}
           coach={coach}
           setCoach={setCoach}
+          user={user}
         />
       ) : null}
       <BottomDrawer navigation={navigation} />

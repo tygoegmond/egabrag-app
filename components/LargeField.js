@@ -21,8 +21,7 @@ export default LargeField = ({ type, title, position, setFunction, keyboardType,
     >
       
       <TextInput
-        onFocus={() => {setFocusShift(true)}}
-        onBlur={() => {setFocusShift(false)}}
+       
         autoCapitalize="none"
         keyboardType={keyboardType}
         style={Global.largeField}

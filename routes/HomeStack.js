@@ -19,6 +19,8 @@ import CalendarScreen from "../screens/CalendarScreen";
 import BottomDrawer from "../components/BottomDrawer";
 import PdfPage from "../screens/PdfPage";
 import AllEbooks from "../screens/AllEbooks";
+import DetailedEbook from "../screens/DetailedEbook";
+import Interests from "../screens/Interests";
 //define object with screens
 
 const screens = {
@@ -58,6 +60,12 @@ const screens = {
   },
   PdfPage: {
     screen: PdfPage,
+  },
+  DetailedEbook: {
+    screen: DetailedEbook,
+  },
+  Interests: {
+    screen: Interests,
   },
 };
 //creating homestack to navigate between screens

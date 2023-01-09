@@ -206,7 +206,6 @@ export default function FinancialLiteracy({ navigation }) {
   return (
     <View style={styles.AllEbooks}>
       <Image source={backgroundImg} style={styles.backgroundImg} />
-
       <ScrollView>
         <Text style={[styles.title, { marginTop: height / 25 }]}>E-Books</Text>
         <View style={styles.widgetViewContentContainer}>
@@ -293,8 +292,6 @@ export default function FinancialLiteracy({ navigation }) {
 const { height, width } = Dimensions.get("screen");
 const styles = StyleSheet.create({
   AllEbooks: {
-    color: "#107070",
-    backgroundColor: "white",
     width: width / 1,
     height: height / 1,
     flex: 1,
