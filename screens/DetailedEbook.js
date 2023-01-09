@@ -27,10 +27,8 @@ export default function DetailedEbook({ navigation }) {
   return (
     <View style={styles.detailedEbook}>
       <Image source={backgroundImg} style={styles.backgroundImg} />
-      <ScrollView>
-        <View>
-          <Image style={styles.image} source={content1} />
-        </View>
+      <ScrollView>         
+        <Image style={styles.image} source={content1} />
       </ScrollView>
       <BottomDrawer navigation={navigation} />
     </View>
@@ -41,12 +39,17 @@ const styles = StyleSheet.create({
   detailedEbook: {
     width: width / 1,
     height: height / 1,
+    flex: 1,
   },
+  //image gets cut off when moving down
   image: {
-    top: height / 10,
+    width: width / 5,
+    height: height / 7,
+    position: "relative",
   },
   backgroundImg: {
-    resizeMode: "contain",
+    flex: 1,
+    resizeMode: "cover",
     justifyContent: "center",
     position: "absolute",
     zIndex: 0,

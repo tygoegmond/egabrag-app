@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
   contentGrid: {
     display: "flex",
     width: width / 1,
-    width: width,
     flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "space-evenly",
@@ -36,7 +35,7 @@ const styles = StyleSheet.create({
   },
   gridItem: {
     width: width / 5,
-    margin: width / 40,
+    margin: width / 60,
   },
   images: {
     width: width / 5,

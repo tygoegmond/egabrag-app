@@ -179,7 +179,6 @@ export default function FinancialLiteracy({ navigation }) {
             showsHorizontalScrollIndicator={false}
             data={recentArticles}
             style={styles.flatlist}
-            // moet nog fixen dat hij articles rendered
             renderItem={({ item }) => (
               <TouchableOpacity onPress={pressHandler}>
                 {/* singular on boarding screen word gerendered */}
