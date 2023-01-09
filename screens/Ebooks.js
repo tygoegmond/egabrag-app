@@ -31,8 +31,6 @@ import backgroundImg from "../assets/images/backgroundImg.png";
 import { ScrollView } from "react-native-gesture-handler";
 
 export default function Ebooks({ navigation }) {
-  //import fonts
-
   const Ebooks = [
     {
       source: content1,
@@ -58,8 +56,32 @@ export default function Ebooks({ navigation }) {
       source: content6,
       title: "f",
     },
+    {
+      source: content1,
+      title: "g",
+    },
+    {
+      source: content2,
+      title: "h",
+    },
+    {
+      source: content3,
+      title: "i",
+    },
+    {
+      source: content4,
+      title: "j",
+    },
+    {
+      source: content5,
+      title: "k",
+    },
+    {
+      source: content6,
+      title: "l",
+    },
   ];
-
+  // moet fixen dat de titel niet achter de image komt
   return (
     <View style={styles.ebooks}>
       <Image source={backgroundImg} style={styles.backgroundImg} />
@@ -87,6 +109,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     top: getStatusBarHeight() + height / 32,
     left: width / 11.5,
+    display: "flex",
   },
   backgroundImg: {
     flex: 1,

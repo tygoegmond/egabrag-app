@@ -39,9 +39,6 @@ export default function FinancialLiteracy({ navigation }) {
     "Nabla-Regular": require("../assets/fonts/Nabla-Regular.ttf"),
     "great-escape": require("../assets/fonts/great-escape.ttf"),
   });
-  const pressHandler = () => {
-    navigation.navigate("ArticlePage");
-  };
   const goalAmount = "400";
   const recentEbooks = [
     {
@@ -98,9 +95,19 @@ export default function FinancialLiteracy({ navigation }) {
       description: "a",
     },
   ];
+
   const allEbookHandler = () => {
     navigation.navigate("AllEbooks");
   };
+
+  const pressHandler = () => {
+    navigation.navigate("ArticlePage");
+  };
+
+  const detailedEbookHandler = () => {
+    navigation.navigate("DetailedEbook");
+  };
+
   function timeout(delay) {
     return new Promise((res) => setTimeout(res, delay));
   }
@@ -109,6 +116,7 @@ export default function FinancialLiteracy({ navigation }) {
     await timeout(time);
     setProgress(0.5);
   }
+
   useEffect(() => {
     updateProgress(500);
     setCurrentAmount("800");
@@ -153,11 +161,11 @@ export default function FinancialLiteracy({ navigation }) {
             data={recentEbooks}
             style={styles.flatlist}
             renderItem={({ item }) => (
-              <View>
+              <TouchableOpacity onPress={detailedEbookHandler}>
                 {/* singular on boarding screen word gerendered */}
                 <Image source={item.source} style={styles.images} />
                 {/* // <Text>{item.title}</Text> */}
-              </View>
+              </TouchableOpacity>
             )}
           />
         </View>
@@ -166,9 +174,20 @@ export default function FinancialLiteracy({ navigation }) {
           <Pressable style={styles.pressableDots} onPress={allEbookHandler}>
             <Text style={styles.dots}>•••</Text>
           </Pressable>
-          <TouchableOpacity onPress={pressHandler}>
-            <Image style={styles.images} source={content6} />
-          </TouchableOpacity>
+          <FlatList
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            data={recentArticles}
+            style={styles.flatlist}
+            // moet nog fixen dat hij articles rendered
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={pressHandler}>
+                {/* singular on boarding screen word gerendered */}
+                <Image source={item.source} style={styles.images} />
+                {/* // <Text>{item.title}</Text> */}
+              </TouchableOpacity>
+            )}
+          />
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Your Goals</Text>
@@ -259,7 +278,7 @@ const styles = StyleSheet.create({
   images: {
     width: width / 4.8,
     height: height / 6.72,
-    marginrRight: width / 40,
+    marginRight: width / 40,
   },
   flatlist: {
     width: width * 0.8,
