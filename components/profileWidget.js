@@ -30,20 +30,7 @@ const ProfileWidget = ({ profilePic, user, navigation }) => {
 
   const scrollX = useRef(new Animated.Value(0)).current;
 
-  //import fonts
-  const [fontsLoaded] = useFonts({
-    "Nabla-Regular": require("../assets/fonts/Nabla-Regular.ttf"),
-  });
 
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
-
-  if (!fontsLoaded) {
-    return null;
-  }
   const pressHandler = () => {
     navigation.navigate("Profile");
   };
@@ -61,10 +48,10 @@ const ProfileWidget = ({ profilePic, user, navigation }) => {
         <Text style={styles.profileText}>Profile</Text>
       </View>
       <View style={styles.profileInfoContainer}>
-        <View style={styles.coin}>
+        {/* <View style={styles.coin}>
           <Text style={styles.profileInfo}>{coinAmount}</Text>
           <Image style={styles.pointsIcon} source={pointsIcon} />
-        </View>
+        </View> */}
         <Text style={styles.profileInfo}>
           {prefix} at {suffix}
         </Text>
@@ -293,6 +280,7 @@ const styles = StyleSheet.create({
         top: getStatusBarHeight() + height * 0.001,
         left: width / 14,
         position: "absolute",
+        width: width * 0.7,
         //wrap text
       },
       profileInfoContainer: {
@@ -304,7 +292,7 @@ const styles = StyleSheet.create({
         color: "#000",
         fontSize: 16,
         fontWeight: "bold",
-
+        top:  height * 0.02,
         position: "relative",
       },
       pointsIcon: {

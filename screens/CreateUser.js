@@ -134,20 +134,35 @@ export default function Login({ navigation }) {
   const pressHandler = () => {
     navigation.navigate("Dashboard");
   };
-  const createUserAccount = () => {
+  const createUserAccount = async () => {
     // navigation.navigate("Interests");
     const data = {
-      fullName: fullName,
+      name: fullName,
       email: email,
       password: password,
-      birthdate: date,
-      education: education,
-      grade: grade,
+      device_name: "test",
+      dob: date,
       nationality: nationality,
-      newsletter: newsletter,
-      terms: terms,
+      school: education,
+      school_grade: grade,
+      // newsletter: newsletter,
+      // terms: terms,
     };
     console.log(data);
+    try {
+      const response = await axios.post(
+        "https://egabrag.tygoegmond.nl/api/sanctum/register",
+        data
+      );
+
+      console.log(response);
+      console.log(response.data);
+      setRes(response);
+      updateSecurestore(response.data);
+      navigation.replace("Interests");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const log = () => {
@@ -329,7 +344,7 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
-  },
+},
 
   imgback2: {
     flex: 1,

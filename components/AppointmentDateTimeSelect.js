@@ -94,12 +94,13 @@ const AppointmentDateTimeSelect = ({
   }
 
   function changeDate(e, from) {
+    console.log(e.timestamp, "e", from, "from")
     if (from === "start") {
-      const newDate = new Date(e.nativeEvent.timestamp);
+      const newDate = new Date(e.timestamp);
       setStartDate(newDate);
     }
     if (from === "end") {
-      const newDate = new Date(e.nativeEvent.timestamp);
+      const newDate = new Date(e.timestamp);
       setEndDate(newDate);
     }
   }
@@ -175,7 +176,69 @@ const AppointmentDateTimeSelect = ({
 
       return (
         <View style={styles.inlineStart}>
-          {coach.details?.name ? (
+          <Calendar
+            customHeaderTitle={
+              <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+                {new Intl.DateTimeFormat("en-US", options).format(
+                  month.timestamp
+                )}{" "}
+                {month.year}
+              </Text>
+            }
+            onDayLongPress={(day) => {
+              changeMarkedDates(day);
+            }}
+            theme={{
+              backgroundColor: "black",
+              calendarBackground: "#f2f2f2f2",
+              textSectionTitleColor: "#b6c1cd",
+              textSectionTitleDisabledColor: "#d9e1e8",
+              selectedDayBackgroundColor: "rgba(16, 112, 112, 1)",
+              // selectedDayTextColor: "#ffffff",
+              todayTextColor: "#00adf5",
+              dayTextColor: "#2d4150",
+              textDisabledColor: "lightgrey",
+              dotColor: "#00adf5",
+              selectedDotColor: "#ffffff",
+              arrowColor: "#61CBB4",
+              disabledArrowColor: "#d9e1e8",
+              monthTextColor: "blue",
+              indicatorColor: "blue",
+
+              textDayFontWeight: "bold",
+              textMonthFontWeight: "bold",
+              textDayHeaderFontWeight: "300",
+              textDayFontSize: 16,
+              textMonthFontSize: 16,
+              textDayHeaderFontSize: 16,
+            }}
+            enableSwipeMonths={true}
+            showWeekNumbers={true}
+            style={styles.calendar}
+            // initialDate={fullDate}
+            // minDate={fullDate}
+            //change language
+            monthFormat={"MMMM yyyy"}
+            //change language
+
+            // Handler which gets executed on day press. Default = undefined
+            onDayPress={(day) => {
+              selectDay(day);
+            }}
+            onMonthChange={(month) => {
+              setMonth(month);
+            }}
+            markedDates={{
+              ...markedDates,
+
+              [selectedDay.dateString]: {
+                selected: true,
+                selectedColor: "#61CBB4",
+                text: "red",
+              },
+            }}
+          />
+          {/* {coach.details?.name ? (
             <Calendar
               customHeaderTitle={
                 <Text style={{ fontSize: 16, fontWeight: "bold" }}>
@@ -215,8 +278,8 @@ const AppointmentDateTimeSelect = ({
               enableSwipeMonths={true}
               showWeekNumbers={true}
               style={styles.calendar}
-              initialDate={fullDate}
-              minDate={fullDate}
+              // initialDate={fullDate}
+              // minDate={fullDate}
               //change language
               monthFormat={"MMMM yyyy"}
               //change language
@@ -249,7 +312,7 @@ const AppointmentDateTimeSelect = ({
                 changeDate(e, "start");
               }}
             />
-          )}
+          )} */}
         </View>
       );
     } else {
@@ -275,17 +338,80 @@ const AppointmentDateTimeSelect = ({
 
       return (
         <View style={styles.inlineStart}>
-          <DateTimePicker
+          {/* <DateTimePicker
             display="inline"
             style={styles.inlinedate}
             themeVariant="light"
-            minimumDate={startDate}
+            // minimumDate={startDate}
             value={endDate}
             mode="date"
             onChange={(e) => {
               changeDate(e, "end");
             }}
-          />
+          /> */}
+           <Calendar
+              customHeaderTitle={
+                <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+                  {new Intl.DateTimeFormat("en-US", options).format(
+                    month.timestamp
+                  )}{" "}
+                  {month.year}
+                </Text>
+              }
+              onDayLongPress={(day) => {
+                changeMarkedDates(day);
+              }}
+              theme={{
+                backgroundColor: "black",
+                calendarBackground: "#f2f2f2f2",
+                textSectionTitleColor: "#b6c1cd",
+                textSectionTitleDisabledColor: "#d9e1e8",
+                selectedDayBackgroundColor: "rgba(16, 112, 112, 1)",
+                // selectedDayTextColor: "#ffffff",
+                todayTextColor: "#00adf5",
+                dayTextColor: "#2d4150",
+                textDisabledColor: "lightgrey",
+                dotColor: "#00adf5",
+                selectedDotColor: "#ffffff",
+                arrowColor: "#61CBB4",
+                disabledArrowColor: "#d9e1e8",
+                monthTextColor: "blue",
+                indicatorColor: "blue",
+
+                textDayFontWeight: "bold",
+                textMonthFontWeight: "bold",
+                textDayHeaderFontWeight: "300",
+                textDayFontSize: 16,
+                textMonthFontSize: 16,
+                textDayHeaderFontSize: 16,
+              }}
+              enableSwipeMonths={true}
+              showWeekNumbers={true}
+              style={styles.calendar}
+              // initialDate={fullDate}
+              // minDate={fullDate}
+              //change language
+              monthFormat={"MMMM yyyy"}
+              //change language
+
+              // Handler which gets executed on day press. Default = undefined
+              onDayPress={(day) => {
+                changeDate(day, "end");
+              }}
+              onMonthChange={(month) => {
+                setMonth(month);
+              }}
+              markedDates={{
+                ...markedDates,
+
+                [selectedDay.dateString]: {
+                  selected: true,
+                  selectedColor: "#61CBB4",
+                  text: "red",
+                },
+              }}
+            />
+     
         </View>
       );
     } else {
@@ -316,7 +442,7 @@ const AppointmentDateTimeSelect = ({
             value={startDate}
             mode="time"
             onChange={(e) => {
-              changeDate(e, "start");
+              console.log(e.nativeEvent, "testsetsetset"); changeDate(e.nativeEvent, "start");
             }}
           />
         </View>
@@ -348,7 +474,7 @@ const AppointmentDateTimeSelect = ({
             value={endDate}
             mode="time"
             onChange={(e) => {
-              changeDate(e, "end");
+              changeDate(e.nativeEvent, "end");
             }}
           />
         </View>
@@ -548,7 +674,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginRight: width * 0.05,
-    elevation: 5,
+    elevation: 0,
   },
   datePickerComponent: {
     backgroundColor: "rgba(0,0,0,0.05)",
@@ -559,7 +685,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginLeft: "auto",
     marginRight: width * 0.01,
-    elevation: 5,
+    elevation: 0,
   },
   inlineStart: {
     margin: 0,
@@ -647,7 +773,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5,
+    elevation: 0,
     marginBottom: height * 0.2,
     width: width * 0.9,
     top: height * 0.05,
@@ -672,7 +798,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5,
+    elevation: 0,
     flexDirection: "column",
     flexWrap: "wrap",
     justifyContent: "space-between",
@@ -772,7 +898,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.55,
     shadowRadius: 3.84,
-    elevation: 5,
+    elevation: 0,
 
     position: "absolute",
 

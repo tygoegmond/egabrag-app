@@ -48,6 +48,7 @@ const CoachList = ({ setCoachListState, setLastCoach, setCoach, coach }) => {
           style={styles.list}
           data={[
             {
+              id: 1,
               name: "A. Baino",
               organization: "Classy Notes",
               website: "https://www.cn-lawfinancegroup.com/",
@@ -55,6 +56,7 @@ const CoachList = ({ setCoachListState, setLastCoach, setCoach, coach }) => {
               availability: [1, 2, 4],
             },
             {
+              id: 2,
               name: "J. Schmidt",
               organization: "1 met jezelf",
               website: "https://www.1metjezelf-coaching.com/Coaching/",
