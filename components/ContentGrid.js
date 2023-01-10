@@ -20,7 +20,6 @@ const ContentGrid = ({ data, navigation }) => {
       <View key={index} style={styles.gridItem}>
         <TouchableOpacity onPress={DetailedEbookHandler}>
         <Image style={styles.images} source={ebook.source} />
-        <Text>{ebook.title}</Text>
         </TouchableOpacity>
       </View>
     );
