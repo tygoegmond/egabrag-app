@@ -27,17 +27,18 @@ export default function DetailedEbook({ navigation }) {
   const PdfPageHandler = () => {
     navigation.navigate("PdfPage");
   };
+
   return (
     <View style={styles.detailedEbook}>
       <Image source={backgroundImg} style={styles.backgroundImg} />
-      <View>         
+      <View>
         <Image style={styles.image} source={content1} />
       </View>
       <View style={styles.boxNextToImage}>
         <Text style={styles.title}>De intelligente belegger</Text>
       </View>
       <TouchableOpacity style={styles.readButton} onPress={PdfPageHandler}>
-          <Text style={styles.readButtonText}>Read</Text>
+        <Text style={styles.readButtonText}>Read</Text>
       </TouchableOpacity>
       <View style={styles.description}>
         <Text style={styles.descriptionText}>
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
   readButton: {
     backgroundColor: "#61CBB4",
     width: width / 1.1,
-    height: height / 14,
+    height: height / 18,
     borderRadius: 10,
     padding: 10,
     bottom: getStatusBarHeight(),
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
   },
   descriptionText: {
     fontSize: 16,
-    top: height / 12,
+    top: height / 15,
   },
   backgroundImg: {
     flex: 1,

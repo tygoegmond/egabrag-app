@@ -17,9 +17,9 @@ const ContentGrid = ({ data, navigation }) => {
   };
   const grid = data.map((ebook, index) => {
     return (
-      <View key={index} style={styles.gridItem}>
+      <View key={index} style={styles.gridItem} >
         <TouchableOpacity onPress={DetailedEbookHandler}>
-        <Image style={styles.images} source={ebook.source} />
+        <Image style={styles.images} source={ebook.source}/>
         </TouchableOpacity>
       </View>
     );
@@ -35,9 +35,10 @@ const styles = StyleSheet.create({
     width: width / 1,
     flexWrap: "wrap",
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    alignItems: "center",
     gap: "10% 10%",
     marginBottom: height / 5,
+    left: width / 30
   },
   gridItem: {
     width: width / 5,

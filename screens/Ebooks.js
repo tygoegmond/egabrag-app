@@ -120,14 +120,6 @@ export default function Ebooks({ navigation }) {
       source: content4,
       title: "j",
     },
-    {
-      source: content5,
-      title: "k",
-    },
-    {
-      source: content6,
-      title: "l",
-    },
   ];
 
   return (
