@@ -36,10 +36,8 @@ export default function DetailedEbook({ navigation }) {
       <View style={styles.boxNextToImage}>
         <Text style={styles.title}>De intelligente belegger</Text>
       </View>
-      <TouchableOpacity onPress={PdfPageHandler}>
-        <View style={styles.readButton}>
-          <Text>Read</Text>
-        </View>
+      <TouchableOpacity style={styles.readButton} onPress={PdfPageHandler}>
+          <Text style={styles.readButtonText}>Read</Text>
       </TouchableOpacity>
       <View style={styles.description}>
         <Text style={styles.descriptionText}>
@@ -80,20 +78,28 @@ const styles = StyleSheet.create({
     top: height / 20,
   },
   readButton: {
-    marginBottom: 10,
-    width: width / 1.1,
-    height: height / 25,
-    left: width / 22,
-    top: height / 18,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 10,
     backgroundColor: "#61CBB4",
-    borderWidth: 1,
-    borderColor: "#107070",
+    width: width / 1.1,
+    height: height / 14,
+    borderRadius: 10,
+    padding: 10,
+    bottom: getStatusBarHeight(),
+    alignSelf: "center",
+    textAlign: "center",
+    position: "absolute",
+    justifyContent: "center",
+    top: height / 3.85,
+  },
+  readButtonText: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+    padding: 0,
   },
   descriptionText: {
     fontSize: 16,
+    top: height / 12,
   },
   backgroundImg: {
     flex: 1,

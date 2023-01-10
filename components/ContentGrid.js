@@ -9,13 +9,19 @@ import {
   Dimensions,
   ScrollView,
 } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const ContentGrid = ({ data, navigation }) => {
+  const DetailedEbookHandler = () => {
+    navigation.navigate("DetailedEbook");
+  };
   const grid = data.map((ebook, index) => {
     return (
       <View key={index} style={styles.gridItem}>
+        <TouchableOpacity onPress={DetailedEbookHandler}>
         <Image style={styles.images} source={ebook.source} />
         <Text>{ebook.title}</Text>
+        </TouchableOpacity>
       </View>
     );
   });
@@ -32,6 +38,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
     gap: "10% 10%",
+    marginBottom: height / 5,
   },
   gridItem: {
     width: width / 5,
