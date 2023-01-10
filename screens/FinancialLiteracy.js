@@ -191,7 +191,7 @@ export default function FinancialLiteracy({ navigation }) {
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Your Goals</Text>
           <Progress.Bar
-            width={width * 0.78}
+            width={width / 1.25}
             thickness={12}
             height={height * 0.02}
             color={"#61CBB4"}
@@ -209,7 +209,8 @@ export default function FinancialLiteracy({ navigation }) {
               {
                 flexDirection: "row",
                 zIndex: 10,
-                height: 100,
+                width: width / 1.25,
+                top: height / 100,
               },
               styles.widgetViewContent,
             ]}

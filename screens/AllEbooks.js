@@ -37,8 +37,12 @@ export default function FinancialLiteracy({ navigation }) {
     "great-escape": require("../assets/fonts/great-escape.ttf"),
   });
 
-  const EbookHandler = () => {
+  const EbooksHandler = () => {
     navigation.navigate("Ebooks");
+  };
+
+  const DetailedEbookHandler = () => {
+    navigation.navigate("DetailedEbook");
   };
 
   const popular = [
@@ -208,81 +212,85 @@ export default function FinancialLiteracy({ navigation }) {
       <Image source={backgroundImg} style={styles.backgroundImg} />
       <ScrollView>
         <Text style={[styles.title, { marginTop: height / 25 }]}>E-Books</Text>
-      <View style={styles.widgetViewContentContainer}>
-        <Text style={styles.widgetViewContentTitle}>Popular</Text>
-        <FlatList
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          data={popular}
-          style={styles.flatlist}
-          renderItem={({ item }) => (
-            <View>
-              {/* singular on boarding screen word gerendered */}
-                <Text style={styles.popularityNumber}>{item.popularity}</Text>
-                <Image source={item.source} style={styles.imagesPopular} />
-            </View>
-          )}
-        />
-      </View>
-      <View style={styles.widgetViewContentContainer}>
-        <Text style={styles.widgetViewContentTitle}>Finance</Text>
-          <Pressable style={styles.pressableDots} onPress={EbookHandler}>
+        <View style={styles.widgetViewContentContainer}>
+          <Text style={styles.widgetViewContentTitle}>Popular</Text>
+          <FlatList
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            data={popular}
+            style={styles.flatlist}
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={DetailedEbookHandler}>
+                <View>
+                  <Text style={styles.popularityNumber}>{item.popularity}</Text>
+                  <Image source={item.source} style={styles.imagesPopular} />
+                </View>
+              </TouchableOpacity>
+            )}
+          />
+        </View>
+        <View style={styles.widgetViewContentContainer}>
+          <Text style={styles.widgetViewContentTitle}>Finance</Text>
+          <Pressable style={styles.pressableDots} onPress={EbooksHandler}>
             <Text style={styles.dots}>•••</Text>
           </Pressable>
-        <FlatList
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          data={finance}
-          style={styles.flatlist}
-          renderItem={({ item }) => (
-            <View>
-              {/* singular on boarding screen word gerendered */}
-              <Image source={item.source} style={styles.images} />
-            </View>
-          )}
-        />
-      </View>
-      <View style={styles.widgetViewContentContainer}>
-        <Text style={styles.widgetViewContentTitle}>Mindfulness</Text>
-          <Pressable style={styles.pressableDots} onPress={EbookHandler}>
+          <FlatList
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            data={finance}
+            style={styles.flatlist}
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={DetailedEbookHandler}>
+                <View>
+                  <Image source={item.source} style={styles.images} />
+                </View>
+              </TouchableOpacity>
+            )}
+          />
+        </View>
+        <View style={styles.widgetViewContentContainer}>
+          <Text style={styles.widgetViewContentTitle}>Mindfulness</Text>
+          <Pressable style={styles.pressableDots} onPress={EbooksHandler}>
             <Text style={styles.dots}>•••</Text>
           </Pressable>
-        <FlatList
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          data={mindfulness}
-          style={styles.flatlist}
-          renderItem={({ item }) => (
-            <View>
-              {/* singular on boarding screen word gerendered */}
-              <Image source={item.source} style={styles.images} />
-            </View>
-          )}
-        />
-      </View>
+          <FlatList
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            data={mindfulness}
+            style={styles.flatlist}
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={DetailedEbookHandler}>
+                <View>
+                  <Image source={item.source} style={styles.images} />
+                </View>
+              </TouchableOpacity>
+            )}
+          />
+        </View>
         <View
           style={[
             styles.widgetViewContentContainer,
-            { marginBottom: height / 10 },
+            { marginBottom: height / 9 },
           ]}
         >
-        <Text style={styles.widgetViewContentTitle}>Education</Text>
-          <Pressable style={styles.pressableDots} onPress={EbookHandler}>
+          <Text style={styles.widgetViewContentTitle}>Education</Text>
+          <Pressable style={styles.pressableDots} onPress={EbooksHandler}>
             <Text style={styles.dots}>•••</Text>
           </Pressable>
-        <FlatList
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          data={education}
-          style={styles.flatlist}
-          renderItem={({ item }) => (
-            <View>
-              {/* singular on boarding screen word gerendered */}
-              <Image source={item.source} style={styles.images} />
-            </View>
-          )}
-        />
-      </View>
+          <FlatList
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            data={education}
+            style={styles.flatlist}
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={DetailedEbookHandler}>
+                <View>
+                  <Image source={item.source} style={styles.images} />
+                </View>
+              </TouchableOpacity>
+            )}
+          />
+        </View>
       </ScrollView>
       <BottomDrawer navigation={navigation} />
     </View>
