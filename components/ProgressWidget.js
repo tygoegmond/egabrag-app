@@ -21,7 +21,14 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useFonts } from "expo-font";
 
 // create onboarding component
-const ProgressWidget = ({ goalTitle, startAmount, endAmount, amount }) => {
+const ProgressWidget = ({
+  onPress,
+  navigation,
+  goalTitle,
+  startAmount,
+  endAmount,
+  amount,
+}) => {
   //declare states
   const [progress, setProgress] = useState(0);
 
@@ -40,7 +47,7 @@ const ProgressWidget = ({ goalTitle, startAmount, endAmount, amount }) => {
     return null;
   }
   const pressHandler = () => {
-    console.log("hi");
+    onPress();
   };
   function timeout(delay) {
     return new Promise((res) => setTimeout(res, delay));
