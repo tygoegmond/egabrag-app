@@ -36,13 +36,22 @@ export default function DetailedEbook({ navigation }) {
       </View>
       <View style={styles.boxNextToImage}>
         <Text style={styles.title}>De intelligente belegger</Text>
+        <Text style={styles.author}>Henk Rood</Text>
+        <Text style={styles.genre}>Mindfulness</Text>
       </View>
       <TouchableOpacity style={styles.readButton} onPress={PdfPageHandler}>
         <Text style={styles.readButtonText}>Read</Text>
       </TouchableOpacity>
       <View style={styles.description}>
+        <Text style={styles.descriptionTitle}>Description:</Text>
         <Text style={styles.descriptionText}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum
         </Text>
       </View>
       <BottomDrawer navigation={navigation} />
@@ -67,16 +76,23 @@ const styles = StyleSheet.create({
     width: width / 1.7,
     height: height / 4.93,
     left: width / 2.8,
-    bottom: height / 1.385,
+    bottom: height / 1.333,
     position: "absolute",
-    },
-    title: {
-      fontSize: 20,
-    },
+  },
+  title: {
+    fontSize: width / 20,
+  },
+  author: {
+    fontSize: width / 25,
+    color: "#107070",
+  },
+  genre: {
+    fontSize: width / 25,
+  },
   description: {
     width: width / 1.1,
     left: width / 22,
-    top: height / 20,
+    top: height / 18,
   },
   readButton: {
     backgroundColor: "#61CBB4",
@@ -89,7 +105,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     position: "absolute",
     justifyContent: "center",
-    top: height / 3.85,
+    top: height / 3.8,
   },
   readButtonText: {
     color: "white",
@@ -98,8 +114,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     padding: 0,
   },
+  descriptionTitle: {
+    fontSize: width / 20,
+    top: height / 15,
+  },
   descriptionText: {
-    fontSize: 16,
+    fontSize: width / 27,
     top: height / 15,
   },
   backgroundImg: {
