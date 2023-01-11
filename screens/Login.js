@@ -72,7 +72,7 @@ export default function Login({ navigation }) {
       );
       console.log(response.data, "response");
       setRes(response);
-      updateSecurestore(response.data);
+      updateSecurestore("6|onDCxDxRs8fxe3ghWb0DmNU9OLbLfK7luSV16GV6");
       navigation.navigate("Dashboard");
 
       // axios

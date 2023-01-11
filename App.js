@@ -14,7 +14,7 @@ import BottomDrawer from "./components/BottomDrawer";
 import "intl";
 import "intl/locale-data/jsonp/en";
 
-export default function App({ navigation }) {
+export default function App() {
   return (
     <>
       <Navigator />
