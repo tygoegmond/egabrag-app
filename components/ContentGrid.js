@@ -10,6 +10,7 @@ import {
   ScrollView,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import * as Securestore from "expo-secure-store";
 
 const ContentGrid = ({ data, navigation }) => {
   const DetailedEbookHandler = () => {
@@ -17,9 +18,17 @@ const ContentGrid = ({ data, navigation }) => {
   };
   const grid = data.map((ebook, index) => {
     return (
-      <View key={index} style={styles.gridItem} >
-        <TouchableOpacity onPress={DetailedEbookHandler}>
-        <Image style={styles.images} source={ebook.source}/>
+      <View key={index} style={styles.gridItem}>
+        <TouchableOpacity
+          onPress={() => {
+            (async () => {
+              await Securestore.setItemAsync("link", ebook.link);
+            })();
+            console.log(ebook.link);
+            DetailedEbookHandler();
+          }}
+        >
+          <Image style={styles.images} source={ebook.source} />
         </TouchableOpacity>
       </View>
     );
@@ -38,7 +47,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: "10% 10%",
     marginBottom: height / 5,
-    left: width / 30
+    left: width / 30,
   },
   gridItem: {
     width: width / 5,
