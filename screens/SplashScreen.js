@@ -21,17 +21,15 @@ export default function SplashScreen({navigation}) {
     return(
         <View style={Global.container}>
             <Image source={medLogo} style={styles.images} />
-            <Progress.Bar progress={0} width={200}  color={"#61CBB4"}/>
+            <Progress.Bar progress={0} width={200} color={"#61CBB4"}/>
         </View>
     )
 }
 const { height, width } = Dimensions.get("screen");
 
 const styles = StyleSheet.create({
-
     images: {
-
         height: height / 5,
-        width: width /1.2
+        width: width / 1.2
     }
 })

@@ -80,17 +80,55 @@ export default function Ebooks({ navigation }) {
       source: content6,
       title: "l",
     },
+    {
+      source: content1,
+      title: "a",
+    },
+    {
+      source: content2,
+      title: "b",
+    },
+    {
+      source: content3,
+      title: "c",
+    },
+    {
+      source: content4,
+      title: "d",
+    },
+    {
+      source: content5,
+      title: "e",
+    },
+    {
+      source: content6,
+      title: "f",
+    },
+    {
+      source: content1,
+      title: "g",
+    },
+    {
+      source: content2,
+      title: "h",
+    },
+    {
+      source: content3,
+      title: "i",
+    },
+    {
+      source: content4,
+      title: "j",
+    },
   ];
-  // moet fixen dat de titel niet achter de image komt
+
   return (
     <View style={styles.ebooks}>
       <Image source={backgroundImg} style={styles.backgroundImg} />
-      <ScrollView>
         <Text style={[styles.title]}>E-Books</Text>
-        <View>
-          <ContentGrid data={Ebooks} navigation={navigation} />
-        </View>
-      </ScrollView>
+        <ScrollView style={{top: height / 12}}>
+          <ContentGrid data={Ebooks} navigation={navigation}/>
+        </ScrollView>
       <BottomDrawer navigation={navigation} />
     </View>
   );

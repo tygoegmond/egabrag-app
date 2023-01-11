@@ -21,6 +21,9 @@ import PdfPage from "../screens/PdfPage";
 import AllEbooks from "../screens/AllEbooks";
 import DetailedEbook from "../screens/DetailedEbook";
 import Interests from "../screens/Interests";
+import SavingGoals from "../screens/SavingGoals";
+import EditGoals from "../screens/EditGoals";
+import CreateGoal from "../screens/CreateGoal";
 //define object with screens
 
 const screens = {
@@ -67,6 +70,11 @@ const screens = {
   Interests: {
     screen: Interests,
   },
+  SavingGoals: {
+    screen: SavingGoals,
+  },
+  EditGoals: { screen: EditGoals },
+  CreateGoal: { screen: CreateGoal },
 };
 //creating homestack to navigate between screens
 

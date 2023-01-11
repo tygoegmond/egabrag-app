@@ -21,7 +21,14 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useFonts } from "expo-font";
 
 // create onboarding component
-const ProgressWidget = ({ goalTitle, startAmount, endAmount, amount }) => {
+const ProgressWidget = ({
+  onPress,
+  navigation,
+  goalTitle,
+  startAmount,
+  endAmount,
+  amount,
+}) => {
   //declare states
   const [progress, setProgress] = useState(0);
 
@@ -40,7 +47,7 @@ const ProgressWidget = ({ goalTitle, startAmount, endAmount, amount }) => {
     return null;
   }
   const pressHandler = () => {
-    console.log("hi");
+    onPress();
   };
   function timeout(delay) {
     return new Promise((res) => setTimeout(res, delay));
@@ -200,13 +207,11 @@ const styles = StyleSheet.create({
         position: "absolute",
         justifyContent: "center",
       },
-
       profileText: {
         color: "#fff",
         backgroundColor: "#61CBB4",
         padding: 15,
         paddingHorizontal: 30,
-
         borderRadius: 24,
         overflow: "hidden",
         fontWeight: "bold",
@@ -223,7 +228,6 @@ const styles = StyleSheet.create({
         position: "absolute",
         top: getStatusBarHeight() + height / 11,
       },
-
       profileInfoContainer: {
         width: width / 1.5,
         left: width / 14,
@@ -243,14 +247,13 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: "bold",
         top: height * 0.03,
-
         position: "relative",
       },
       recent: {
         color: "#fff",
         fontSize: 22,
         fontWeight: "bold",
-        top: height * 0.04,
+        top: height * 0.03,
         position: "absolute",
       },
       progressbar: {
@@ -263,7 +266,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         height: height * 0.15,
         left: width / 14,
-        top: height * 0.02,
+        top: height * 0.01,
         marginBottom: height / 120,
         position: "absolute",
       },

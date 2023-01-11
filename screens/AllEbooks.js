@@ -37,8 +37,12 @@ export default function FinancialLiteracy({ navigation }) {
     "great-escape": require("../assets/fonts/great-escape.ttf"),
   });
 
-  const EbookHandler = () => {
+  const EbooksHandler = () => {
     navigation.navigate("Ebooks");
+  };
+
+  const DetailedEbookHandler = () => {
+    navigation.navigate("DetailedEbook");
   };
 
   const popular = [
@@ -216,17 +220,18 @@ export default function FinancialLiteracy({ navigation }) {
             data={popular}
             style={styles.flatlist}
             renderItem={({ item }) => (
-              <View>
-                {/* singular on boarding screen word gerendered */}
-                <Text style={styles.popularityNumber}>{item.popularity}</Text>
-                <Image source={item.source} style={styles.imagesPopular} />
-              </View>
+              <TouchableOpacity onPress={DetailedEbookHandler}>
+                <View>
+                  <Text style={styles.popularityNumber}>{item.popularity}</Text>
+                  <Image source={item.source} style={styles.imagesPopular} />
+                </View>
+              </TouchableOpacity>
             )}
           />
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Finance</Text>
-          <Pressable style={styles.pressableDots} onPress={EbookHandler}>
+          <Pressable style={styles.pressableDots} onPress={EbooksHandler}>
             <Text style={styles.dots}>•••</Text>
           </Pressable>
           <FlatList
@@ -235,16 +240,17 @@ export default function FinancialLiteracy({ navigation }) {
             data={finance}
             style={styles.flatlist}
             renderItem={({ item }) => (
-              <View>
-                {/* singular on boarding screen word gerendered */}
-                <Image source={item.source} style={styles.images} />
-              </View>
+              <TouchableOpacity onPress={DetailedEbookHandler}>
+                <View>
+                  <Image source={item.source} style={styles.images} />
+                </View>
+              </TouchableOpacity>
             )}
           />
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Mindfulness</Text>
-          <Pressable style={styles.pressableDots} onPress={EbookHandler}>
+          <Pressable style={styles.pressableDots} onPress={EbooksHandler}>
             <Text style={styles.dots}>•••</Text>
           </Pressable>
           <FlatList
@@ -253,21 +259,22 @@ export default function FinancialLiteracy({ navigation }) {
             data={mindfulness}
             style={styles.flatlist}
             renderItem={({ item }) => (
-              <View>
-                {/* singular on boarding screen word gerendered */}
-                <Image source={item.source} style={styles.images} />
-              </View>
+              <TouchableOpacity onPress={DetailedEbookHandler}>
+                <View>
+                  <Image source={item.source} style={styles.images} />
+                </View>
+              </TouchableOpacity>
             )}
           />
         </View>
         <View
           style={[
             styles.widgetViewContentContainer,
-            { marginBottom: height / 10 },
+            { marginBottom: height / 9 },
           ]}
         >
           <Text style={styles.widgetViewContentTitle}>Education</Text>
-          <Pressable style={styles.pressableDots} onPress={EbookHandler}>
+          <Pressable style={styles.pressableDots} onPress={EbooksHandler}>
             <Text style={styles.dots}>•••</Text>
           </Pressable>
           <FlatList
@@ -276,10 +283,11 @@ export default function FinancialLiteracy({ navigation }) {
             data={education}
             style={styles.flatlist}
             renderItem={({ item }) => (
-              <View>
-                {/* singular on boarding screen word gerendered */}
-                <Image source={item.source} style={styles.images} />
-              </View>
+              <TouchableOpacity onPress={DetailedEbookHandler}>
+                <View>
+                  <Image source={item.source} style={styles.images} />
+                </View>
+              </TouchableOpacity>
             )}
           />
         </View>

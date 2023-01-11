@@ -1,10 +1,4 @@
-import {
-  StyleSheet,
-  View,
-  StatusBar,
-  Image,
-  Dimensions,
-} from "react-native";
+import { StyleSheet, View, StatusBar, Image, Dimensions } from "react-native";
 import { useFonts } from "expo-font";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import Swiper from "react-native-swiper";
@@ -23,7 +17,6 @@ import Login from "./Login";
 import Start from "./Start";
 
 export default function Dashboard({ navigation }) {
-  //import fonts
   const [re, setRe] = useState("");
   const [user, setUser] = useState("");
   const [fontsLoaded] = useFonts({
@@ -102,7 +95,6 @@ export default function Dashboard({ navigation }) {
         backgroundColor="#D4FFF6"
         barStyle={"dark-content"}
         showHideTransition={"fade"}
-        
       />
       <Swiper
         showsPagination={false}
@@ -135,6 +127,8 @@ export default function Dashboard({ navigation }) {
             ]}
           />
           <ProgressWidget
+            onPress={() => navigation.navigate("SavingGoals")}
+            navigation={navigation}
             goalTitle={"Laptop for school"}
             endAmount={"800.00"}
             amount={"200.00"}
