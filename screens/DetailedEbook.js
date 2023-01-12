@@ -69,18 +69,19 @@ const styles = StyleSheet.create({
     width: width / 3.5,
     height: height / 4.9,
     position: "relative",
-    left: width / 22,
-    top: height / 22,
+    left: width / 12,
+    top: height / 14,
   },
   boxNextToImage: {
-    width: width / 1.7,
+    width: width / 2,
     height: height / 4.93,
-    left: width / 2.8,
+    left: width / 2.4,
+    top: height / 14,
     bottom: height / 1.333,
     position: "absolute",
   },
   title: {
-    fontSize: width / 20,
+    fontSize: width / 22,
   },
   author: {
     fontSize: width / 25,
@@ -90,13 +91,13 @@ const styles = StyleSheet.create({
     fontSize: width / 25,
   },
   description: {
-    width: width / 1.1,
-    left: width / 22,
-    top: height / 18,
+    width: width / 1.2,
+    left: width / 12,
+    top: height / 7,
   },
   readButton: {
     backgroundColor: "#61CBB4",
-    width: width / 1.1,
+    width: width / 1.2,
     height: height / 18,
     borderRadius: 10,
     padding: 10,
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     position: "absolute",
     justifyContent: "center",
-    top: height / 3.8,
+    top: height / 3.5,
   },
   readButtonText: {
     color: "white",
@@ -116,11 +117,9 @@ const styles = StyleSheet.create({
   },
   descriptionTitle: {
     fontSize: width / 20,
-    top: height / 15,
   },
   descriptionText: {
     fontSize: width / 27,
-    top: height / 15,
   },
   backgroundImg: {
     flex: 1,
