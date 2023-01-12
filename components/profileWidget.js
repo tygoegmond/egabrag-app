@@ -442,7 +442,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         textAlign: "center",
       },
-
       container: {
         flex: 1,
         backgroundColor: "#eee",
@@ -480,7 +479,6 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         height: height / 5.5,
         bottom: getStatusBarHeight() + height / 4.1,
-
         justifyContent: "center",
       },
       profilePic: {
@@ -524,7 +522,7 @@ const styles = StyleSheet.create({
       },
       profileInfo: {
         color: "#000",
-        fontSize: 14,
+        fontSize: width / 27,
         fontWeight: "bold",
         position: "relative",
       },

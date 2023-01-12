@@ -29,6 +29,7 @@ import BottomDrawer from "../components/BottomDrawer";
 import ProgressWidget from "../components/ProgressWidget";
 import backgroundImg from "../assets/images/backgroundImg.png";
 import * as Progress from "react-native-progress";
+import capture from "../assets/images/capture.png";
 
 export default function FinancialLiteracy({ navigation }) {
   //import fonts
@@ -42,7 +43,7 @@ export default function FinancialLiteracy({ navigation }) {
   const goalAmount = "400";
   const recentEbooks = [
     {
-      source: content1,
+      source: capture,
       title: "De intelligente belegger",
       description: "a",
     },

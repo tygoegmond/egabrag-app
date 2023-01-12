@@ -48,10 +48,10 @@ export default function Dashboard({ navigation }) {
   }
 
   useEffect(() => {
-    // Securestore.getItemAsync("token").then((token) => {
-    //   setRe(token);
-    // });
-    // let data = getUserData();
+    Securestore.getItemAsync("token").then((token) => {
+      setRe(token);
+    });
+    let data = getUserData();
     (async () => {
       const name = await Securestore.getItemAsync("name");
       Setname(name != null ? name.toString() : "Nieuwe Laptop voor school");

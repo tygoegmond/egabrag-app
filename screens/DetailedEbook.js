@@ -21,7 +21,7 @@ import React, { useCallback } from "react";
 import Dashboardpic from "../assets/images/Dashboardpic2.png";
 import Global from "../assets/styles/Global";
 import backgroundImg from "../assets/images/backgroundImg.png";
-import content1 from "../assets/images/content1.png";
+import capture from "../assets/images/capture.png";
 
 export default function DetailedEbook({ navigation }) {
   const PdfPageHandler = () => {
@@ -32,12 +32,12 @@ export default function DetailedEbook({ navigation }) {
     <View style={styles.detailedEbook}>
       <Image source={backgroundImg} style={styles.backgroundImg} />
       <View>
-        <Image style={styles.image} source={content1} />
+        <Image style={styles.image} source={capture} />
       </View>
       <View style={styles.boxNextToImage}>
-        <Text style={styles.title}>De intelligente belegger</Text>
-        <Text style={styles.author}>Henk Rood</Text>
-        <Text style={styles.genre}>Mindfulness</Text>
+        <Text style={styles.title}>Money habits guide for 30 days</Text>
+        <Text style={styles.author}>My education lifestyle</Text>
+        <Text style={styles.genre}>Finance</Text>
       </View>
       <TouchableOpacity style={styles.readButton} onPress={PdfPageHandler}>
         <Text style={styles.readButtonText}>Read</Text>
@@ -45,13 +45,10 @@ export default function DetailedEbook({ navigation }) {
       <View style={styles.description}>
         <Text style={styles.descriptionTitle}>Description:</Text>
         <Text style={styles.descriptionText}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum
+          When it comes to money, you really can't take things one day at a
+          time. You must look ahead to the future, set financial goals, and then
+          create a plan to reach those goals. Once that is done, you start
+          meeting those goals - one day and step at a time.
         </Text>
       </View>
       <BottomDrawer navigation={navigation} />
@@ -66,16 +63,15 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   image: {
-    width: width / 3.5,
+    width: width / 3,
     height: height / 4.9,
-    position: "relative",
     left: width / 12,
     top: height / 14,
   },
   boxNextToImage: {
-    width: width / 2,
+    width: width / 2.15,
     height: height / 4.93,
-    left: width / 2.4,
+    left: width / 2.25,
     top: height / 14,
     bottom: height / 1.333,
     position: "absolute",
