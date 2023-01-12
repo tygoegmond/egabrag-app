@@ -19,6 +19,10 @@ import Start from "./Start";
 export default function Dashboard({ navigation }) {
   const [re, setRe] = useState("");
   const [user, setUser] = useState("");
+  const [name, Setname] = useState(null);
+  const [savedamount, Setsavedamount] = useState(null);
+  const [totalamount, Settotalamount] = useState(null);
+
   const [fontsLoaded] = useFonts({
     "Nabla-Regular": require("../assets/fonts/Nabla-Regular.ttf"),
     "great-escape": require("../assets/fonts/great-escape.ttf"),
@@ -44,10 +48,19 @@ export default function Dashboard({ navigation }) {
   }
 
   useEffect(() => {
-    Securestore.getItemAsync("token").then((token) => {
-      setRe(token);
-    });
-    let data = getUserData();
+    // Securestore.getItemAsync("token").then((token) => {
+    //   setRe(token);
+    // });
+    // let data = getUserData();
+    (async () => {
+      const name = await Securestore.getItemAsync("name");
+      Setname(name != null ? name.toString() : "Nieuwe Laptop voor school");
+      const totalamount = await Securestore.getItemAsync("total_amount");
+      Settotalamount(totalamount != null ? totalamount.toString() : 200);
+      const savedamount = await Securestore.getItemAsync("saved_amount");
+      Setsavedamount(savedamount != null ? savedamount : 800);
+      console.log(savedamount, totalamount, name);
+    })();
   }, []);
 
   const onLayoutRootView = useCallback(async () => {
@@ -105,7 +118,6 @@ export default function Dashboard({ navigation }) {
       >
         <View style={styles.container}>
           <Image style={styles.imgback2} source={backgroundImg} />
-
           <ProfileWidget
             navigation={navigation}
             user={user}
@@ -126,13 +138,16 @@ export default function Dashboard({ navigation }) {
               "The art of budgeting",
             ]}
           />
-          <ProgressWidget
-            onPress={() => navigation.navigate("SavingGoals")}
-            navigation={navigation}
-            goalTitle={"Laptop for school"}
-            endAmount={"800.00"}
-            amount={"200.00"}
-          />
+
+          {name != null && savedamount != null && totalamount != null && (
+            <ProgressWidget
+              onPress={() => navigation.navigate("SavingGoals")}
+              navigation={navigation}
+              goalTitle={name}
+              endAmount={totalamount}
+              amount={savedamount}
+            />
+          )}
           <BottomDrawer navigation={navigation} />
         </View>
       </Swiper>

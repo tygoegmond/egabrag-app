@@ -35,100 +35,122 @@ export default function Ebooks({ navigation }) {
     {
       source: content1,
       title: "a",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Financial_Literacy_Creating_a_savings_first_aid_kit.pdf",
     },
     {
       source: content2,
       title: "b",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Financial_Literacy_Money_Habits_Guide_for_30_days.pdf",
     },
     {
       source: content3,
       title: "c",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=FreeBook_10_Easy_Steps_to_Turning_Dreams_into_Reality.pdf",
     },
     {
       source: content4,
       title: "d",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=FreeBook_The_Real_Power_of_Affirmations.pdf",
     },
     {
       source: content5,
       title: "e",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Mindfulness_Practice_Progressive_Muscle_Relaxation.pdf",
     },
     {
       source: content6,
       title: "f",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Onderzoeksrapport_Esther_Zouwra.pdf",
     },
     {
       source: content1,
       title: "g",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Financial_Literacy_Creating_a_savings_first_aid_kit.pdf",
     },
     {
       source: content2,
       title: "h",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Financial_Literacy_Money_Habits_Guide_for_30_days.pdf",
     },
     {
       source: content3,
       title: "i",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=FreeBook_10_Easy_Steps_to_Turning_Dreams_into_Reality.pdf",
     },
     {
       source: content4,
       title: "j",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=FreeBook_The_Real_Power_of_Affirmations.pdf",
     },
     {
       source: content5,
       title: "k",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Mindfulness_Practice_Progressive_Muscle_Relaxation.pdf",
     },
     {
       source: content6,
       title: "l",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Onderzoeksrapport_Esther_Zouwra.pdf",
     },
     {
       source: content1,
       title: "a",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Financial_Literacy_Creating_a_savings_first_aid_kit.pdf",
     },
     {
       source: content2,
       title: "b",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Financial_Literacy_Money_Habits_Guide_for_30_days.pdf",
     },
     {
       source: content3,
       title: "c",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=FreeBook_10_Easy_Steps_to_Turning_Dreams_into_Reality.pdf",
     },
     {
       source: content4,
       title: "d",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=FreeBook_The_Real_Power_of_Affirmations.pdf",
     },
     {
       source: content5,
       title: "e",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Mindfulness_Practice_Progressive_Muscle_Relaxation.pdf",
     },
     {
       source: content6,
       title: "f",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Onderzoeksrapport_Esther_Zouwra.pdf",
     },
     {
       source: content1,
       title: "g",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Financial_Literacy_Creating_a_savings_first_aid_kit.pdf",
     },
     {
       source: content2,
       title: "h",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Financial_Literacy_Money_Habits_Guide_for_30_days.pdf",
     },
     {
       source: content3,
       title: "i",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=FreeBook_10_Easy_Steps_to_Turning_Dreams_into_Reality.pdf",
     },
     {
       source: content4,
       title: "j",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=FreeBook_The_Real_Power_of_Affirmations.pdf",
     },
   ];
 
   return (
     <View style={styles.ebooks}>
       <Image source={backgroundImg} style={styles.backgroundImg} />
-        <Text style={[styles.title]}>E-Books</Text>
-        <ScrollView style={{top: height / 12}}>
-          <ContentGrid data={Ebooks} navigation={navigation}/>
-        </ScrollView>
+      <Text style={[styles.title]}>E-Books</Text>
+      <ScrollView style={{ top: height / 12 }}>
+        <ContentGrid data={Ebooks} navigation={navigation} />
+      </ScrollView>
       <BottomDrawer navigation={navigation} />
     </View>
   );

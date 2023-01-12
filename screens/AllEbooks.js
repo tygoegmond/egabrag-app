@@ -50,31 +50,37 @@ export default function FinancialLiteracy({ navigation }) {
       source: content1,
       title: "a",
       popularity: "1",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Financial_Literacy_Creating_a_savings_first_aid_kit.pdf",
     },
     {
       source: content2,
       title: "b",
       popularity: "2",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Financial_Literacy_Money_Habits_Guide_for_30_days.pdf",
     },
     {
       source: content3,
       title: "c",
       popularity: "3",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=FreeBook_10_Easy_Steps_to_Turning_Dreams_into_Reality.pdf",
     },
     {
       source: content4,
       title: "d",
       popularity: "4",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=FreeBook_The_Real_Power_of_Affirmations.pdf",
     },
     {
       source: content5,
       title: "e",
       popularity: "5",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Mindfulness_Practice_Progressive_Muscle_Relaxation.pdf",
     },
     {
       source: content6,
       title: "f",
       popularity: "6",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Onderzoeksrapport_Esther_Zouwra.pdf",
     },
   ];
 
@@ -82,6 +88,27 @@ export default function FinancialLiteracy({ navigation }) {
     {
       source: content1,
       title: "a",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Financial_Literacy_Creating_a_savings_first_aid_kit.pdf",
+    },
+    {
+      source: content2,
+      title: "b",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Financial_Literacy_Money_Habits_Guide_for_30_days.pdf",
+    },
+    {
+      source: content1,
+      title: "a",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Financial_Literacy_Creating_a_savings_first_aid_kit.pdf",
+    },
+    {
+      source: content2,
+      title: "b",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Financial_Literacy_Money_Habits_Guide_for_30_days.pdf",
+    },
+    {
+      source: content1,
+      title: "a",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Financial_Literacy_Creating_a_savings_first_aid_kit.pdf",
     },
     {
       source: content2,
@@ -90,34 +117,22 @@ export default function FinancialLiteracy({ navigation }) {
     {
       source: content1,
       title: "a",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Financial_Literacy_Creating_a_savings_first_aid_kit.pdf",
     },
     {
       source: content2,
       title: "b",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Financial_Literacy_Money_Habits_Guide_for_30_days.pdf",
     },
     {
       source: content1,
       title: "a",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Financial_Literacy_Creating_a_savings_first_aid_kit.pdf",
     },
     {
       source: content2,
       title: "b",
-    },
-    {
-      source: content1,
-      title: "a",
-    },
-    {
-      source: content2,
-      title: "b",
-    },
-    {
-      source: content1,
-      title: "a",
-    },
-    {
-      source: content2,
-      title: "b",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Financial_Literacy_Money_Habits_Guide_for_30_days.pdf",
     },
   ];
 
@@ -125,6 +140,27 @@ export default function FinancialLiteracy({ navigation }) {
     {
       source: content3,
       title: "c",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=FreeBook_10_Easy_Steps_to_Turning_Dreams_into_Reality.pdf",
+    },
+    {
+      source: content4,
+      title: "d",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=FreeBook_The_Real_Power_of_Affirmations.pdf",
+    },
+    {
+      source: content3,
+      title: "c",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=FreeBook_10_Easy_Steps_to_Turning_Dreams_into_Reality.pdf",
+    },
+    {
+      source: content4,
+      title: "d",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=FreeBook_The_Real_Power_of_Affirmations.pdf",
+    },
+    {
+      source: content3,
+      title: "c",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=FreeBook_10_Easy_Steps_to_Turning_Dreams_into_Reality.pdf",
     },
     {
       source: content4,
@@ -133,34 +169,22 @@ export default function FinancialLiteracy({ navigation }) {
     {
       source: content3,
       title: "c",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=FreeBook_10_Easy_Steps_to_Turning_Dreams_into_Reality.pdf",
     },
     {
       source: content4,
       title: "d",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=FreeBook_The_Real_Power_of_Affirmations.pdf",
     },
     {
       source: content3,
       title: "c",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=FreeBook_10_Easy_Steps_to_Turning_Dreams_into_Reality.pdf",
     },
     {
       source: content4,
       title: "d",
-    },
-    {
-      source: content3,
-      title: "c",
-    },
-    {
-      source: content4,
-      title: "d",
-    },
-    {
-      source: content3,
-      title: "c",
-    },
-    {
-      source: content4,
-      title: "d",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=FreeBook_The_Real_Power_of_Affirmations.pdf",
     },
   ];
 
@@ -168,42 +192,52 @@ export default function FinancialLiteracy({ navigation }) {
     {
       source: content5,
       title: "e",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Mindfulness_Practice_Progressive_Muscle_Relaxation.pdf",
     },
     {
       source: content6,
       title: "f",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Onderzoeksrapport_Esther_Zouwra.pdf",
     },
     {
       source: content5,
       title: "e",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Mindfulness_Practice_Progressive_Muscle_Relaxation.pdf",
     },
     {
       source: content6,
       title: "f",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Onderzoeksrapport_Esther_Zouwra.pdf",
     },
     {
       source: content5,
       title: "e",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Mindfulness_Practice_Progressive_Muscle_Relaxation.pdf",
     },
     {
       source: content6,
       title: "f",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Onderzoeksrapport_Esther_Zouwra.pdf",
     },
     {
       source: content5,
       title: "e",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Mindfulness_Practice_Progressive_Muscle_Relaxation.pdf",
     },
     {
       source: content6,
       title: "f",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Onderzoeksrapport_Esther_Zouwra.pdf",
     },
     {
       source: content5,
       title: "e",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Mindfulness_Practice_Progressive_Muscle_Relaxation.pdf",
     },
     {
       source: content6,
       title: "f",
+      link: "https://drive.google.com/viewerng/viewer?embedded=true&url=https://u147954p139675.web0150.zxcs-klant.nl/?book=Onderzoeksrapport_Esther_Zouwra.pdf",
     },
   ];
 
@@ -240,7 +274,15 @@ export default function FinancialLiteracy({ navigation }) {
             data={finance}
             style={styles.flatlist}
             renderItem={({ item }) => (
-              <TouchableOpacity onPress={DetailedEbookHandler}>
+              <TouchableOpacity
+                onPress={() => {
+                  (async () => {
+                    await Securestore.setItemAsync("link", ebook.link);
+                  })();
+                  console.log(ebook.link);
+                  DetailedEbookHandler();
+                }}
+              >
                 <View>
                   <Image source={item.source} style={styles.images} />
                 </View>
@@ -259,7 +301,15 @@ export default function FinancialLiteracy({ navigation }) {
             data={mindfulness}
             style={styles.flatlist}
             renderItem={({ item }) => (
-              <TouchableOpacity onPress={DetailedEbookHandler}>
+              <TouchableOpacity
+                onPress={() => {
+                  (async () => {
+                    await Securestore.setItemAsync("link", ebook.link);
+                  })();
+                  console.log(ebook.link);
+                  DetailedEbookHandler();
+                }}
+              >
                 <View>
                   <Image source={item.source} style={styles.images} />
                 </View>
@@ -283,7 +333,15 @@ export default function FinancialLiteracy({ navigation }) {
             data={education}
             style={styles.flatlist}
             renderItem={({ item }) => (
-              <TouchableOpacity onPress={DetailedEbookHandler}>
+              <TouchableOpacity
+                onPress={() => {
+                  (async () => {
+                    await Securestore.setItemAsync("link", ebook.link);
+                  })();
+                  console.log(ebook.link);
+                  DetailedEbookHandler();
+                }}
+              >
                 <View>
                   <Image source={item.source} style={styles.images} />
                 </View>

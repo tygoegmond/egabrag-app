@@ -21,14 +21,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useFonts } from "expo-font";
 
 // create onboarding component
-const ProgressWidget = ({
-  onPress,
-  navigation,
-  goalTitle,
-  startAmount,
-  endAmount,
-  amount,
-}) => {
+const ProgressWidget = ({ goalTitle, startAmount, endAmount, amount }) => {
   //declare states
   const [progress, setProgress] = useState(0);
 
@@ -47,7 +40,7 @@ const ProgressWidget = ({
     return null;
   }
   const pressHandler = () => {
-    onPress();
+    console.log("hi");
   };
   function timeout(delay) {
     return new Promise((res) => setTimeout(res, delay));
@@ -70,7 +63,12 @@ const ProgressWidget = ({
             marginTop: height * 0.01,
           }}
         ></View>
-        <View style={styles.progressbar}>
+        <View
+          style={{
+            position: "absolute",
+            top: height * 0.08,
+          }}
+        >
           <Progress.Bar
             width={width * 0.7}
             thickness={12}
@@ -164,10 +162,6 @@ const styles = StyleSheet.create({
 
         position: "absolute",
       },
-      progressbar: {
-        position: "absolute",
-        top: height * 0.045,
-      },
       title: {
         color: "#61CBB4",
         fontSize: 18,
@@ -207,11 +201,13 @@ const styles = StyleSheet.create({
         position: "absolute",
         justifyContent: "center",
       },
+
       profileText: {
         color: "#fff",
         backgroundColor: "#61CBB4",
         padding: 15,
         paddingHorizontal: 30,
+
         borderRadius: 24,
         overflow: "hidden",
         fontWeight: "bold",
@@ -228,6 +224,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         top: getStatusBarHeight() + height / 11,
       },
+
       profileInfoContainer: {
         width: width / 1.5,
         left: width / 14,
@@ -247,18 +244,15 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: "bold",
         top: height * 0.03,
+
         position: "relative",
       },
       recent: {
         color: "#fff",
         fontSize: 22,
         fontWeight: "bold",
-        top: height * 0.03,
+        top: height * 0.04,
         position: "absolute",
-      },
-      progressbar: {
-        position: "absolute",
-        top: height * 0.08,
       },
       title: {
         color: "#61CBB4",
@@ -266,7 +260,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         height: height * 0.15,
         left: width / 14,
-        top: height * 0.01,
+        top: height * 0.02,
         marginBottom: height / 120,
         position: "absolute",
       },
@@ -352,10 +346,6 @@ const styles = StyleSheet.create({
         top: height * 0.012,
 
         position: "absolute",
-      },
-      progressbar: {
-        position: "absolute",
-        top: height * 0.08,
       },
       title: {
         color: "#61CBB4",

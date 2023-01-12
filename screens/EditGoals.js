@@ -1,9 +1,11 @@
-import { Pressable, View, Text } from "react-native";
+import { Pressable, View, Text, Dimensions } from "react-native";
 import * as Securestore from "expo-secure-store";
+import { getStatusBarHeight } from "react-native-status-bar-height";
 import { TextInput } from "react-native-gesture-handler";
 import { useState, useEffect } from "react";
 import axios from "axios";
 export default function EditGoal({ navigation }) {
+  const { height, width } = Dimensions.get("screen");
   const [createdat, Setcreatedat] = useState(null);
   const [id, Setid] = useState(null);
   const [goalname, Setname] = useState(null);
@@ -77,7 +79,7 @@ export default function EditGoal({ navigation }) {
       <Pressable
         onPress={async () => {
           const response = await axios.patch(
-            "http://192.168.2.22:8000/api/savinggoals/",
+            "http://192.168.209.101:8000/api/savinggoals/",
             {
               name: goalname,
               saved_amount: savedamount,
@@ -94,15 +96,41 @@ export default function EditGoal({ navigation }) {
           );
           navigation.goBack();
         }}
-        style={{ backgroundColor: "yellow", width: 100, marginBottom: 20 }}
+        style={{
+          width: width * 0.28,
+          backgroundColor: "#61CBB4",
+          textAlign: "center",
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: 30,
+          height: height * 0.04,
+          alignContent: "center",
+          overflow: "hidden",
+          left: width * 0.15,
+          position: "absolute",
+          top: getStatusBarHeight() + height * 0.1,
+        }}
       >
         <Text>Save goal</Text>
       </Pressable>
       <Pressable
-        style={{ backgroundColor: "red", width: 100 }}
+        style={{
+          width: width * 0.28,
+          backgroundColor: "#61CBB4",
+          textAlign: "center",
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: 30,
+          height: height * 0.04,
+          alignContent: "center",
+          overflow: "hidden",
+          left: width * 0.5,
+          position: "absolute",
+          top: getStatusBarHeight() + height * 0.1,
+        }}
         onPress={async () => {
           const response = await axios.delete(
-            "http://192.168.2.22:8000/api/savinggoals/",
+            "http://192.168.209.101:8000/api/savinggoals/",
             {
               data: {
                 name: goalname,
