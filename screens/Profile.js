@@ -67,7 +67,7 @@ export default function Profile({ navigation }) {
           <InterestsWidget navigation={navigation} />
 
           <TouchableOpacity
-            style={[Global.button, { top: 500 }]}
+            style={[Global.button, { top: 600 }]}
             onPress={signOut}
           >
             <Text style={Global.buttonText}>Sign out</Text>
