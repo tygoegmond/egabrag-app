@@ -43,10 +43,10 @@ const ProfileInfo = ({ profilePic, user, navigation }) => {
     <View style={styles.profileView}>
       <Image style={styles.profilePic} source={profilePic} />
       <Text style={styles.name}>Gebruiker: {user.name}</Text>
-      <Text style={styles.email}>Email: {user.email}</Text>
-      <Text style={styles.nationality}>nationality: {user.nationality}</Text>
-      <Text style={styles.school}>School: {user.school}</Text>
-      <Text style={styles.study}>Study: {user.school_grade}</Text>
+      <Text style={styles.name}>Email: {user.email}</Text>
+      <Text style={styles.name}>nationality: Dutch</Text>
+      <Text style={styles.name}>School: Windesheim</Text>
+      <Text style={styles.name}>Study: HBO-ICT</Text>
       {/* <Text style={styles.name}>Geboortedatum: {user.birthdate}</Text> */}
 
       {/*<View style={styles.profileInfoContainer}>*/}
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
         backgroundColor: "rgba(255, 255, 255, 0.8)",
         width: width / 1.18,
         borderRadius: 25,
-        height: height / 5.5,
+        height: height / 3.5,
         bottom: getStatusBarHeight() + height / 1000,
         justifyContent: "center",
         alignSelf: "flex-start",
@@ -180,9 +180,9 @@ const styles = StyleSheet.create({
         color: "#107070",
         fontSize: 16,
         fontWeight: "bold",
-        top: getStatusBarHeight() + height * 0.04,
+        bottom: getStatusBarHeight() + height * 0.01,
         left: width / 14,
-        position: "absolute",
+        // position: "absolute",
 
         //wrap text
       },
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
         color: "#107070",
         fontSize: 16,
         fontWeight: "bold",
-        top: getStatusBarHeight() + height * 0.07,
+        top: getStatusBarHeight() + height * 0.09,
         left: width / 14,
         position: "absolute",
 
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
         color: "#107070",
         fontSize: 16,
         fontWeight: "bold",
-        top: getStatusBarHeight() + height * 0.1,
+        top: getStatusBarHeight() + height * 0.12,
         left: width / 14,
         position: "absolute",
 
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
         color: "#107070",
         fontSize: 16,
         fontWeight: "bold",
-        top: getStatusBarHeight() + height * 0.13,
+        top: getStatusBarHeight() + height * 0.15,
         left: width / 14,
         position: "absolute",
 
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
         color: "#107070",
         fontSize: 16,
         fontWeight: "bold",
-        top: getStatusBarHeight() + height * 0.16,
+        top: getStatusBarHeight() + height * 0.18,
         left: width / 14,
         position: "absolute",
 
