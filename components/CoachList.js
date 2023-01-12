@@ -8,7 +8,8 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import CoachCard from "./CoachCard";
-
+import classy from "../assets/images/classyNotes.webp";
+import met from "../assets/images/1met.png";
 const CoachList = ({ setCoachListState, setLastCoach, setCoach, coach }) => {
   const data = [];
   // coach.type === "Financial Literacy"
@@ -53,7 +54,12 @@ const CoachList = ({ setCoachListState, setLastCoach, setCoach, coach }) => {
               organization: "Classy Notes",
               website: "https://www.cn-lawfinancegroup.com/",
               type: "Financial Literacy",
-              availability: [1, 2, 4],
+              src: classy,
+              about: `Classy Notes - Als creatieve professionals werken wij oplossingsgericht, service gericht en inclusief. Als bedrijf bekijken wij de kansen voor onze klanten kritisch zodat wij de juiste prestatie kunnen behalen. - Schulden oplossen zonder schuldhulpverlening-traject - Financieel - Juridisch incasso
+              www.cn-lawfinancegroup.com
+              `,
+              specialties: ['Debt track and debt collection letters', 'Budgeting', 'Financial planning'],
+              availability: [{day: 'Monday', time: "9:30 - 17:00"}, {day: 'Wednesday', time: "9:30 - 17:00"}, {day: 'Thursday', time: "9:30 - 17:00"}],
             },
             {
               id: 2,
@@ -61,16 +67,23 @@ const CoachList = ({ setCoachListState, setLastCoach, setCoach, coach }) => {
               organization: "1 met jezelf",
               website: "https://www.1metjezelf-coaching.com/Coaching/",
               type: "Mindfulness",
-              availability: [1, 2, 4],
+              src: met,
+              about: "",
+              specialties: ['Anxiety', 'Depression', 'Work Stress'],
+              availability: [{day: 'Monday', time: "9:30 - 17:30"}, {day: 'Tuesday', time: "9:30 - 17:30"}, {day: 'Thursday', time: "9:30 - 17:30"}],
             },
           ]}
-          renderItem={({ item }) => (
+          renderItem={({ item, key }) => (
+            <View>
             <CoachCard
+              key={key}
               setLastCoach={setLastCoach}
               setCoachListState={setCoachListState}
               setCoach={setCoach}
               item={item}
+              cardHeight={0.2}
             />
+            </View>
           )}
         />
       </View>

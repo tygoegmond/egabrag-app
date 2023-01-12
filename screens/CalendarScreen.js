@@ -32,12 +32,12 @@ const CalendarScreen = ({ navigation }) => {
   const [markedDates, setMarkedDates] = useState({});
   const [month, setMonth] = useState(new Date().getMonth());
   const [appointments, setAppointments] = useState({
-    "2022-11-29": [
+    "2023-11-29": [
       {
         startTime: null,
         location: "Almere",
         title: "Jake's 18th Birthday",
-        coach: null,
+        coach: {},
         travelTime: null,
         duration: null,
         allDay: true,
@@ -47,7 +47,7 @@ const CalendarScreen = ({ navigation }) => {
         startTime: "11:00",
         location: "Almere",
         title: "Coaching session",
-        coach: {
+        coach_id: {
           name: "A. Baino",
           organization: "Classy Notes",
           website: "https://www.cn-lawfinancegroup.com/",
@@ -62,18 +62,18 @@ const CalendarScreen = ({ navigation }) => {
         startTime: "12:00",
         location: "Almere",
         title: "Dentist Appointment",
-        coach: null,
+        coach: {},
         travelTime: "30 min",
         duration: 120,
         allDay: false,
       },
     ],
-    "2022-11-17": [
+    "2023-01-17": [
       {
         startTime: "11:00",
         location: "Almere",
         title: "Coaching session",
-        coach: {
+        coach_id: {
           name: "J. Schmidt",
           organization: "1 met jezelf",
           website: "https://www.1metjezelf-coaching.com/Coaching/",
@@ -88,7 +88,7 @@ const CalendarScreen = ({ navigation }) => {
         startTime: "12:00",
         location: "Almere",
         title: "Biking trip",
-        coach: null,
+        coach: {},
         travelTime: "30 min",
         duration: 120,
         allDay: false,
@@ -109,7 +109,7 @@ const CalendarScreen = ({ navigation }) => {
         }
       );
       const appointments = await axios.get(
-        "http://192.168.2.32:8000/api/appointments/user/1",
+        "https://egabrag.tygoegmond.nl/api/appointments/user/1",
         {
           headers: {
             // Authorization:

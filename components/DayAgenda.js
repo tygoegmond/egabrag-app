@@ -18,8 +18,10 @@ const DayAgenda = ({ date, appointments, fullDate,  setAddAppointmentMode }) => 
   //change date if selected date is today
 
   useEffect(() => {
+    console.log(appointments)
     if (date.dateString?.length > 0) {
       setCurrentDate(new Date(date.dateString));
+      
     }
   }, [date]);
 
@@ -67,9 +69,9 @@ const DayAgenda = ({ date, appointments, fullDate,  setAddAppointmentMode }) => 
     currentAppointments = appointments[date.dateString].map((item, index) => {
       console.log(item.coach, " coach");
 
-      //if the appointment is a coaching session render it differently
+      //if the appointment is a coaching session re\  er it differently
 
-      if (item.coach_id !== null) {
+      if (item.coach !== null) {
         return (
           <Pressable
             style={{
@@ -88,7 +90,7 @@ const DayAgenda = ({ date, appointments, fullDate,  setAddAppointmentMode }) => 
                 {item.startTime} {item.title}
               </Text>
               <Text style={styles.appointmentTimeTextCoachSmall}>
-                {item.coach_id.name} - {item.coach_id.type}
+                {item.coach.name} - Financial Literacy
               </Text>
             </View>
           </Pressable>

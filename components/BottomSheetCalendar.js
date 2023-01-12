@@ -115,7 +115,7 @@ const BottomSheetCalendar = ({ setAddAppointmentMode, user }) => {
     // }
 
     // console.log(startTime, "start time datedada");
-    let coachSettings = -1;
+    let coachSettings = "";
     if (coachValue.details?.id !== undefined) {
       console.log(coachValue.length, coachValue.details.id);
       coachSettings = coachValue.details?.id;
@@ -123,9 +123,9 @@ const BottomSheetCalendar = ({ setAddAppointmentMode, user }) => {
     let alertSetting = alert ? 1 : 0;
     const data = {
       title: title,
-      datetime: "2023-01-09T09:30",
+      datetime: startTime,
       location: location,
-      user_id: user.id,
+      user_id: 1,
       coach_id: coachSettings,
       travel_time: travelTime,
       duration: duration * -1,
@@ -148,9 +148,13 @@ const BottomSheetCalendar = ({ setAddAppointmentMode, user }) => {
 
     try {
       const response = await axios.post(
-        `http://192.168.2.32:8000/api/appointments/store`,
+        `https://egabrag.tygoegmond.nl/api/appointments/store`,
         {
-          
+          headers: {
+            Authorization:
+              "Bearer " + (await Securestore.getItemAsync("token")),
+            Accept: "application/json",
+          },
           body: data,
         }
       );

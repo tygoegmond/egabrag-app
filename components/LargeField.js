@@ -27,7 +27,7 @@ export default LargeField = ({ type, title, position, setFunction, keyboardType,
         style={Global.largeField}
         onChangeText={(e) => setFunction(e)}
         name={title}
-        secureTextEntry={inputType}
+        // secureTextEntry={inputType}
         defaultValue={""}
       />
       <Text style={Global.placeholder}>{title}</Text>

@@ -227,7 +227,7 @@ export default function Login({ navigation }) {
             keyboardType={"password"}
           />
         </View>
-        <CheckBoxField
+        {/* <CheckBoxField
           top={0.7}
           style={styles.checkBox}
           text="Subscribe to the newsletter"
@@ -240,10 +240,10 @@ export default function Login({ navigation }) {
           text="Agree to terms of service"
           checked={terms}
           setChecked={setTerms}
-        />
+        /> */}
         <Text style={styles.error}>{errors}</Text>
 
-        {/* <View
+        <View
           style={[
             Global.input,
             {
@@ -261,7 +261,7 @@ export default function Login({ navigation }) {
             defaultValue={"12345678"}
           />
           <Text style={Global.placeholder}>Password</Text>
-        </View> */}
+        </View>
         <TouchableOpacity
           style={[
             Global.button,

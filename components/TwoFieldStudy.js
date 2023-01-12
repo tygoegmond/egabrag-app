@@ -58,7 +58,7 @@ export default TwoFieldStudy = ({ type,mode, setMode, title, title2, setFunction
         style={[Global.smallField,  ]}
         onChangeText={(e) => setFunction(e)}
         name={title}
-        secureTextEntry={inputType}
+         
         defaultValue={""}
       />
       <Text style={[Global.placeholder, { marginLeft: width * 0.03 }]}>{title}</Text>
@@ -68,7 +68,7 @@ export default TwoFieldStudy = ({ type,mode, setMode, title, title2, setFunction
         style={[Global.smallField,  ]}
         onChangeText={(e) => setFunction2(e)}
         name={title}
-        secureTextEntry={inputType}
+         
         defaultValue={""}
       />
       <Text style={[Global.placeholder, { marginLeft: width / 2.1 }]}>{title2}</Text>

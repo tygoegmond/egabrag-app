@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
   images: {
     width: width / 4.8,
     height: height / 6.72,
-    marginrRight: width / 40,
+    marginRight: width / 40,
   },
   flatlist: {
     width: width * 0.8,

@@ -58,7 +58,7 @@ export default TwoFieldDate = ({ type,mode, setMode, title, title2, setFunction2
         style={[Global.smallField, { marginLeft: -width / 16}]}
         onChangeText={(e) => setFunction2(e)}
         name={title2}
-        secureTextEntry={inputType}
+        // secureTextEntry={inputType}
         defaultValue={""}
       />
       <Text style={[Global.placeholder, { marginLeft: -width / 15}]}>{title}</Text>
@@ -81,7 +81,7 @@ export default TwoFieldDate = ({ type,mode, setMode, title, title2, setFunction2
         style={[Global.smallField, { right: -width / 15 } ]}
         onChangeText={(e) => setFunction(e)}
         name={title}
-        secureTextEntry={inputType}
+        // secureTextEntry={inputType}
         defaultValue={""}
       />
       <Text style={[Global.placeholder, { marginLeft: width / 2.6 }]}>{title2}</Text>
