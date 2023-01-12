@@ -72,13 +72,7 @@ const FinancialLiteracy = ({ recentTrainings, navigation }) => {
         >
           {recentlist}
         </View>
-        <View
-          style={{
-            position: "absolute",
-            // top: height * 0.019,
-            right: -width * 0.05,
-          }}
-        >
+        <View style={styles.progressCircle}>
           <Progress.Circle
             size={100}
             thickness={12}
@@ -177,6 +171,11 @@ const styles = StyleSheet.create({
         marginBottom: height / 120,
         position: "absolute",
       },
+      progressCircle: {
+        position: "absolute",
+        // top: height * 0.019,
+        right: -width * 0.05,
+      },
     },
     //--------------------------------------------------------android----------------------------------------------------------------
     android: {
@@ -252,6 +251,11 @@ const styles = StyleSheet.create({
         left: width / 14,
         marginBottom: height / 120,
         position: "absolute",
+      },
+      progressCircle: {
+        position: "absolute",
+        top: height * 0.019,
+        right: -width * 0.05,
       },
     },
     //-----------------------------------------------------------default-----------------------------------------------------------------
@@ -330,6 +334,11 @@ const styles = StyleSheet.create({
         left: width / 14,
         marginBottom: height / 120,
         position: "absolute",
+      },
+      progressCircle: {
+        position: "absolute",
+        top: height * 0.019,
+        right: -width * 0.05,
       },
     },
   }),

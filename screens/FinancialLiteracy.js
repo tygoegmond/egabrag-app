@@ -29,6 +29,7 @@ import BottomDrawer from "../components/BottomDrawer";
 import ProgressWidget from "../components/ProgressWidget";
 import backgroundImg from "../assets/images/backgroundImg.png";
 import * as Progress from "react-native-progress";
+import capture from "../assets/images/capture.png";
 
 export default function FinancialLiteracy({ navigation }) {
   //import fonts
@@ -39,13 +40,10 @@ export default function FinancialLiteracy({ navigation }) {
     "Nabla-Regular": require("../assets/fonts/Nabla-Regular.ttf"),
     "great-escape": require("../assets/fonts/great-escape.ttf"),
   });
-  const pressHandler = () => {
-    navigation.navigate("ArticlePage");
-  };
   const goalAmount = "400";
   const recentEbooks = [
     {
-      source: content1,
+      source: capture,
       title: "De intelligente belegger",
       description: "a",
     },
@@ -98,9 +96,19 @@ export default function FinancialLiteracy({ navigation }) {
       description: "a",
     },
   ];
+
   const allEbookHandler = () => {
     navigation.navigate("AllEbooks");
   };
+
+  const pressHandler = () => {
+    navigation.navigate("ArticlePage");
+  };
+
+  const detailedEbookHandler = () => {
+    navigation.navigate("DetailedEbook");
+  };
+
   function timeout(delay) {
     return new Promise((res) => setTimeout(res, delay));
   }
@@ -109,6 +117,7 @@ export default function FinancialLiteracy({ navigation }) {
     await timeout(time);
     setProgress(0.5);
   }
+
   useEffect(() => {
     updateProgress(500);
     setCurrentAmount("800");
@@ -153,11 +162,11 @@ export default function FinancialLiteracy({ navigation }) {
             data={recentEbooks}
             style={styles.flatlist}
             renderItem={({ item }) => (
-              <View>
+              <TouchableOpacity onPress={detailedEbookHandler}>
                 {/* singular on boarding screen word gerendered */}
                 <Image source={item.source} style={styles.images} />
                 {/* // <Text>{item.title}</Text> */}
-              </View>
+              </TouchableOpacity>
             )}
           />
         </View>
@@ -166,14 +175,24 @@ export default function FinancialLiteracy({ navigation }) {
           <Pressable style={styles.pressableDots} onPress={allEbookHandler}>
             <Text style={styles.dots}>•••</Text>
           </Pressable>
-          <TouchableOpacity onPress={pressHandler}>
-            <Image style={styles.images} source={content6} />
-          </TouchableOpacity>
+          <FlatList
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            data={recentArticles}
+            style={styles.flatlist}
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={pressHandler}>
+                {/* singular on boarding screen word gerendered */}
+                <Image source={item.source} style={styles.images} />
+                {/* // <Text>{item.title}</Text> */}
+              </TouchableOpacity>
+            )}
+          />
         </View>
         <View style={styles.widgetViewContentContainer}>
           <Text style={styles.widgetViewContentTitle}>Your Goals</Text>
           <Progress.Bar
-            width={width * 0.78}
+            width={width / 1.25}
             thickness={12}
             height={height * 0.02}
             color={"#61CBB4"}
@@ -191,7 +210,8 @@ export default function FinancialLiteracy({ navigation }) {
               {
                 flexDirection: "row",
                 zIndex: 10,
-                height: 100,
+                width: width / 1.25,
+                top: height / 100,
               },
               styles.widgetViewContent,
             ]}

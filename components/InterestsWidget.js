@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     backgroundColor: "white",
 
-    // alignItems: "left",
+    //alignItems: "left",
     padding: width * 0.05,
   },
   header: {

@@ -30,7 +30,6 @@ const ProfileWidget = ({ profilePic, user, navigation }) => {
 
   const scrollX = useRef(new Animated.Value(0)).current;
 
-
   const pressHandler = () => {
     navigation.navigate("Profile");
   };
@@ -292,11 +291,10 @@ const styles = StyleSheet.create({
         color: "#000",
         fontSize: 16,
         fontWeight: "bold",
-        top:  height * 0.02,
+        top: height * 0.02,
         position: "relative",
       },
       pointsIcon: {
-       
         width: width / 20,
         height: height / 40,
       },
@@ -444,7 +442,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         textAlign: "center",
       },
-
       container: {
         flex: 1,
         backgroundColor: "#eee",
@@ -482,7 +479,6 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         height: height / 5.5,
         bottom: getStatusBarHeight() + height / 4.1,
-
         justifyContent: "center",
       },
       profilePic: {
@@ -514,7 +510,7 @@ const styles = StyleSheet.create({
         color: "#107070",
         fontSize: 24,
         fontWeight: "bold",
-        top: getStatusBarHeight() + height * 0.01,
+        top: getStatusBarHeight() + height * 0.03,
         left: width / 14,
         position: "absolute",
         //wrap text
@@ -526,7 +522,7 @@ const styles = StyleSheet.create({
       },
       profileInfo: {
         color: "#000",
-        fontSize: 14,
+        fontSize: width / 27,
         fontWeight: "bold",
         position: "relative",
       },

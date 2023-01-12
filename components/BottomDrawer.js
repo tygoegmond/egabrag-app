@@ -64,14 +64,14 @@ export default BottomDrawer = ({ navigation }) => {
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         //shadow
-        shadowColor: "#000",
+        shadowColor: "black",
         shadowOffset: {
           width: 0,
           height: -1,
         },
         shadowOpacity: 0.3,
         shadowRadius: 4,
-        elevation: 5,
+        elevation: 20,
       }}
     >
       {bottomTabs}
