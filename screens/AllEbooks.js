@@ -28,7 +28,7 @@ import content6 from "../assets/images/content6.webp";
 import BottomDrawer from "../components/BottomDrawer";
 import { ScrollView } from "react-native-gesture-handler";
 import backgroundImg from "../assets/images/backgroundImg.png";
-
+import * as Securestore from "expo-secure-store";
 export default function FinancialLiteracy({ navigation }) {
   //import fonts
   const [currentAmount, setCurrentAmount] = useState();
@@ -254,7 +254,15 @@ export default function FinancialLiteracy({ navigation }) {
             data={popular}
             style={styles.flatlist}
             renderItem={({ item }) => (
-              <TouchableOpacity onPress={DetailedEbookHandler}>
+              <TouchableOpacity
+                onPress={() => {
+                  (async () => {
+                    await Securestore.setItemAsync("link", item.link);
+                  })();
+                  console.log(item.link);
+                  DetailedEbookHandler();
+                }}
+              >
                 <View>
                   <Text style={styles.popularityNumber}>{item.popularity}</Text>
                   <Image source={item.source} style={styles.imagesPopular} />
@@ -277,9 +285,9 @@ export default function FinancialLiteracy({ navigation }) {
               <TouchableOpacity
                 onPress={() => {
                   (async () => {
-                    await Securestore.setItemAsync("link", ebook.link);
+                    await Securestore.setItemAsync("link", item.link);
                   })();
-                  console.log(ebook.link);
+                  console.log(item.link);
                   DetailedEbookHandler();
                 }}
               >
@@ -304,9 +312,9 @@ export default function FinancialLiteracy({ navigation }) {
               <TouchableOpacity
                 onPress={() => {
                   (async () => {
-                    await Securestore.setItemAsync("link", ebook.link);
+                    await Securestore.setItemAsync("link", item.link);
                   })();
-                  console.log(ebook.link);
+                  console.log(item.link);
                   DetailedEbookHandler();
                 }}
               >
@@ -336,9 +344,9 @@ export default function FinancialLiteracy({ navigation }) {
               <TouchableOpacity
                 onPress={() => {
                   (async () => {
-                    await Securestore.setItemAsync("link", ebook.link);
+                    await Securestore.setItemAsync("link", item.link);
                   })();
-                  console.log(ebook.link);
+                  console.log(item.link);
                   DetailedEbookHandler();
                 }}
               >
