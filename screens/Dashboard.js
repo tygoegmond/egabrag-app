@@ -144,8 +144,8 @@ export default function Dashboard({ navigation }) {
               onPress={() => navigation.navigate("SavingGoals")}
               navigation={navigation}
               goalTitle={name}
-              endAmount={totalamount}
-              amount={savedamount}
+              endAmount={savedamount}
+              amount={totalamount}
             />
           )}
           <BottomDrawer navigation={navigation} />

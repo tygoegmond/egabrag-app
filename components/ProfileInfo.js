@@ -83,16 +83,16 @@ const styles = StyleSheet.create({
       profilePic: {
         width: width / 4,
         height: height / 9,
-        top: height * -0.07,
-        left: width / 16,
+        top: height * -0.04,
+        left: width * 0.52,
       },
       name: {
         color: "#107070",
         fontSize: 16,
         fontWeight: "bold",
-        top: getStatusBarHeight() + height * 0.04,
+        bottom: getStatusBarHeight() + -height * 0.02,
         left: width / 14,
-        position: "absolute",
+        // position: "absolute",
 
         //wrap text
       },
